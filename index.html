@@ -1,6 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+<script>
+  // Firebase config you copied
+  const firebaseConfig = {
+    apiKey: "AIzaSyCPp44zUE1rYsIpiiNq1DjRpXvJFA-zr4g",
+    authDomain: "comics-and-novels.firebaseapp.com",
+    projectId: "comics-and-novels",
+    storageBucket: "comics-and-novels.firebasestorage.app",
+    messagingSenderId: "438332137609",
+    appId: "1:438332137609:web:1a6584ebcc4cc53224a658",
+    measurementId: "G-2X748VJQ7K"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const fbAuth = firebase.auth();
+  const fbDB = firebase.firestore();
+  const fbStorage = firebase.storage();
+</script>
+  <script>
+/* === Firebase Auth Handlers === */
+
+// Register new user
+async function firebaseRegisterHandler() {
+  try {
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (!username || !email || !password) { alert('Fill all fields'); return; }
+
+    // create Firebase Auth user
+    const userCred = await fbAuth.createUserWithEmailAndPassword(email, password);
+    const uid = userCred.user.uid;
+
+    // create user profile in Firestore
+    const profile = {
+      id: uid,
+      username,
+      email,
+      roles: ['reader'], // default role, you can add author/artist later
+      verified: false,
+      bio: '',
+      avatar: null,
+      followers: [],
+      following: [],
+      stats: { views: 0, likes: 0 },
+      createdAt: new Date().toISOString()
+    };
+    await fbDB.collection('users').doc(uid).set(profile);
+
+    localStorage.setItem('cn_session', JSON.stringify({ userId: uid }));
+    alert('Registered & logged in!');
+    if (typeof renderProfile === 'function') renderProfile();
+  } catch (err) {
+    console.error(err);
+    alert('Register error: ' + err.message);
+  }
+}
+
+// Login existing user
+async function firebaseLoginHandler() {
+  try {
+    const usernameOrEmail = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    if (!usernameOrEmail || !password) { alert('Fill all fields'); return; }
+
+    let email = usernameOrEmail;
+
+    // If user typed username instead of email, find email from Firestore
+    if (!usernameOrEmail.includes('@')) {
+      const q = await fbDB.collection('users').where('username', '==', usernameOrEmail).limit(1).get();
+      if (!q.empty) email = q.docs[0].data().email;
+    }
+
+    const userCred = await fbAuth.signInWithEmailAndPassword(email, password);
+    const uid = userCred.user.uid;
+
+    // save session
+    localStorage.setItem('cn_session', JSON.stringify({ userId: uid }));
+    alert('Logged in!');
+    if (typeof renderProfile === 'function') renderProfile();
+  } catch (err) {
+    console.error(err);
+    alert('Login error: ' + err.message);
+  }
+}
+
+// Logout
+function firebaseLogoutHandler() {
+  fbAuth.signOut().then(() => {
+    localStorage.removeItem('cn_session');
+    alert('Logged out!');
+    if (typeof renderHome === 'function') renderHome();
+  });
+}
+
+// Keep UI synced with Firebase auth state
+fbAuth.onAuthStateChanged(async (fbUser) => {
+  if (fbUser) {
+    localStorage.setItem('cn_session', JSON.stringify({ userId: fbUser.uid }));
+  } else {
+    localStorage.removeItem('cn_session');
+  }
+  if (typeof renderHome === 'function') renderHome();
+});
+
+// Hook buttons
+document.addEventListener('DOMContentLoaded', () => {
+  const regBtn = document.getElementById('registerBtn');
+  const logBtn = document.getElementById('loginBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  if (regBtn) regBtn.onclick = firebaseRegisterHandler;
+  if (logBtn) logBtn.onclick = firebaseLoginHandler;
+  if (logoutBtn) logoutBtn.onclick = firebaseLogoutHandler;
+});
+                                                       </script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Comics & Novels — C&amp;N (Prototype)</title>
