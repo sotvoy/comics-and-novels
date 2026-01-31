@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comics & Novels — C&N (All-in-one)</title>
+
+  <!-- Firebase SDKs (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+  <script>
+    // ====== Your Firebase config (already provided) ======
+    const firebaseConfig = {
+      apiKey: "AIzaSyCPp44zUE1rYsIpiiNq1DjRpXvJFA-zr4g",
+      authDomain: "comics-and-novels.firebaseapp.com",
+      projectId: "comics-and-novels",
+      storageBucket: "comics-and-novels.firebasestorage.app",
+      messagingSenderId: "438332137609",
+      appId: "1:438332137609:web:1a6584ebcc4cc53224a658",
+      measurementId: "G-2X748VJQ7K"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const fbAuth = firebase.auth();
+    const fbDB = firebase.firestore();
+    const fbStorage = firebase.storage();
+  </script>
+
+  <style>
+    /* ============================
+       Full CSS — Mobile-first Dark Theme
+       ============================ */
+    :root{
+      --bg:#0f1114; --card:#15181b; --muted:#9aa3ad; --accent:#1db954; --surface:#181b1e;
+      --text:#e9eef2; --radius:12px; --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+    /* Top bar */
+    .topbar{display:flex;align-items:center;padding:10px 12px;background:var(--surface);gap:8px;position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .top-left{display:flex;align-items:center;gap:8px}
+    .menu-btn,.type-btn,.icon{background:none;border:none;color:inherit;font-size:18px;padding:6px;border-radius:8px;cursor:pointer}
+    .type-btn{font-weight:700;padding:6px 10px}
+    .center-tabs{margin-left:auto;margin-right:12px;display:flex;gap:8px;align-items:center}
+    .tab{background:none;border:none;color:var(--muted);padding:6px 8px;border-radius:8px;cursor:pointer;font-weight:700}
+    .tab.active{color:var(--text);border-bottom:2px solid var(--accent)}
+    .icons-right{display:flex;gap:8px;align-items:center}
+    /* Drawer */
+    .drawer{position:fixed;left:0;top:0;bottom:0;width:78%;max-width:320px;background:var(--card);z-index:80;transform:translateX(-110%);transition:transform .25s ease;overflow:auto;padding:12px}
+    .drawer.open{transform:translateX(0)}
+    .drawer h4{margin:10px 0 6px;padding:0;font-size:16px}
+    .drawer .item{padding:10px;border-radius:8px;margin-bottom:6px;background:transparent;cursor:pointer}
+    /* Main */
+    main{padding:14px;padding-bottom:120px}
+    .section{margin-bottom:18px}
+    .section h3{margin:0 0 8px 0;font-size:16px;color:var(--text)}
+    .h-row{display:flex;gap:10px;overflow:auto;padding-bottom:6px}
+    .card{min-width:140px;height:190px;background:linear-gradient(180deg,#111,#151515);border-radius:10px;flex:0 0 auto;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+    .card .cover{width:100%;height:120px;background:#222;border-radius:8px;margin-bottom:8px}
+    .card .title{font-weight:600;font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .grid .series{background:var(--card);padding:10px;border-radius:10px}
+    .series .meta{display:flex;gap:10px;align-items:center}
+    .series .meta .avatar{width:40px;height:40px;border-radius:8px;background:#222}
+    /* bottom nav */
+    .bottom-nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);padding:10px 8px;border-top:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-around;gap:6px;z-index:60}
+    .nav-btn{cursor:pointer;font-size:14px;color:var(--muted);background:none;border:none;display:flex;flex-direction:column;align-items:center}
+    .plus{width:56px;height:56px;border-radius:50%;background:var(--accent);border:none;color:#061013;font-size:26px;display:flex;align-items:center;justify-content:center;margin-top:-30px;box-shadow:0 8px 24px rgba(0,0,0,0.6);cursor:pointer}
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:flex-end;justify-content:center;padding:12px;z-index:120}
+    .modal{width:100%;max-width:420px;background:var(--card);border-radius:14px;padding:14px}
+    .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:none;background:#222;color:#fff;cursor:pointer}
+    .input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:#0f1113;color:#fff}
+    .row-inline{display:flex;gap:8px}
+    .sm{font-size:13px;color:var(--muted)}
+    .form .field{margin-bottom:10px}
+    .chip{display:inline-block;padding:6px 8px;border-radius:999px;background:#1b1d1e;margin:4px;margin-right:6px;font-size:13px}
+    .reader{padding:12px}
+    .reader .comic-img{width:100%;max-width:900px;margin:0 auto;display:block;border-radius:8px;margin-bottom:10px}
+    .novel-text{white-space:pre-wrap;background:transparent;padding:8px}
+    .profile-header{display:flex;gap:10px;align-items:center;padding:10px;background:linear-gradient(180deg,#111,#0f1113);border-radius:10px}
+    .avatar{width:72px;height:72px;border-radius:12px;background:#222}
+    .verified{background:linear-gradient(90deg,#ffd700,#ffb84d);padding:6px 8px;border-radius:8px;color:#111;font-weight:700;margin-left:8px}
+    .muted{color:var(--muted)}
+    .flex{display:flex;gap:8px;align-items:center}
+    .hidden{display:none}
+    @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="top-left">
+      <button class="menu-btn" id="openDrawer">☰</button>
+      <button class="type-btn" id="genreBtn">Manhwa ▾</button>
+    </div>
+
+    <div class="center-tabs">
+      <button class="tab active" id="tabComics">Comics</button>
+      <button class="tab" id="tabNovels">Novels</button>
+    </div>
+
+    <div class="icons-right">
+      <button class="icon" id="notifBtn">🔔</button>
+      <button class="icon" id="searchBtn">🔍</button>
+    </div>
+  </div>
+
+  <!-- DRAWER -->
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <h4>Explore</h4>
+    <div class="item" data-action="top">Top Ranking</div>
+    <div class="item" data-action="new">New Uploads</div>
+    <div class="item" data-action="genres">Genres</div>
+    <div class="item" data-action="completed">Completed</div>
+    <div style="height:14px"></div>
+    <h4>Your Tools</h4>
+    <div class="item" data-action="mylist">My List</div>
+    <div class="item" data-action="playlists">Playlists</div>
+    <div class="item" data-action="admin">Admin</div>
+  </div>
+
+  <!-- MAIN -->
+  <main id="app">
+    <section class="section">
+      <h3>Top 10 This Week</h3>
+      <div class="h-row" id="top10"></div>
+    </section>
+
+    <section class="section">
+      <div style="display:flex;gap:8px;overflow:auto;padding-bottom:6px" id="tagsRow"></div>
+      <div id="tagsContent" style="margin-top:10px"></div>
+    </section>
+
+    <section class="section">
+      <h3>All Content</h3>
+      <div class="grid" id="feed"></div>
+    </section>
+  </main>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button class="nav-btn" id="navHome">Home</button>
+    <button class="nav-btn" id="navMyList">My List</button>
+
+    <button id="plusBtn" class="plus">＋</button>
+
+    <button class="nav-btn" id="navFollowing">Following</button>
+    <button class="nav-btn" id="navProfile">Profile</button>
+  </nav>
+
+  <!-- CREATE MODAL -->
+  <div id="createModal" class="modal-backdrop hidden">
+    <div class="modal" role="dialog" aria-modal="true">
+      <h3>Create</h3>
+      <div class="row-inline" style="margin-bottom:10px">
+        <button class="btn" id="createArtworkBtn">📘 Publish Artwork</button>
+        <button class="btn" id="createNovelBtn">✍️ Publish Novel</button>
+        <button class="btn" id="createPlaylistBtn">📂 Create Playlist</button>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:10px">
+        <button class="btn" id="closeCreate">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD ARTWORK FORM -->
+  <div id="uploadArtwork" class="modal-backdrop hidden">
+    <div class="modal">
+      <h3>Publish Artwork (Comic / Webtoon)</h3>
+      <div class="form">
+        <div class="field">
+          <label class="sm">Series Title</label>
+          <input class="input" id="artTitle" placeholder="Title">
+        </div>
+        <div class="field">
+          <label class="sm">Description</label>
+          <textarea id="artDesc" class="input" rows="3" placeholder="Short summary..."></textarea>
+        </div>
+        <div class="field">
+          <label class="sm">Genres / Tags (comma)</label>
+          <input id="artTags" class="input" placeholder="e.g. action,romance,isekai">
+        </div>
+        <div class="field">
+          <label class="sm">Language</label>
+          <select id="artLang" class="input">
+            <option value="en">English</option>
+            <option value="bn">Bangla</option>
+            <option value="ko">Korean</option>
+            <option value="jp">Japanese</option>
+          </select>
+        </div>
+
+        <hr style="border:none;height:8px">
+
+        <h4>Add Chapter</h4>
+        <div class="field">
+          <label class="sm">Chapter title</label>
+          <input id="chapterTitle" class="input" placeholder="Chapter 1">
+        </div>
+        <div class="field">
+          <label class="sm">Select images (mobile-friendly). You can pick multiple</label>
+          <input id="chapterImages" type="file" accept="image/*" multiple class="input">
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+          <button id="saveChapter" class="btn">Save Chapter</button>
+          <button id="publishArtwork" class="btn" style="background:var(--accent);color:#061013">Publish Series</button>
+        </div>
+        <div id="artPreview" style="margin-top:10px"></div>
+      </div>
+      <div style="margin-top:6px;display:flex;justify-content:flex-end">
+        <button id="cancelArtwork" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD NOVEL FORM -->
+  <div id="uploadNovel" class="modal-backdrop hidden">
+    <div class="modal">
+      <h3>Publish Novel</h3>
+      <div class="form">
+        <div class="field">
+          <label class="sm">Novel Title</label>
+          <input id="novelTitle" class="input" placeholder="Title">
+        </div>
+        <div class="field">
+          <label class="sm">Description</label>
+          <textarea id="novelDesc" class="input" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label class="sm">Tags (comma)</label>
+          <input id="novelTags" class="input">
+        </div>
+
+        <hr style="border:none;height:8px">
+
+        <h4>Add Chapter (text)</h4>
+        <div class="field">
+          <label class="sm">Chapter title</label>
+          <input id="novelChapterTitle" class="input" placeholder="Chapter 1">
+        </div>
+        <div class="field">
+          <label class="sm">Chapter content</label>
+          <textarea id="novelChapterContent" class="input" rows="8" placeholder="Write your chapter..."></textarea>
+        </div>
+
+        <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:8px">
+          <button id="saveNovelChapter" class="btn">Save Chapter</button>
+          <button id="publishNovelSeries" class="btn" style="background:var(--accent);color:#061013">Publish Series</button>
+        </div>
+
+        <div id="novelPreview" style="margin-top:10px"></div>
+      </div>
+
+      <div style="margin-top:6px;display:flex;justify-content:flex-end">
+        <button id="cancelNovel" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATE PLAYLIST FORM -->
+  <div id="createPlaylistModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <h3>Create Playlist</h3>
+      <div class="form">
+        <div class="field">
+          <label class="sm">Playlist name</label>
+          <input id="playlistName" class="input" placeholder="My favorites">
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button id="savePlaylistBtn" class="btn" style="background:var(--accent);color:#061013">Create</button>
+        </div>
+      </div>
+      <div style="margin-top:6px;display:flex;justify-content:flex-end">
+        <button id="closePlaylist" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- READER MODAL -->
+  <div id="readerModal" class="modal-backdrop hidden">
+    <div class="modal" style="max-width:850px;">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong id="readerSeriesTitle"></strong>
+          <div class="sm muted" id="readerSeriesBy"></div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button id="readerLike" class="btn">❤️ <span id="likeCount">0</span></button>
+          <button id="readerAddList" class="btn">☆ Save</button>
+        </div>
+      </div>
+
+      <div id="readerContent" class="reader" style="margin-top:10px;max-height:60vh;overflow:auto"></div>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+        <select id="readerChapterSelect" class="input" style="max-width:260px"></select>
+        <button id="nextChapter" class="btn">Next Chapter</button>
+        <button id="closeReader" class="btn">Close</button>
+      </div>
+
+      <div style="margin-top:8px">
+        <h4>Comments</h4>
+        <div id="commentsList" style="max-height:150px;overflow:auto"></div>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <input id="commentText" class="input" placeholder="Write a comment...">
+          <button id="publishComment" class="btn">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div id="authModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <h3 id="authTitle">Sign up / Login</h3>
+      <div class="form">
+        <div class="field"><input id="username" class="input" placeholder="Username"></div>
+        <div class="field"><input id="email" class="input" placeholder="Email"></div>
+        <div class="field"><input id="password" type="password" class="input" placeholder="Password"></div>
+        <div class="field">
+          <label class="sm">Roles (tick what you want)</label>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <label class="chip" style="cursor:pointer"><input type="checkbox" id="roleReader">Reader</label>
+            <label class="chip" style="cursor:pointer"><input type="checkbox" id="roleAuthor">Author</label>
+            <label class="chip" style="cursor:pointer"><input type="checkbox" id="roleArtist">Artist</label>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;justify-content:flex-end">
+          <button id="registerBtn" class="btn">Register</button>
+          <button id="loginBtn" class="btn">Login</button>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;margin-top:8px">
+        <button id="closeAuth" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+/* =====================================================
+   Single-file JS: UI + localStorage prototype + Firebase Auth wiring
+   Paste as-is. Uses DOMContentLoaded to avoid timing issues.
+   ===================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* -------------------------
+     Minimal client DB in localStorage
+     ------------------------- */
+  const storage = {
+    users: JSON.parse(localStorage.getItem('cn_users') || '{}'),
+    series: JSON.parse(localStorage.getItem('cn_series') || '{}'),
+    playlists: JSON.parse(localStorage.getItem('cn_playlists') || '{}'),
+    notifications: JSON.parse(localStorage.getItem('cn_notifications') || '{}'),
+    session: JSON.parse(localStorage.getItem('cn_session') || 'null')
+  };
+  function saveAll(){ localStorage.setItem('cn_users', JSON.stringify(storage.users)); localStorage.setItem('cn_series', JSON.stringify(storage.series)); localStorage.setItem('cn_playlists', JSON.stringify(storage.playlists)); localStorage.setItem('cn_notifications', JSON.stringify(storage.notifications)); localStorage.setItem('cn_session', JSON.stringify(storage.session)); }
+  function uid(prefix='id'){ return prefix + '_' + Math.random().toString(36).slice(2,10); }
+  function now(){ return new Date().toISOString(); }
+  function currentUser(){ return storage.session && storage.session.userId ? storage.users[storage.session.userId] : null; }
+  function showToast(text){ alert(text); }
+
+  // seed demo
+  if(Object.keys(storage.users).length === 0){
+    const adminId = uid('user');
+    storage.users[adminId] = { id: adminId, username: 'DemoCreator', email:'demo@cn', password:'demo', roles:['author','artist'], verified:true, bio:'Demo creator', createdAt: now(), followers:[], following:[], stats:{views:0,likes:0}, history:{}, playlists:[] };
+    storage.session = { userId: adminId };
+    const s1 = uid('series');
+    storage.series[s1] = { id:s1, title:'Demo Manhwa', type:'comic', format:'manhwa', description:'A demo manhwa', cover:null, creatorId:adminId, language:'ko', tags:['fantasy','action'], status:'ongoing', publishedAt:now(), stats:{views:1200,likes:300,follows:150}, chapters:[] };
+    storage.series[s1].chapters.push({ id: uid('ch'), title:'Chapter 1', index:1, contentType:'images', images:[], text:'', publishedAt: now(), stats:{views:400,likes:50}, comments:[] });
+    saveAll();
+  }
+
+  /* -------------------------
+     DOM refs
+     ------------------------- */
+  const openDrawerBtn = document.getElementById('openDrawer');
+  const drawer = document.getElementById('drawer');
+  const genreBtn = document.getElementById('genreBtn');
+  const tabComics = document.getElementById('tabComics');
+  const tabNovels = document.getElementById('tabNovels');
+  const notifBtn = document.getElementById('notifBtn');
+  const searchBtn = document.getElementById('searchBtn');
+
+  const top10El = document.getElementById('top10');
+  const tagsRow = document.getElementById('tagsRow');
+  const tagsContent = document.getElementById('tagsContent');
+  const feedEl = document.getElementById('feed');
+
+  const plusBtn = document.getElementById('plusBtn');
+  const createModal = document.getElementById('createModal');
+  const closeCreate = document.getElementById('closeCreate');
+  const createArtworkBtn = document.getElementById('createArtworkBtn');
+  const createNovelBtn = document.getElementById('createNovelBtn');
+  const createPlaylistBtn = document.getElementById('createPlaylistBtn');
+
+  const uploadArtwork = document.getElementById('uploadArtwork');
+  const uploadNovel = document.getElementById('uploadNovel');
+  const createPlaylistModal = document.getElementById('createPlaylistModal');
+
+  const saveChapterBtn = document.getElementById('saveChapter');
+  const publishArtworkBtn = document.getElementById('publishArtwork');
+  const artPreview = document.getElementById('artPreview');
+  const cancelArtwork = document.getElementById('cancelArtwork');
+
+  const saveNovelChapterBtn = document.getElementById('saveNovelChapter');
+  const publishNovelSeriesBtn = document.getElementById('publishNovelSeries');
+  const novelPreview = document.getElementById('novelPreview');
+  const cancelNovel = document.getElementById('cancelNovel');
+
+  const savePlaylistBtn = document.getElementById('savePlaylistBtn');
+  const closePlaylistBtn = document.ge
