@@ -1,224 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comics & Novels — C&N (Prototype)</title>
+
   <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
 
-<script>
-  // Firebase config you copied
-  const firebaseConfig = {
-    apiKey: "AIzaSyCPp44zUE1rYsIpiiNq1DjRpXvJFA-zr4g",
-    authDomain: "comics-and-novels.firebaseapp.com",
-    projectId: "comics-and-novels",
-    storageBucket: "comics-and-novels.firebasestorage.app",
-    messagingSenderId: "438332137609",
-    appId: "1:438332137609:web:1a6584ebcc4cc53224a658",
-    measurementId: "G-2X748VJQ7K"
-  };
-
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const fbAuth = firebase.auth();
-  const fbDB = firebase.firestore();
-  const fbStorage = firebase.storage();
-</script>
   <script>
-/* === Firebase Auth Handlers === */
-
-// Register new user
-async function firebaseRegisterHandler() {
-  try {
-    const username = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
-
-    if (!username || !email || !password) { alert('Fill all fields'); return; }
-
-    // create Firebase Auth user
-    const userCred = await fbAuth.createUserWithEmailAndPassword(email, password);
-    const uid = userCred.user.uid;
-
-    // create user profile in Firestore
-    const profile = {
-      id: uid,
-      username,
-      email,
-      roles: ['reader'], // default role, you can add author/artist later
-      verified: false,
-      bio: '',
-      avatar: null,
-      followers: [],
-      following: [],
-      stats: { views: 0, likes: 0 },
-      createdAt: new Date().toISOString()
+    // ===== Your Firebase config (you pasted this earlier) =====
+    const firebaseConfig = {
+      apiKey: "AIzaSyCPp44zUE1rYsIpiiNq1DjRpXvJFA-zr4g",
+      authDomain: "comics-and-novels.firebaseapp.com",
+      projectId: "comics-and-novels",
+      storageBucket: "comics-and-novels.firebasestorage.app",
+      messagingSenderId: "438332137609",
+      appId: "1:438332137609:web:1a6584ebcc4cc53224a658",
+      measurementId: "G-2X748VJQ7K"
     };
-    await fbDB.collection('users').doc(uid).set(profile);
 
-    localStorage.setItem('cn_session', JSON.stringify({ userId: uid }));
-    alert('Registered & logged in!');
-    if (typeof renderProfile === 'function') renderProfile();
-  } catch (err) {
-    console.error(err);
-    alert('Register error: ' + err.message);
-  }
-}
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const fbAuth = firebase.auth();
+    const fbDB = firebase.firestore();
+    const fbStorage = firebase.storage();
+  </script>
 
-// Login existing user
-async function firebaseLoginHandler() {
-  try {
-    const usernameOrEmail = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value;
-    if (!usernameOrEmail || !password) { alert('Fill all fields'); return; }
-
-    let email = usernameOrEmail;
-
-    // If user typed username instead of email, find email from Firestore
-    if (!usernameOrEmail.includes('@')) {
-      const q = await fbDB.collection('users').where('username', '==', usernameOrEmail).limit(1).get();
-      if (!q.empty) email = q.docs[0].data().email;
+  <style>
+    /* ---------- Basic / mobile-first ---------- */
+    :root{
+      --bg:#0f1114; --card:#15181b; --muted:#9aa3ad; --accent:#1db954;
+      --danger:#ff5a5f; --surface:#181b1e;
     }
-
-    const userCred = await fbAuth.signInWithEmailAndPassword(email, password);
-    const uid = userCred.user.uid;
-
-    // save session
-    localStorage.setItem('cn_session', JSON.stringify({ userId: uid }));
-    alert('Logged in!');
-    if (typeof renderProfile === 'function') renderProfile();
-  } catch (err) {
-    console.error(err);
-    alert('Login error: ' + err.message);
-  }
-}
-
-// Logout
-function firebaseLogoutHandler() {
-  fbAuth.signOut().then(() => {
-    localStorage.removeItem('cn_session');
-    alert('Logged out!');
-    if (typeof renderHome === 'function') renderHome();
-  });
-}
-
-// Keep UI synced with Firebase auth state
-fbAuth.onAuthStateChanged(async (fbUser) => {
-  if (fbUser) {
-    localStorage.setItem('cn_session', JSON.stringify({ userId: fbUser.uid }));
-  } else {
-    localStorage.removeItem('cn_session');
-  }
-  if (typeof renderHome === 'function') renderHome();
-});
-
-// Hook buttons
-document.addEventListener('DOMContentLoaded', () => {
-  const regBtn = document.getElementById('registerBtn');
-  const logBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-
-  if (regBtn) regBtn.onclick = firebaseRegisterHandler;
-  if (logBtn) logBtn.onclick = firebaseLoginHandler;
-  if (logoutBtn) logoutBtn.onclick = firebaseLogoutHandler;
-});
-                                                       </script>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Comics & Novels — C&amp;N (Prototype)</title>
-
-<style>
-  /* ---------- Basic / mobile-first ---------- */
-  :root{
-    --bg:#0f1114; --card:#15181b; --muted:#9aa3ad; --accent:#1db954;
-    --danger:#ff5a5f; --surface:#181b1e;
-  }
-  html,body{height:100%}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:#fff;
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.35;
-    overflow-x:hidden;
-  }
-  /* Top bar */
-  .topbar{
-    display:flex;align-items:center;padding:10px 12px;background:var(--surface);gap:8px;
-    position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,0.03)
-  }
-  .top-left{display:flex;align-items:center;gap:8px}
-  .menu-btn, .type-btn, .icon{
-    background:none;border:none;color:inherit;font-size:18px;padding:6px;border-radius:8px;cursor:pointer;
-  }
-  .type-btn{font-weight:700;padding:6px 10px;background:transparent}
-  .center-tabs{margin-left:auto;margin-right:12px;display:flex;gap:8px;align-items:center}
-  .tab{background:none;border:none;color:var(--muted);padding:6px 8px;border-radius:8px;cursor:pointer}
-  .tab.active{color:#fff;border-bottom:2px solid var(--accent)}
-  .icons-right{display:flex;gap:8px;align-items:center}
-  /* 3-dots menu drawer */
-  .drawer{position:fixed;left:0;top:0;bottom:0;width:78%;max-width:320px;background:var(--card);z-index:80;transform:translateX(-110%);transition:transform .25s ease;overflow:auto;padding:12px}
-  .drawer.open{transform:translateX(0)}
-  .drawer h4{margin:10px 0 6px;padding:0;font-size:16px}
-  .drawer .item{padding:10px;border-radius:8px;margin-bottom:6px;background:transparent;cursor:pointer}
-  /* main content */
-  main{padding:14px;padding-bottom:110px}
-  .section{margin-bottom:18px}
-  .section h3{margin:0 0 8px 0;font-size:16px;color:#fff}
-  .h-row{display:flex;gap:10px;overflow:auto;padding-bottom:6px}
-  .card{
-    min-width:140px;height:190px;background:linear-gradient(180deg,#111,#151515);border-radius:10px;flex:0 0 auto;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.5);
-  }
-  .card .cover{width:100%;height:120px;background:#222;border-radius:8px;margin-bottom:8px}
-  .card .title{font-weight:600;font-size:14px}
-  /* two-column feed */
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-  .grid .series{background:var(--card);padding:10px;border-radius:10px}
-  .series .meta{display:flex;gap:10px;align-items:center}
-  .series .meta .avatar{width:40px;height:40px;border-radius:8px;background:#222}
-  /* bottom nav */
-  .bottom-nav{
-    position:fixed;left:0;right:0;bottom:0;background:var(--surface);padding:10px 8px;border-top:1px solid rgba(255,255,255,0.03);
-    display:flex;align-items:center;justify-content:space-around;gap:6px;z-index:60;
-  }
-  .nav-btn{background:none;border:none;color:#cfe0d8;font-weight:600;padding:6px 8px;border-radius:8px}
-  .nav-btn.small{font-size:12px}
-  .plus{
-    width:56px;height:56px;border-radius:50%;background:var(--accent);border:none;color:#061013;font-size:26px;display:flex;align-items:center;justify-content:center;margin-top:-30px;box-shadow:0 8px 24px rgba(0,0,0,0.6);cursor:pointer
-  }
-  /* create modal */
-  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:flex-end;justify-content:center;padding:12px;z-index:120}
-  .modal{width:100%;max-width:420px;background:var(--card);border-radius:14px;padding:14px}
-  .modal h3{margin:0 0 10px}
-  .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:none;background:#222;color:#fff;cursor:pointer}
-  .input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:#0f1113;color:#fff}
-  .row-inline{display:flex;gap:8px}
-  .sm{font-size:13px;color:var(--muted)}
-  /* forms */
-  .form .field{margin-bottom:10px}
-  .chip{display:inline-block;padding:6px 8px;border-radius:999px;background:#1b1d1e;margin:4px;margin-right:6px;font-size:13px}
-  /* reading page */
-  .reader{padding:12px}
-  .reader .comic-img{width:100%;max-width:900px;margin:0 auto;display:block;border-radius:8px;margin-bottom:10px}
-  .novel-text{white-space:pre-wrap;background:transparent;padding:8px}
-  /* profile */
-  .profile-header{display:flex;gap:10px;align-items:center;padding:10px;background:linear-gradient(180deg,#111,#0f1113);border-radius:10px}
-  .avatar{width:72px;height:72px;border-radius:12px;background:#222}
-  .verified{background:linear-gradient(90deg,#ffd700,#ffb84d);padding:6px 8px;border-radius:8px;color:#111;font-weight:700;margin-left:8px}
-  /* small helpers */
-  .muted{color:var(--muted)}
-  .flex{display:flex;gap:8px;align-items:center}
-  .hidden{display:none}
-  /* responsive */
-  @media(min-width:900px){
-    .grid{grid-template-columns:repeat(3,1fr)}
-    .topbar{padding:12px 24px}
-    .center-tabs{margin-left:20px}
-  }
-</style>
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#fff;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.35;
+      overflow-x:hidden;
+    }
+    /* Top bar */
+    .topbar{
+      display:flex;align-items:center;padding:10px 12px;background:var(--surface);gap:8px;
+      position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(255,255,255,0.03)
+    }
+    .top-left{display:flex;align-items:center;gap:8px}
+    .menu-btn, .type-btn, .icon{
+      background:none;border:none;color:inherit;font-size:18px;padding:6px;border-radius:8px;cursor:pointer;
+    }
+    .type-btn{font-weight:700;padding:6px 10px;background:transparent}
+    .center-tabs{margin-left:auto;margin-right:12px;display:flex;gap:8px;align-items:center}
+    .tab{background:none;border:none;color:var(--muted);padding:6px 8px;border-radius:8px;cursor:pointer}
+    .tab.active{color:#fff;border-bottom:2px solid var(--accent)}
+    .icons-right{display:flex;gap:8px;align-items:center}
+    /* 3-dots menu drawer */
+    .drawer{position:fixed;left:0;top:0;bottom:0;width:78%;max-width:320px;background:var(--card);z-index:80;transform:translateX(-110%);transition:transform .25s ease;overflow:auto;padding:12px}
+    .drawer.open{transform:translateX(0)}
+    .drawer h4{margin:10px 0 6px;padding:0;font-size:16px}
+    .drawer .item{padding:10px;border-radius:8px;margin-bottom:6px;background:transparent;cursor:pointer}
+    /* main content */
+    main{padding:14px;padding-bottom:110px}
+    .section{margin-bottom:18px}
+    .section h3{margin:0 0 8px 0;font-size:16px;color:#fff}
+    .h-row{display:flex;gap:10px;overflow:auto;padding-bottom:6px}
+    .card{
+      min-width:140px;height:190px;background:linear-gradient(180deg,#111,#151515);border-radius:10px;flex:0 0 auto;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.5);
+    }
+    .card .cover{width:100%;height:120px;background:#222;border-radius:8px;margin-bottom:8px}
+    .card .title{font-weight:600;font-size:14px}
+    /* two-column feed */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .grid .series{background:var(--card);padding:10px;border-radius:10px}
+    .series .meta{display:flex;gap:10px;align-items:center}
+    .series .meta .avatar{width:40px;height:40px;border-radius:8px;background:#222}
+    /* bottom nav */
+    .bottom-nav{
+      position:fixed;left:0;right:0;bottom:0;background:var(--surface);padding:10px 8px;border-top:1px solid rgba(255,255,255,0.03);
+      display:flex;align-items:center;justify-content:space-around;gap:6px;z-index:60;
+    }
+    .nav-btn{background:none;border:none;color:#cfe0d8;font-weight:600;padding:6px 8px;border-radius:8px}
+    .nav-btn.small{font-size:12px}
+    .plus{
+      width:56px;height:56px;border-radius:50%;background:var(--accent);border:none;color:#061013;font-size:26px;display:flex;align-items:center;justify-content:center;margin-top:-30px;box-shadow:0 8px 24px rgba(0,0,0,0.6);cursor:pointer
+    }
+    /* create modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:flex-end;justify-content:center;padding:12px;z-index:120}
+    .modal{width:100%;max-width:420px;background:var(--card);border-radius:14px;padding:14px}
+    .modal h3{margin:0 0 10px}
+    .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:none;background:#222;color:#fff;cursor:pointer}
+    .input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:#0f1113;color:#fff}
+    .row-inline{display:flex;gap:8px}
+    .sm{font-size:13px;color:var(--muted)}
+    /* forms */
+    .form .field{margin-bottom:10px}
+    .chip{display:inline-block;padding:6px 8px;border-radius:999px;background:#1b1d1e;margin:4px;margin-right:6px;font-size:13px}
+    /* reading page */
+    .reader{padding:12px}
+    .reader .comic-img{width:100%;max-width:900px;margin:0 auto;display:block;border-radius:8px;margin-bottom:10px}
+    .novel-text{white-space:pre-wrap;background:transparent;padding:8px}
+    /* profile */
+    .profile-header{display:flex;gap:10px;align-items:center;padding:10px;background:linear-gradient(180deg,#111,#0f1113);border-radius:10px}
+    .avatar{width:72px;height:72px;border-radius:12px;background:#222}
+    .verified{background:linear-gradient(90deg,#ffd700,#ffb84d);padding:6px 8px;border-radius:8px;color:#111;font-weight:700;margin-left:8px}
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .flex{display:flex;gap:8px;align-items:center}
+    .hidden{display:none}
+    /* responsive */
+    @media(min-width:900px){
+      .grid{grid-template-columns:repeat(3,1fr)}
+      .topbar{padding:12px 24px}
+      .center-tabs{margin-left:20px}
+    }
+  </style>
 </head>
 <body>
 
@@ -460,9 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="field">
         <label class="sm">Roles (tick what you want)</label>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <label class="chip"><input type="checkbox" id="roleReader">Reader</label>
-          <label class="chip"><input type="checkbox" id="roleAuthor">Author</label>
-          <label class="chip"><input type="checkbox" id="roleArtist">Artist</label>
+          <label class="chip" style="cursor:pointer"><input type="checkbox" id="roleReader">Reader</label>
+          <label class="chip" style="cursor:pointer"><input type="checkbox" id="roleAuthor">Author</label>
+          <label class="chip" style="cursor:pointer"><input type="checkbox" id="roleArtist">Artist</label>
         </div>
       </div>
       <div style="display:flex;gap:8px;justify-content:flex-end">
@@ -477,15 +379,16 @@ document.addEventListener('DOMContentLoaded', () => {
 </div>
 
 <!-- PROFILE / MY LIST / FOLLOWING VIEWS (render into main) -->
-<!-- (We will just swap main content programmatically) -->
 
 <script>
 /* ===========================
-   Simple client-side "DB" built on localStorage
-   - This is a prototype: data is saved per-browser (localStorage)
-   - To make real multi-user, later integrate Firebase (I will show how)
+   Local "DB" + Firebase Auth integration
+   - This file keeps your prototype (localStorage) behavior
+   - Adds Firebase Auth wiring (register/login/logout)
+   - After Auth is confirmed we'll move uploads to Firestore in next steps
    ============================ */
 
+/* ---------- local storage "DB" ---------- */
 const storage = {
   users: JSON.parse(localStorage.getItem('cn_users')||'{}'),
   series: JSON.parse(localStorage.getItem('cn_series')||'{}'),
@@ -506,8 +409,9 @@ function saveAll(){
 function uid(prefix='id'){ return prefix + '_' + Math.random().toString(36).slice(2,10); }
 function now(){ return new Date().toISOString(); }
 function currentUser(){ return storage.session && storage.session.userId ? storage.users[storage.session.userId] : null; }
+function showToast(text){ alert(text); }
 
-/* Seed demo content if empty */
+/* Seed demo if empty */
 if(Object.keys(storage.users).length === 0){
   const adminId = uid('user');
   storage.users[adminId] = {
@@ -515,33 +419,27 @@ if(Object.keys(storage.users).length === 0){
     followers:[], following:[], stats:{views:0, likes:0}, createdAt:now(), history:{}, playlists:[]
   };
   storage.session = { userId:adminId };
-  // seed a sample series (comic)
   const s1 = uid('series');
   storage.series[s1] = {
     id:s1, title:'Demo Manhwa', type:'comic', format:'manhwa', description:'A demo manhwa for testing', cover:null,
     creatorId:adminId, language:'ko', tags:['fantasy','action'], status:'ongoing', publishedAt:now(),
     stats:{views:1200, likes:300, follows:150}, chapters:[]
   };
-  // sample chapter with remote placeholder images encoded as base64 placeholders (we'll use colored divs anyway)
   storage.series[s1].chapters.push({
     id: uid('ch'), title:'Chapter 1', index:1, contentType:'images',
-    images:[], text:'', publishedAt: now(), stats:{views:400, likes:50}, comments:[]
+    images:[], text:'', publishedAt: now(), stats:{views:400,likes:50}, comments:[]
   });
   saveAll();
 }
 
-/* --------- UI helpers & routing ---------- */
+/* ---------- DOM refs ---------- */
 const app = document.getElementById('app');
 const top10El = document.getElementById('top10');
 const tagsRow = document.getElementById('tagsRow');
 const tagsContent = document.getElementById('tagsContent');
 const feedEl = document.getElementById('feed');
 
-function showToast(text){
-  alert(text); // simple feedback for now
-}
-
-/* Drawer toggle */
+/* Drawer */
 const drawer = document.getElementById('drawer');
 document.getElementById('openDrawer').onclick = ()=> drawer.classList.toggle('open');
 
@@ -561,13 +459,13 @@ document.getElementById('tabNovels').onclick = (e)=>{
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); e.target.classList.add('active'); rebuildFeed();
 };
 
-/* Nav buttons - switch main view */
+/* Nav buttons */
 document.getElementById('navHome').onclick = ()=>{ renderHome(); };
 document.getElementById('navMyList').onclick = ()=>{ renderMyList(); };
 document.getElementById('navFollowing').onclick = ()=>{ renderFollowing(); };
-document.getElementById('navProfile').onclick = ()=>{ renderProfile(); };
+document.getElementById('navProfile').onclick = ()=>{ if(!currentUser()) openAuth(); else renderProfile(); };
 
-/* Create modal open */
+/* Create modal */
 const createModal = document.getElementById('createModal');
 document.getElementById('openCreate').onclick = ()=> {
   if(!currentUser()){ openAuth(); return; }
@@ -575,22 +473,4 @@ document.getElementById('openCreate').onclick = ()=> {
 };
 document.getElementById('closeCreate').onclick = ()=> createModal.classList.add('hidden');
 
-document.getElementById('createArtworkBtn').onclick = ()=> { createModal.classList.add('hidden'); openUploadArtwork(); };
-document.getElementById('createNovelBtn').onclick = ()=> { createModal.classList.add('hidden'); openUploadNovel(); };
-document.getElementById('createPlaylistBtn').onclick = ()=> { createModal.classList.add('hidden'); openCreatePlaylistModal(); };
-
-/* open upload forms */
-const uploadArtwork = document.getElementById('uploadArtwork');
-const uploadNovel = document.getElementById('uploadNovel');
-const createPlaylistModal = document.getElementById('createPlaylistModal');
-document.getElementById('cancelArtwork').onclick = ()=> uploadArtwork.classList.add('hidden');
-document.getElementById('cancelNovel').onclick = ()=> uploadNovel.classList.add('hidden');
-document.getElementById('closePlaylist').onclick = ()=> createPlaylistModal.classList.add('hidden');
-
-function openUploadArtwork(){
-  if(!currentUser() || !(currentUser().roles.includes('author') || currentUser().roles.includes('artist'))){
-    showToast('You must be an author or artist to publish artwork. Register and choose role.');
-    openAuth(); return;
-  }
-  uploadArtwork.classList.remove('hidden');
-  artChaptersTemp = { seriesMeta:null, chap
+document.getElementById('createArtworkBtn').onclick = ()=> { createModal.class
