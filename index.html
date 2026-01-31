@@ -1,13 +1,72 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Comics & Novels (C&N)</title>
   <meta charset="UTF-8">
+  <title>Comics & Novels</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-  <h1>Comics & Novels</h1>
-  <p>Read and upload comics and novels</p>
-  <p>Your creative universe starts here.</p>
+
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="left">
+      <button id="menuBtn">☰</button>
+      <button id="typeBtn">Manhwa</button>
+    </div>
+
+    <div class="center">
+      <button class="tab active">Comics</button>
+      <button class="tab">Novels</button>
+    </div>
+
+    <div class="right">
+      <button>🔔</button>
+      <button>🔍</button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="slider">
+      <h2>Top 10 This Week</h2>
+      <div class="horizontal-scroll">
+        <div class="card">Comic 1</div>
+        <div class="card">Comic 2</div>
+        <div class="card">Comic 3</div>
+      </div>
+    </section>
+
+    <section class="row">
+      <h2>Most Popular</h2>
+      <div class="horizontal-scroll">
+        <div class="card">Popular 1</div>
+        <div class="card">Popular 2</div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">Content A</div>
+      <div class="card">Content B</div>
+      <div class="card">Content C</div>
+      <div class="card">Content D</div>
+    </section>
+  </main>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <button>Home</button>
+    <button>Top</button>
+    <button class="plus">＋</button>
+    <button>Following</button>
+    <button>My List</button>
+    <button>Profile</button>
+  </nav>
+
+  <!-- JS -->
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
