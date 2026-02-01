@@ -1,0 +1,48 @@
+/* styles.css - Clean mobile-first UI for Comics & Novels */
+:root{
+  --bg:#0f1114; --surface:#181b1e; --card:#15181b; --muted:#9aa3ad; --accent:#1db954; --text:#e9eef2;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:12px}
+
+/* Topbar */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px;background:var(--surface);border-radius:8px;gap:8px}
+.left,.center,.right{display:flex;align-items:center;gap:8px}
+button, .btn{background:none;border:none;color:inherit;font-size:15px;padding:8px;border-radius:10px;cursor:pointer}
+.tab{padding:8px 10px;border-radius:8px;background:transparent;color:var(--muted);cursor:pointer}
+.tab.active{color:var(--text);border-bottom:2px solid var(--accent)}
+
+/* Featured */
+.h-row{display:flex;gap:10px;overflow:auto;padding-bottom:6px}
+.card{min-width:140px;background:linear-gradient(180deg,#111,#151515);border-radius:10px;padding:10px;box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+.card .title{font-weight:700}
+
+/* Grid feed */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+@media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Bottom nav */
+.bottom-nav{position:fixed;left:0;right:0;bottom:0;background:var(--surface);padding:10px 8px;border-top:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:space-around;gap:6px}
+.plus{width:56px;height:56px;border-radius:50%;background:var(--accent);border:none;color:#061013;font-size:26px;display:flex;align-items:center;justify-content:center;margin-top:-28px;box-shadow:0 8px 24px rgba(0,0,0,0.6)}
+
+/* Modals */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:flex-end;justify-content:center;padding:12px;z-index:120}
+.modal-backdrop.show{display:flex}
+.modal{width:100%;max-width:720px;background:var(--card);border-radius:14px;padding:14px;color:var(--text)}
+.btn-primary{background:var(--accent);color:#061013;border:none;padding:10px 12px;border-radius:10px;cursor:pointer}
+
+/* Inputs */
+.input, textarea, select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:#0f1113;color:#fff}
+.small{font-size:13px;color:var(--muted)}
+.chip{display:inline-block;padding:6px 8px;border-radius:999px;background:#1b1d1e;margin:4px;margin-right:6px;font-size:13px}
+
+/* Info page & reader */
+.info-page{position:fixed;inset:0;background:var(--bg);padding:12px;overflow:auto;z-index:140;display:none}
+.reader-page{position:fixed;inset:0;background:var(--bg);color:var(--text);padding:0;margin:0;overflow:auto;z-index:160;display:none}
+.reader-header{display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--surface)}
+.reader-content{padding:12px 16px 100px;line-height:1.7;font-size:16px}
+.comment{padding:8px;border-top:1px solid rgba(255,255,255,0.03)}
+.muted{color:var(--muted)}
+.status{font-size:12px;padding:6px 10px;border-radius:999px;background:#222;display:inline-block;margin-top:6px}
