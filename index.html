@@ -354,8 +354,13 @@ document.addEventListener('DOMContentLoaded', () => {
   menuBtn.onclick = ()=> drawer.classList.toggle('open');
 
   drawer.querySelectorAll('.item').forEach(it => it.onclick = () => {
-    const a = it.dataset.action;
-    drawer.classList.remove('open');
-    if(a === 'mylist') renderMyList();
-    else if(a === 'playlists') renderPlaylists();
-    else if(a === 'profile') rende
+  const a = it.dataset.action;
+  drawer.classList.remove('open');
+  if(a === 'mylist') renderMyList();
+  else if(a === 'playlists') renderPlaylists();
+  else if(a === 'profile') renderProfile();
+  else if(a === 'top') renderHome();
+  else if(a === 'new') renderHome();
+  else if(a === 'genres') showToast('Genres coming soon');
+  else if(a === 'completed') showToast('Completed coming soon');
+});
