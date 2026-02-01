@@ -353,14 +353,16 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------- Drawer & top controls ---------- */
   menuBtn.onclick = ()=> drawer.classList.toggle('open');
 
-  drawer.querySelectorAll('.item').forEach(it => it.onclick = () => {
-        const a = it.dataset.action;
-        drawer.classList.remove('open');
-        if (a === 'home') renderHome();
-        else if (a === 'mylist') renderMyList();
-        else if (a === 'playlists') renderPlaylists();
-        else if (a === 'profile') renderProfile();
-      });
+  drawer.querySelectorAll('.item').forEach(it => {
+  it.onclick = () => {
+    const a = it.dataset.action;
+    drawer.classList.remove('open');
+
+    if (a === 'mylist') renderMyList();
+    else if (a === 'playlists') renderPlaylists();
+    else if (a === 'profile') renderProfile();
+  }
+});
 
       /* ---------- Init ---------- */
       renderHome();
