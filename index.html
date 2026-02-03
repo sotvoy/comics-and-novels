@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C&N - Read Comics Online</title>
+
+<!-- Cloudinary JS (for uploads) -->
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+<style>
+:root{
+  --bg:#0f1114;
+  --surface:#181b1e;
+  --card:#15181b;
+  --muted:#9aa3ad;
+  --accent:#1db954;
+  --text:#e9eef2;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter,Arial,sans-serif}
+body{background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+header,footer{background:var(--surface);padding:10px;display:flex;justify-content:space-between;align-items:center;position:sticky;z-index:100}
+header{top:0} footer{bottom:0}
+button{background:var(--accent);border:none;padding:6px 12px;border-radius:8px;color:#061013;cursor:pointer;font-weight:700}
+input,textarea,select{width:100%;padding:8px;border-radius:6px;border:none;background:#0f1113;color:#fff;margin-bottom:8px}
+.hidden{display:none}
+.card{background:var(--card);border-radius:10px;padding:10px;margin-bottom:10px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:200}
+.modal-backdrop.show{display:flex}
+main{flex:1;overflow-y:auto;padding:14px;}
+.tabs{display:flex;gap:8px;margin-bottom:10px}
+.tabs button{background:none;color:var(--muted);padding:6px 12px;font-weight:700;border-radius:6px}
+.tabs button.active{color:var(--text);border-bottom:2px solid var(--accent)}
+.feed-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.card .cover{height:120px;background:#222;border-radius:8px;margin-bottom:6px}
+.comment{padding:8px;border-top:1px solid rgba(255,255,255,0.05)}
+.comment .reply-btn{cursor:pointer;color:var(--accent);font-size:12px;margin-left:6px}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div style="display:flex;gap:8px;align-items:center">
+    <b>📚 C&N</b>
+    <button id="menuBtn">☰</button>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <button id="loginBtnHeader">Login</button>
+    <button id="publishBtnHeader">+</button>
+  </div>
+</header>
+
+<!-- Main content -->
+<main>
+  <div class="tabs">
+    <button id="tabComics" class="active">Comics</button>
+    <button id="tabNovels">Novels</button>
+    <button id="tabOngoing">Ongoing</button>
+    <button id="tabCompleted">Completed</button>
+  </div>
+
+  <input id="searchInput" placeholder="Search series, tags, authors...">
+  <div id="feed" class="feed-grid"></div>
+</main>
+
+<footer>
+  <span id="userStatus">Not logged in</span>
+  <div style="display:flex;gap:8px;">
+    <button id="navHome">Home</button>
+    <button id="navMyList">My List</button>
+    <button id="navFollowing">Following</button>
+    <button id="navProfile">Profile</button>
+  </div>
+</footer>
+
+<!-- Modals -->
+<div id="loginModal" class="modal-backdrop">
+  <div class="card" style="max-width:360px;width:90%">
+    <h3>Login / Register</h3>
+    <input id="loginEmail" placeholder="Email">
+    <input id="loginPassword" type="password" placeholder="Password">
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button id="loginSubmit">Login</button>
+      <button id="registerSubmit">Register</button>
+      <button class="closeModalBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="publishModal" class="modal-backdrop">
+  <div class="card" style="max-width:400px;width:90%">
+    <h3>Publish Series / Chapter</h3>
+    <input id="publishTitle" placeholder="Series / Chapter Title">
+    <textarea id="publishContent" placeholder="Chapter content (text)"></textarea>
+    <input type="file" id="publishImages" multiple>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button id="publishSubmit">Publish</button>
+      <button class="closeModalBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===========================
+// Data simulation
+// ===========================
+let DB = {
+  users: {},
+  series: {},
+  session: null,
+  notifications: {},
+};
+let seriesIdCounter = 1;
+let userIdCounter = 1;
+
+// Demo user
+DB.users['user1']={id:'user1',username:'DemoAuthor',roles:['author','artist'],verified:true,followers:[],following:[]};
+DB.session={userId:'user1'};
+
+// Demo series
+DB.series['series1']={
+  id:'series1',
+  title:'Demo Manhwa',
+  type:'comic',
+  author:'user1',
+  chapters:[{id:'ch1',title:'Chapter 1',content:'Welcome to Demo Manhwa!',images:[]}],
+  tags:['demo','manhwa'],
+  views:1200,
+  likes:30,
+  status:'ongoing',
+};
+
+// ===========================
+// Utility
+// ===========================
+function currentUser(){return DB.session?DB.users[DB.session.userId]:null}
+function showToast(msg){alert(msg)}
+function closeModals(){document.querySelectorAll('.modal-backdrop').forEach(m=>m.classList.remove('show'))}
+
+// Close modals when clicking outside
+document.querySelectorAll('.modal-backdrop').forEach(m=>{
+  m.addEventListener('click',e=>{
+    if(e.target===m) m.classList.remove('show')
+  })
+})
+
+// ===========================
+// Event listeners
+// ===========================
+document.getElementById('loginBtnHeader').onclick = ()=>{closeModals();document.getElementById('loginModal').classList.add('show')}
+document.getElementById('publishBtnHeader').onclick = ()=>{
+  if(!currentUser()){return showToast('Login first')}
+  closeModals();document.getElementById('publishModal').classList.add('show')
+}
+document.querySelectorAll('.closeModalBtn').forEach(b=>b.onclick=()=>closeModals())
+
+document.getElementById('tabComics').onclick = ()=>{setActiveTab('comic')}
+document.getElementById('tabNovels').onclick = ()=>{setActiveTab('novel')}
+document.getElementById('tabOngoing').onclick = ()=>{setActiveTab('ongoing')}
+document.getElementById('tabCompleted').onclick = ()=>{setActiveTab('completed')}
+
+// ===========================
+// Render feed
+// ===========================
+function renderFeed(){
+  const feed=document.getElementById('feed');
+  feed.innerHTML='';
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  for(const id in DB.series){
+    const s=DB.series[id];
+    if(q && !s.title.toLowerCase().includes(q) && !s.tags.join(' ').toLowerCase().includes(q)) continue;
+    if(currentTab && currentTab!=='all'){
+      if(currentTab==='comic'&&s.type!=='comic') continue;
+      if(currentTab==='novel'&&s.type!=='novel') continue;
+      if(currentTab==='ongoing'&&s.status!=='ongoing') continue;
+      if(currentTab==='completed'&&s.status!=='completed') continue;
+    }
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<b>${s.title}</b><br>Author: ${DB.users[s.author].username}<br>❤️ ${s.likes}  👁 ${s.views}`;
+    feed.appendChild(div);
+  }
+}
+
+// ===========================
+// Tabs
+// ===========================
+let currentTab='comic';
+function setActiveTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  if(tab==='comic') document.getElementById('tabComics').classList.add('active');
+  if(tab==='novel') document.getElementById('tabNovels').classList.add('active');
+  if(tab==='ongoing') document.getElementById('tabOngoing').classList.add('active');
+  if(tab==='completed') document.getElementById('tabCompleted').classList.add('active');
+  renderFeed();
+}
+
+// ===========================
+// Search
+// ===========================
+document.getElementById('searchInput').addEventListener('input',renderFeed);
+
+// ===========================
+// Login/Register simulation
+// ===========================
+document.getElementById('loginSubmit').onclick = ()=>{
+  const email=document.getElementById('loginEmail').value.trim();
+  const pass=document.getElementById('loginPassword').value.trim();
+  if(!email||!pass){return showToast('Fill both fields')}
+  const uid='user'+(++userIdCounter);
+  DB.users[uid]={id:uid,username:email.split('@')[0],roles:['author'],verified:true,followers:[],following:[]}
+  DB.session={userId:uid}
+  showToast('Logged in as '+DB.users[uid].username)
+  closeModals();renderFeed();document.getElementById('userStatus').innerText='Logged in as '+DB.users[uid].username;
+}
+
+document.getElementById('registerSubmit').onclick = ()=>{
+  const email=document.getElementById('loginEmail').value.trim();
+  const pass=document.getElementById('loginPassword').value.trim();
+  if(!email||!pass){return showToast('Fill both fields')}
+  const uid='user'+(++userIdCounter);
+  DB.users[uid]={id:uid,username:email.split('@')[0],roles:['author'],verified:true,followers:[],following:[]}
+  DB.session={userId:uid}
+  showToast('Registered & logged in as '+DB.users[uid].username)
+  closeModals();renderFeed();document.getElementById('userStatus').innerText='Logged in as '+DB.users[uid].username;
+}
+
+// Initial render
+renderFeed();
+
+  </script>
+  <script>
+// ===========================
+// Multi-chapter reader
+// ===========================
+let currentSeries=null;
+let currentChapter=null;
+
+function openReader(seriesId, chapterId){
+  const s=DB.series[seriesId];
+  if(!s)return;
+  currentSeries=s;
+  if(chapterId) currentChapter=s.chapters.find(c=>c.id===chapterId);
+  else currentChapter=s.chapters[0];
+
+  closeModals();
+  renderReader();
+}
+
+function renderReader(){
+  let reader=document.getElementById('readerModal');
+  if(!reader){
+    reader=document.createElement('div');
+    reader.id='readerModal';
+    reader.className='modal-backdrop';
+    reader.innerHTML=`
+      <div class="card" style="width:95%;height:95%;overflow-y:auto;position:relative;">
+        <button id="closeReader" style="position:absolute;top:10px;right:10px;">Close</button>
+        <h2 id="readerTitle"></h2>
+        <div id="chapterContent" style="margin-top:20px;"></div>
+        <div style="margin-top:20px;">
+          <button id="likeChapter">❤️ Like</button>
+          <button id="saveChapter">💾 Save</button>
+          <button id="followAuthor">➕ Follow</button>
+        </div>
+        <h3>Comments</h3>
+        <div id="commentsSection"></div>
+        <textarea id="newComment" placeholder="Write a comment..."></textarea>
+        <button id="postComment">Post</button>
+      </div>
+    `;
+    document.body.appendChild(reader);
+
+    // Close
+    document.getElementById('closeReader').onclick = ()=>reader.classList.remove('show');
+
+    // Post comment
+    document.getElementById('postComment').onclick = ()=>{
+      const text=document.getElementById('newComment').value.trim();
+      if(!text)return;
+      currentChapter.comments=currentChapter.comments||[];
+      currentChapter.comments.push({id:'c'+Date.now(),user:currentUser().username,text,likes:0,replies:[]});
+      document.getElementById('newComment').value='';
+      renderComments();
+    }
+
+    // Likes / Save / Follow
+    document.getElementById('likeChapter').onclick = ()=>{
+      currentChapter.likes=currentChapter.likes||0;
+      currentChapter.likes++;
+      renderReader();
+    }
+    document.getElementById('saveChapter').onclick = ()=>{
+      showToast('Chapter saved to your list!');
+    }
+    document.getElementById('followAuthor').onclick = ()=>{
+      const user=currentUser();
+      if(!user.following) user.following=[];
+      if(!user.following.includes(currentSeries.author)) user.following.push(currentSeries.author);
+      showToast('Followed '+DB.users[currentSeries.author].username);
+    }
+  }
+
+  reader.classList.add('show');
+  document.getElementById('readerTitle').innerText=currentSeries.title+' - '+currentChapter.title;
+  document.getElementById('chapterContent').innerHTML=currentChapter.content;
+  renderComments();
+}
+
+function renderComments(){
+  const comments=document.getElementById('commentsSection');
+  comments.innerHTML='';
+  if(!currentChapter.comments)return;
+  currentChapter.comments.forEach(c=>{
+    const div=document.createElement('div');
+    div.className='comment';
+    div.innerHTML=`<b>${c.user}</b>: ${c.text} <span class="reply-btn" onclick="replyComment('${c.id}')">Reply</span> ❤️ ${c.likes}`;
+    // Nested replies
+    if(c.replies && c.replies.length){
+      const replyDiv=document.createElement('div');
+      replyDiv.style.marginLeft='20px';
+      c.replies.forEach(r=>{
+        const rdiv=document.createElement('div');
+        rdiv.className='comment';
+        rdiv.innerHTML=`<b>${r.user}</b>: ${r.text} ❤️ ${r.likes}`;
+        replyDiv.appendChild(rdiv);
+      });
+      div.appendChild(replyDiv);
+    }
+    comments.appendChild(div);
+  });
+}
+
+function replyComment(commentId){
+  const text=prompt('Reply:');
+  if(!text)return;
+  const comment=currentChapter.comments.find(c=>c.id===commentId);
+  comment.replies=comment.replies||[];
+  comment.replies.push({id:'r'+Date.now(),user:currentUser().username,text,likes:0});
+  renderComments();
+}
+
+// ===========================
+// Cloudinary upload simulation
+// ===========================
+document.getElementById('publishSubmit').onclick = ()=>{
+  const title=document.getElementById('publishTitle').value.trim();
+  const content=document.getElementById('publishContent').value.trim();
+  const images=document.getElementById('publishImages').files;
+
+  if(!title){return showToast('Title required');}
+  const sid='series'+seriesIdCounter++;
+  DB.series[sid]={id:sid,title,type:'comic',author:currentUser().id,chapters:[{id:'ch1',title:'Chapter 1',content,images:[]}],tags:[],views:0,likes:0,status:'ongoing'};
+
+  // Cloudinary simulated upload
+  if(images.length){
+    for(let i=0;i<images.length;i++){
+      // Placeholder for actual Cloudinary API
+      DB.series[sid].chapters[0].images.push('https://res.cloudinary.com/demo/image/upload/sample.jpg');
+    }
+  }
+
+  showToast('Series published!');
+  closeModals();renderFeed();
+}
+
+// ===========================
+// Add click on feed to open reader
+// ===========================
+document.getElementById('feed').addEventListener('click',e=>{
+  const card=e.target.closest('.card');
+  if(!card)return;
+  const titleText=card.querySelector('b').innerText;
+  for(const id in DB.series){
+    if(DB.series[id].title===titleText){openReader(id);break;}
+  }
+})
+  </script>
+  <script>
+// ===========================
+// Simulated Notifications System
+// ===========================
+function notify(userId, message){
+  const user=DB.users[userId];
+  if(!user.notifications) user.notifications=[];
+  user.notifications.push({id:'n'+Date.now(),message,read:false});
+  if(currentUser().id===userId) renderNotifications();
+}
+
+function renderNotifications(){
+  const notifContainer=document.getElementById('notifications');
+  if(!notifContainer){
+    const div=document.createElement('div');
+    div.id='notifications';
+    div.className='modal-backdrop';
+    div.innerHTML='<div class="card" style="width:300px;height:400px;overflow-y:auto;position:relative;"><h3>Notifications</h3><div id="notifList"></div><button onclick="closeNotifications()" style="position:absolute;top:10px;right:10px;">Close</button></div>';
+    document.body.appendChild(div);
+  }
+  const list=document.getElementById('notifList');
+  list.innerHTML='';
+  const user=DB.users[currentUser().id];
+  if(!user.notifications) return;
+  user.notifications.forEach(n=>{
+    const d=document.createElement('div');
+    d.className='notif';
+    d.innerHTML=`${n.message} ${n.read?'':'<b>(New)</b>'}`;
+    list.appendChild(d);
+  });
+}
+
+function closeNotifications(){
+  document.getElementById('notifications').classList.remove('show');
+}
+
+document.getElementById('notifBtn').onclick=()=>{
+  document.getElementById('notifications').classList.add('show');
+  renderNotifications();
+}
+
+// ===========================
+// Following / Followers system
+// ===========================
+function renderFollowing(){
+  const user=currentUser();
+  const followingContainer=document.getElementById('followingList');
+  if(!followingContainer) return;
+  followingContainer.innerHTML='';
+  if(!user.following) return;
+  user.following.forEach(fid=>{
+    const div=document.createElement('div');
+    div.innerHTML=`<b>${DB.users[fid].username}</b> <button onclick="viewAuthor('${fid}')">View</button>`;
+    followingContainer.appendChild(div);
+  });
+}
+
+function viewAuthor(authorId){
+  const a=DB.users[authorId];
+  closeModals();
+  const modal=document.getElementById('authorModal');
+  if(!modal){
+    const m=document.createElement('div');
+    m.id='authorModal';
+    m.className='modal-backdrop';
+    m.innerHTML=`
+      <div class="card" style="width:90%;height:90%;overflow-y:auto;position:relative;">
+        <button onclick="closeAuthor()" style="position:absolute;top:10px;right:10px;">Close</button>
+        <h2 id="authorName"></h2>
+        <div id="authorSeries"></div>
+      </div>
+    `;
+    document.body.appendChild(m);
+  }
+  document.getElementById('authorName').innerText=a.username;
+  const seriesDiv=document.getElementById('authorSeries');
+  seriesDiv.innerHTML='';
+  for(const id in DB.series){
+    if(DB.series[id].author===authorId){
+      const s=DB.series[id];
+      const div=document.createElement('div');
+      div.className='card';
+      div.innerHTML=`<b>${s.title}</b> ❤️ ${s.likes} <button onclick="openReader('${id}')">Read</button>`;
+      seriesDiv.appendChild(div);
+    }
+  }
+  document.getElementById('authorModal').classList.add('show');
+}
+
+function closeAuthor(){document.getElementById('authorModal').classList.remove('show');}
+
+// ===========================
+// Tag / Status Filtering
+// ===========================
+function filterFeed({type=null,status=null,tag=null}={}){
+  const feed=document.getElementById('feed');
+  feed.innerHTML='';
+  for(const id in DB.series){
+    const s=DB.series[id];
+    if(type && s.type!==type) continue;
+    if(status && s.status!==status) continue;
+    if(tag && (!s.tags || !s.tags.includes(tag))) continue;
+
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<b>${s.title}</b> ❤️ ${s.likes} <span>${s.status}</span>`;
+    feed.appendChild(div);
+  }
+}
+
+// ===========================
+// Advanced Search / Sort
+// ===========================
+document.getElementById('search').oninput=function(){
+  const q=this.value.toLowerCase();
+  const feed=document.getElementById('feed');
+  feed.innerHTML='';
+  for(const id in DB.series){
+    const s=DB.series[id];
+    if(!s.title.toLowerCase().includes(q)) continue;
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<b>${s.title}</b> ❤️ ${s.likes} <span>${s.status}</span>`;
+    feed.appendChild(div);
+  }
+}
+
+function sortFeed(by='created',desc=true){
+  const arr=Object.values(DB.series).sort((a,b)=>{
+    if(desc) return b[by]-a[by];
+    else return a[by]-b[by];
+  });
+  const feed=document.getElementById('feed');
+  feed.innerHTML='';
+  arr.forEach(s=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<b>${s.title}</b> ❤️ ${s.likes} <span>${s.status}</span>`;
+    feed.appendChild(div);
+  });
+}
+  </script>
+  <script>
+// ===========================
+// Tabs: Comics / Novels
+// ===========================
+function renderTabs(){
+  const tabContainer=document.getElementById('tabs');
+  if(!tabContainer){
+    const div=document.createElement('div');
+    div.id='tabs';
+    div.style.display='flex';
+    div.style.justifyContent='space-around';
+    div.style.background='#222';
+    div.style.padding='5px';
+    document.querySelector('main').prepend(div);
+  }
+  const tabs=['All','Comics','Novels'];
+  document.getElementById('tabs').innerHTML='';
+  tabs.forEach(t=>{
+    const btn=document.createElement('button');
+    btn.innerText=t;
+    btn.onclick=()=>filterFeed({type:t==='All'?null:t});
+    document.getElementById('tabs').appendChild(btn);
+  });
+}
+renderTabs();
+
+// ===========================
+// Categories / Genres
+// ===========================
+function renderCategories(){
+  const catContainer=document.getElementById('categories');
+  if(!catContainer){
+    const div=document.createElement('div');
+    div.id='categories';
+    div.style.display='flex';
+    div.style.overflowX='auto';
+    div.style.padding='5px';
+    document.querySelector('main').prepend(div);
+  }
+  const cats=['Action','Romance','Fantasy','Horror','Comedy','Drama','Sci-Fi'];
+  document.getElementById('categories').innerHTML='';
+  cats.forEach(c=>{
+    const btn=document.createElement('button');
+    btn.innerText=c;
+    btn.onclick=()=>filterFeed({tag:c});
+    document.getElementById('categories').appendChild(btn);
+  });
+}
+renderCategories();
+
+// ===========================
+// User Profile Page
+// ===========================
+function viewProfile(userId){
+  const user=DB.users[userId];
+  closeModals();
+  const modal=document.getElementById('profileModal');
+  if(!modal){
+    const m=document.createElement('div');
+    m.id='profileModal';
+    m.className='modal-backdrop';
+    m.innerHTML=`
+      <div class="card" style="width:90%;height:90%;overflow-y:auto;position:relative;">
+        <button onclick="closeProfile()" style="position:absolute;top:10px;right:10px;">Close</button>
+        <h2 id="profileName"></h2>
+        <p id="profileEmail"></p>
+        <div id="profileFollowing"></div>
+        <div id="profileSeries"></div>
+      </div>
+    `;
+    document.body.appendChild(m);
+  }
+  document.getElementById('profileName').innerText=user.username;
+  document.getElementById('profileEmail').innerText=user.email;
+  const followDiv=document.getElementById('profileFollowing');
+  followDiv.innerHTML='<b>Following:</b>';
+  if(user.following) user.following.forEach(fid=>{
+    const d=document.createElement('div');
+    d.innerText=DB.users[fid].username;
+    followDiv.appendChild(d);
+  });
+
+  const seriesDiv=document.getElementById('profileSeries');
+  seriesDiv.innerHTML='<b>Series:</b>';
+  for(const id in DB.series){
+    if(DB.series[id].author===userId){
+      const s=DB.series[id];
+      const div=document.createElement('div');
+      div.className='card';
+      div.innerHTML=`<b>${s.title}</b> ❤️ ${s.likes} <button onclick="openReader('${id}')">Read</button>`;
+      seriesDiv.appendChild(div);
+    }
+  }
+  document.getElementById('profileModal').classList.add('show');
+}
+
+function closeProfile(){document.getElementById('profileModal').classList.remove('show');}
+
+// ===========================
+// Creator / Uploader Dashboard
+// ===========================
+function openDashboard(){
+  if(!currentUser()) return alert("Login first");
+  closeModals();
+  const modal=document.getElementById('dashboardModal');
+  if(!modal){
+    const m=document.createElement('div');
+    m.id='dashboardModal';
+    m.className='modal-backdrop';
+    m.innerHTML=`
+      <div class="card" style="width:90%;height:90%;overflow-y:auto;position:relative;">
+        <button onclick="closeDashboard()" style="position:absolute;top:10px;right:10px;">Close</button>
+        <h2>Creator Dashboard</h2>
+        <div>
+          <button onclick="showPublish()">+ Publish New Series</button>
+        </div>
+        <div id="dashboardSeries"></div>
+      </div>
+    `;
+    document.body.appendChild(m);
+  }
+  const dashSeries=document.getElementById('dashboardSeries');
+  dashSeries.innerHTML='';
+  for(const id in DB.series){
+    if(DB.series[id].author===currentUser().id){
+      const s=DB.series[id];
+      const div=document.createElement('div');
+      div.className='card';
+      div.innerHTML=`<b>${s.title}</b> ❤️ ${s.likes} <button onclick="openReader('${id}')">Read</button>`;
+      dashSeries.appendChild(div);
+    }
+  }
+  document.getElementById('dashboardModal').classList.add('show');
+}
+
+function closeDashboard(){document.getElementById('dashboardModal').classList.remove('show');}
+
+// ===========================
+// Interactive Popups Close on Background Click
+// ===========================
+document.addEventListener('click', function(e){
+  const modals=document.querySelectorAll('.modal-backdrop.show');
+  modals.forEach(m=>{
+    if(!m.contains(e.target)){
+      m.classList.remove('show');
+    }
+  });
+});
+
+// ===========================
+// Initialize Main Page
+// ===========================
+function init(){
+  renderTabs();
+  renderCategories();
+  renderFeed();
+}
+init();
+  </script>
