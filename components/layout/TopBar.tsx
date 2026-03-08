@@ -21,7 +21,7 @@ export default function TopBar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center justify-between h-14 px-4">
           {/* Left: Menu + Logo */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center">
             <button
               onClick={() => setDrawerOpen(true)}
               className="yt-button"
@@ -29,57 +29,63 @@ export default function TopBar() {
             >
               <Icons.Menu />
             </button>
-            
-            <Link href="/" className="flex items-center -ml-1">
+          </div>
+
+          {/* Center: Logo */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <Link href="/">
               <img 
                 src="/logo.png" 
                 alt="C&N" 
-                className="h-10 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
             </Link>
           </div>
 
-          {/* Center: Content Type Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setShowDropdown(!showDropdown)}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium"
-            >
-              C&N <Icons.ChevronDown />
-            </button>
-            
-            <AnimatePresence>
-              {showDropdown && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full mt-2 left-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 min-w-[140px]"
-                >
-                  <Link
-                    href="/comics?type=manga"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={() => setShowDropdown(false)}
+          {/* Right: Dropdown + Actions */}
+          <div className="flex items-center gap-1">
+            {/* Center: Content Type Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setShowDropdown(!showDropdown)}
+                className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium"
+              >
+                C&N <Icons.ChevronDown />
+              </button>
+              
+              <AnimatePresence>
+                {showDropdown && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute top-full mt-2 left-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 min-w-[140px]"
                   >
-                    Manga
-                  </Link>
-                  <Link
-                    href="/comics?type=manhwa"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={() => setShowDropdown(false)}
-                  >
-                    Manhwa
-                  </Link>
-                  <Link
-                    href="/comics?type=manhua"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={() => setShowDropdown(false)}
-                  >
-                    Manhua
-                  </Link>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <Link
+                      href="/comics?type=manga"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => setShowDropdown(false)}
+                    >
+                      Manga
+                    </Link>
+                    <Link
+                      href="/comics?type=manhwa"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => setShowDropdown(false)}
+                    >
+                      Manhwa
+                    </Link>
+                    <Link
+                      href="/comics?type=manhua"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => setShowDropdown(false)}
+                    >
+                      Manhua
+                    </Link>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
           {/* Right: Actions */}
