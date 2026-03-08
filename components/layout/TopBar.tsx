@@ -84,6 +84,15 @@ export default function TopBar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-1">
+            <Link href="/manga" className="yt-button text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+              Manga
+            </Link>
+            <Link href="/manhwa" className="yt-button text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+              Manhwa
+            </Link>
+            <Link href="/manhua" className="yt-button text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
+              Manhua
+            </Link>
             <Link
               href="/comics"
               className={`yt-button text-sm font-medium hidden sm:block ${
@@ -171,7 +180,7 @@ export default function TopBar() {
 
                 <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Genres</h3>
                 <div className="flex flex-wrap gap-2 px-3">
-                  {['Action', 'Romance', 'Fantasy', 'Comedy', 'Horror', 'Sci-Fi'].map((genre) => (
+                  {['Action', 'Romance', 'Fantasy', 'Comedy', 'Horror', 'Sci-Fi', 'Adventure', 'Drama', 'Mystery', 'Sports', 'Slice of Life', 'Supernatural', 'Psychological', 'Thriller', 'Historical', 'Mecha'].map((genre) => (
                     <Link
                       key={genre}
                       href={`/search?genre=${genre.toLowerCase()}`}
@@ -181,6 +190,17 @@ export default function TopBar() {
                       {genre}
                     </Link>
                   ))}
+                </div>
+
+                <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
+
+                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Status</h3>
+                <div className="flex flex-wrap gap-2 px-3">
+                  <Link href="/search?status=ongoing" className="px-3 py-1 text-sm rounded-full bg-green-500 text-white" onClick={() => setDrawerOpen(false)}>Ongoing</Link>
+                  <Link href="/search?status=completed" className="px-3 py-1 text-sm rounded-full bg-gray-500 text-white" onClick={() => setDrawerOpen(false)}>Completed</Link>
+                  <Link href="/search?status=hiatus" className="px-3 py-1 text-sm rounded-full bg-yellow-500 text-white" onClick={() => setDrawerOpen(false)}>Hiatus</Link>
+                  <Link href="/search?status=dropped" className="px-3 py-1 text-sm rounded-full bg-red-500 text-white" onClick={() => setDrawerOpen(false)}>Dropped</Link>
+                  <Link href="/search?status=adopted" className="px-3 py-1 text-sm rounded-full bg-blue-500 text-white" onClick={() => setDrawerOpen(false)}>Adopted</Link>
                 </div>
 
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
