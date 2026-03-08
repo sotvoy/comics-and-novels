@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -106,6 +106,15 @@ const timeAgo = (date: Date) => {
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Auto carousel
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % 5);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -127,13 +136,16 @@ export default function HomePage() {
       </div>
 
       <div className="p-4">
-        {/* Hero Carousel - One Card Per Frame */}
+        {/* Hero Carousel - Auto Play with Cut Corners */}
         <section className="mb-6 -mx-4">
           <div className="flex overflow-x-auto snap-x snap-mandatory carousel-container hide-scrollbar" style={{ scrollSnapType: 'x mandatory' }}>
             {demoSeries.slice(0, 5).map((series, index) => (
               <div key={series.id} className="flex-shrink-0 w-full snap-center" style={{ scrollSnapAlign: 'start' }}>
                 <Link href={`/series/${series.slug}`}>
-                  <div className="relative aspect-[16/9] w-full overflow-hidden">
+                  <div className="relative aspect-[3/4] w-full overflow-hidden" style={{ 
+                    borderRadius: '24px 24px 0 0',
+                    clipPath: 'polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%)'
+                  }}>
                     <Image
                       src={series.cover}
                       alt={series.title}
@@ -141,8 +153,15 @@ export default function HomePage() {
                       className="object-cover"
                       priority={index === 0}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                    {/* Content */}
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+                    
+                    {/* Cut Corner Effect */}
+                    <div className="absolute bottom-0 right-0 w-16 h-16" style={{
+                      background: 'linear-gradient(135deg, transparent 50%, rgba(0,0,0,0.3) 50%)'
+                    }} />
+                    
+                    {/* Content on Cover */}
                     <div className="absolute bottom-0 left-0 right-0 p-4">
                       <span className="inline-block px-2 py-0.5 bg-red-500 text-white text-xs rounded mb-2">
                         {series.type.toUpperCase()}
@@ -151,7 +170,7 @@ export default function HomePage() {
                       <p className="text-white/80 text-sm mt-1">{series.author}</p>
                       {/* Info Bar */}
                       <div className="flex items-center gap-4 mt-3 text-white/70 text-xs">
-                        <span>{series.chapters} chapters</span>
+                        <span>{series.chapters} ch</span>
                         <span className="flex items-center gap-1">
                           <Icons.Heart className="w-3 h-3" /> {(series.likes / 1000).toFixed(1)}K
                         </span>
@@ -165,10 +184,14 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          {/* Dots Indicator */}
+          {/* Dots Indicator - Active indicator */}
           <div className="flex justify-center gap-2 mt-3">
             {demoSeries.slice(0, 5).map((_, index) => (
-              <div key={index} className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700" />
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-8 h-2 rounded-full transition-all ${currentSlide === index ? 'bg-red-500 w-8' : 'bg-gray-300 dark:bg-gray-700'}`}
+              />
             ))}
           </div>
         </section>
