@@ -197,17 +197,17 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Featured Carousel */}
-        <section className="mb-8">
-          <h2 className="text-lg font-semibold mb-3">Featured</h2>
-          <div className="flex gap-4 overflow-x-auto carousel-container pb-2 hide-scrollbar">
-            {demoSeries.slice(0, 3).map((series, index) => (
+        {/* Featured Carousel - Comick.io Style */}
+        <section className="mb-6">
+          <h2 className="text-lg font-semibold mb-3 px-4">Featured</h2>
+          <div className="flex gap-3 overflow-x-auto carousel-container pb-2 hide-scrollbar px-4">
+            {demoSeries.slice(0, 5).map((series, index) => (
               <motion.div
                 key={series.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="carousel-item flex-shrink-0 w-72"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="carousel-item flex-shrink-0 w-[70%] sm:w-[50%] md:w-[35%]"
               >
                 <Link href={`/series/${series.slug}`}>
                   <div className="relative aspect-video rounded-xl overflow-hidden mb-2">
@@ -217,37 +217,52 @@ export default function HomePage() {
                       fill
                       className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <div className="absolute bottom-2 left-2 right-2">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                    <div className="absolute top-2 left-2">
                       <span className="inline-block px-2 py-0.5 bg-red-500 text-white text-xs rounded">
                         {series.type.toUpperCase()}
                       </span>
                     </div>
+                    <div className="absolute bottom-0 left-0 right-0 p-2">
+                      <h3 className="font-bold text-white text-sm line-clamp-1">{series.title}</h3>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-sm line-clamp-1">{series.title}</h3>
-                  <p className="text-xs text-gray-500">{series.author}</p>
+                  {/* Info Below - Comick.io Style */}
+                  <div className="px-1">
+                    <p className="text-xs font-medium text-gray-900 dark:text-white line-clamp-1">{series.author}</p>
+                    <div className="flex items-center gap-2 mt-1 text-[10px] text-gray-500">
+                      <span>{series.chapters} ch</span>
+                      <span className="flex items-center gap-0.5">
+                        <Icons.Heart className="w-2.5 h-2.5" /> {(series.likes / 1000).toFixed(1)}K
+                      </span>
+                      <span className="flex items-center gap-0.5">
+                        <Icons.Comment className="w-2.5 h-2.5" /> {(series.comments / 1000).toFixed(1)}K
+                      </span>
+                      <span>2h ago</span>
+                    </div>
+                  </div>
                 </Link>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* New Chapters from Followed */}
-        <section className="mb-8">
-          <div className="flex items-center justify-between mb-3">
+        {/* New Chapters from Followed - Comick.io Style */}
+        <section className="mb-6">
+          <div className="flex items-center justify-between mb-3 px-4">
             <h2 className="text-lg font-semibold">New Chapters</h2>
             <Link href="/following" className="text-sm text-red-500 font-medium">
               See all
             </Link>
           </div>
-          <div className="flex gap-4 overflow-x-auto carousel-container pb-2 hide-scrollbar">
+          <div className="flex gap-3 overflow-x-auto carousel-container pb-2 hide-scrollbar px-4">
             {demoSeries.slice(0, 4).map((series, index) => (
               <motion.div
                 key={`new-${series.id}`}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="carousel-item flex-shrink-0 w-40"
+                className="carousel-item flex-shrink-0 w-32"
               >
                 <Link href={`/series/${series.slug}`}>
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2">
@@ -257,17 +272,69 @@ export default function HomePage() {
                       fill
                       className="object-cover"
                     />
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-red-500" />
                   </div>
-                  <h3 className="font-medium text-xs line-clamp-2">{series.title}</h3>
+                  <h3 className="font-medium text-xs line-clamp-1">{series.title}</h3>
+                  <div className="flex items-center gap-1 mt-1 text-[9px] text-gray-500">
+                    <span className="flex items-center gap-0.5">
+                      <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
+                    </span>
+                    <span className="flex items-center gap-0.5">
+                      <Icons.Comment className="w-2 h-2" /> {(series.comments / 1000).toFixed(1)}K
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Recently Added */}
-        <section className="mb-8">
-          <div className="flex items-center justify-between mb-3">
+        {/* Popular This Week */}
+        <section className="mb-6">
+          <div className="flex items-center justify-between mb-3 px-4">
+            <h2 className="text-lg font-semibold">Popular This Week</h2>
+            <Link href="/ranking" className="text-sm text-red-500 font-medium">
+              See all
+            </Link>
+          </div>
+          <div className="flex gap-3 overflow-x-auto carousel-container pb-2 hide-scrollbar px-4">
+            {demoSeries.slice(2, 6).map((series, index) => (
+              <motion.div
+                key={`popular-${series.id}`}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="carousel-item flex-shrink-0 w-32"
+              >
+                <Link href={`/series/${series.slug}`}>
+                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2">
+                    <Image
+                      src={series.cover}
+                      alt={series.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute top-1 left-1 w-5 h-5 bg-red-500 rounded flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">{index + 1}</span>
+                    </div>
+                  </div>
+                  <h3 className="font-medium text-xs line-clamp-1">{series.title}</h3>
+                  <div className="flex items-center gap-1 mt-1 text-[9px] text-gray-500">
+                    <span>{series.chapters} ch</span>
+                    <span>•</span>
+                    <span className="flex items-center gap-0.5">
+                      <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Recently Added - Comick.io Style */}
+        <section className="mb-6">
+          <div className="flex items-center justify-between mb-3 px-4">
             <h2 className="text-lg font-semibold">Recently Added</h2>
             <div className="flex gap-2">
               <button className="px-3 py-1 text-xs font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-full">
@@ -278,14 +345,14 @@ export default function HomePage() {
               </button>
             </div>
           </div>
-          <div className="flex gap-4 overflow-x-auto carousel-container pb-2 hide-scrollbar">
-            {demoSeries.map((series, index) => (
+          <div className="flex gap-3 overflow-x-auto carousel-container pb-2 hide-scrollbar px-4">
+            {demoSeries.slice(0, 6).map((series, index) => (
               <motion.div
                 key={`recent-${series.id}`}
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.03 }}
-                className="carousel-item flex-shrink-0 w-36"
+                className="carousel-item flex-shrink-0 w-32"
               >
                 <Link href={`/series/${series.slug}`}>
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2 series-card">
@@ -296,23 +363,29 @@ export default function HomePage() {
                       className="object-cover"
                     />
                   </div>
-                  <h3 className="font-medium text-xs line-clamp-2">{series.title}</h3>
-                  <p className="text-xs text-gray-500">{series.chapters} ch</p>
+                  <h3 className="font-medium text-xs line-clamp-1">{series.title}</h3>
+                  <p className="text-[10px] text-gray-500">{series.author}</p>
+                  <div className="flex items-center gap-1 mt-1 text-[9px] text-gray-500">
+                    <span>{series.chapters} ch</span>
+                    <span className="flex items-center gap-0.5">
+                      <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Popular */}
-        <section className="mb-8">
+        {/* Popular - Grid Style */}
+        <section className="mb-6 px-4">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold">Popular Now</h2>
             <Link href="/search?sort=popular" className="text-sm text-red-500 font-medium">
               More
             </Link>
           </div>
-          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 xs:gap-2 sm:gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {demoSeries.slice(0, 6).map((series, index) => (
               <motion.div
                 key={`popular-${series.id}`}
@@ -320,26 +393,25 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Link href={`/series/${series.slug}`} className="flex gap-2 sm:gap-3">
-                  <div className="relative w-16 xs:w-16 sm:w-20 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
+                <Link href={`/series/${series.slug}`}>
+                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2 series-card">
                     <Image
                       src={series.cover}
                       alt={series.title}
                       fill
                       className="object-cover"
                     />
-                  </div>
-                  <div className="flex-1 min-w-0 py-0.5">
-                    <h3 className="font-medium text-xs sm:text-sm line-clamp-2">{series.title}</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">{series.author}</p>
-                    <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
-                      <span className="flex items-center gap-0.5">
-                        <Icons.Heart className="w-3 h-3" /> {formatNumber(series.likes)}
-                      </span>
-                      <span className="flex items-center gap-0.5">
-                        <Icons.Comment className="w-3 h-3" /> {formatNumber(series.comments)}
-                      </span>
+                    <div className="absolute top-1 right-1 w-5 h-5 bg-red-500 rounded flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">{index + 1}</span>
                     </div>
+                  </div>
+                  <h3 className="font-medium text-xs line-clamp-1">{series.title}</h3>
+                  <p className="text-[10px] text-gray-500">{series.author}</p>
+                  <div className="flex items-center gap-1 mt-1 text-[9px] text-gray-500">
+                    <span>{series.chapters} ch</span>
+                    <span className="flex items-center gap-0.5">
+                      <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
+                    </span>
                   </div>
                 </Link>
               </motion.div>
@@ -348,7 +420,7 @@ export default function HomePage() {
         </section>
 
         {/* Latest Updates */}
-        <section>
+        <section className="px-4 pb-4">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold">Latest Updates</h2>
             <div className="flex gap-2">
@@ -360,16 +432,16 @@ export default function HomePage() {
               </button>
             </div>
           </div>
-          <div className="space-y-3 xs:space-y-2 sm:space-y-4">
-            {demoSeries.map((series, index) => (
+          <div className="space-y-3">
+            {demoSeries.slice(0, 6).map((series, index) => (
               <motion.div
                 key={`latest-${series.id}`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Link href={`/series/${series.slug}`} className="flex gap-2 sm:gap-3">
-                  <div className="relative w-20 xs:w-20 sm:w-24 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
+                <Link href={`/series/${series.slug}`} className="flex gap-3">
+                  <div className="relative w-20 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
                     <Image
                       src={series.cover}
                       alt={series.title}
@@ -377,7 +449,7 @@ export default function HomePage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="flex-1 min-w-0 py-0.5 xs:py-1">
+                  <div className="flex-1 min-w-0 py-1">
                     <h3 className="font-semibold text-sm line-clamp-1">{series.title}</h3>
                     <p className="text-xs text-gray-500 mt-0.5">{series.author}</p>
                     <p className="text-xs text-gray-400 mt-1">Chapter {series.chapters - 5}</p>
