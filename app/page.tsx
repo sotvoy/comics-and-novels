@@ -142,9 +142,9 @@ export default function HomePage() {
             {demoSeries.slice(0, 5).map((series, index) => (
               <div key={series.id} className="flex-shrink-0 w-full snap-center" style={{ scrollSnapAlign: 'start' }}>
                 <Link href={`/series/${series.slug}`}>
-                  <div className="relative aspect-[3/4] w-full overflow-hidden" style={{ 
-                    borderRadius: '24px 24px 0 0',
-                    clipPath: 'polygon(0 0, 100% 0, 100% 95%, 95% 100%, 0 100%)'
+                  <div className="relative aspect-[3/2] w-full overflow-hidden" style={{ 
+                    borderRadius: '20px',
+                    clipPath: 'polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%)'
                   }}>
                     <Image
                       src={series.cover}
