@@ -34,7 +34,7 @@ export default function TopBar() {
               <img 
                 src="/logo.png" 
                 alt="C&N" 
-                className="h-[70px] w-auto object-contain"
+                className="h-[120px] w-auto object-contain"
               />
             </Link>
           </div>
