@@ -1,38 +1,27 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import Providers from './providers';
+'use client';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactNode, useState } from 'react';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
-
-export const metadata: Metadata = {
-  title: 'C&N - Read Comics & Novels Online',
-  description: 'Your favorite platform for reading comics and novels online',
-  manifest: '/manifest.json',
-};
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const [queryClient] = useState(() => new QueryClient());
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
-        <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <TopBar />
-            <main className="min-h-screen pb-16 bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-              {children}
-            </main>
-            <BottomBar />
-          </ThemeProvider>
-        </Providers>
+        <QueryClientProvider client={queryClient}>
+          <TopBar />
+          <main className="min-h-screen pb-16">
+            {children}
+          </main>
+          <BottomBar />
+        </QueryClientProvider>
       </body>
     </html>
   );
