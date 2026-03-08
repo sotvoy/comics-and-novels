@@ -54,28 +54,36 @@ export default function TopBar() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full mt-2 left-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 min-w-[140px]"
+                    className="absolute top-full mt-2 left-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 min-w-[160px] z-50"
                   >
                     <Link
-                      href="/comics?type=manga"
+                      href="/manga"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      Manga
+                      📚 Manga
                     </Link>
                     <Link
-                      href="/comics?type=manhwa"
+                      href="/manhwa"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      Manhwa
+                      🇰🇷 Manhwa
                     </Link>
                     <Link
-                      href="/comics?type=manhua"
+                      href="/manhua"
                       className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      Manhua
+                      🇨🇳 Manhua
+                    </Link>
+                    <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
+                    <Link
+                      href="/comics"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      onClick={() => setShowDropdown(false)}
+                    >
+                      All Comics
                     </Link>
                   </motion.div>
                 )}
@@ -84,15 +92,6 @@ export default function TopBar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-1">
-            <Link href="/manga" className="yt-button text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
-              Manga
-            </Link>
-            <Link href="/manhwa" className="yt-button text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
-              Manhwa
-            </Link>
-            <Link href="/manhua" className="yt-button text-sm font-medium px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800">
-              Manhua
-            </Link>
             <Link
               href="/comics"
               className={`yt-button text-sm font-medium hidden sm:block ${
