@@ -35,7 +35,11 @@ export default function SeriesPage() {
   const series = seriesData[slug] || seriesData['solo-leveling'];
   const [showAllChapters, setShowAllChapters] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [showReactions, setShowReactions] = useState(false);
+  const [selectedReaction, setSelectedReaction] = useState<string | null>(null);
   const displayedChapters = showAllChapters ? series.chapters : series.chapters.slice(0, 10);
+
+  const reactions = ['🔥', '❤️', '😂', '😢', '😮', '👏'];
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -67,6 +71,26 @@ export default function SeriesPage() {
           <button onClick={() => setIsFollowing(!isFollowing)} className={`px-4 py-3 rounded-lg font-medium ${isFollowing ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'}`}>{isFollowing ? 'Following' : 'Follow'}</button>
           <button className="px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800"><Icons.Bookmark /></button>
           <button className="px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800"><Icons.Share /></button>
+        </div>
+
+        {/* Reactions */}
+        <div className="mt-4">
+          <div className="flex items-center gap-2">
+            <button onClick={() => setShowReactions(!showReactions)} className="flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-full text-sm">
+              <span>{selectedReaction || '👍'}</span>
+              <span className="text-gray-500">React</span>
+            </button>
+            <span className="text-xs text-gray-500">Tap to react</span>
+          </div>
+          {showReactions && (
+            <div className="flex gap-2 mt-2 animate-in fade-in slide-in-from-top-2">
+              {reactions.map((reaction) => (
+                <button key={reaction} onClick={() => { setSelectedReaction(reaction); setShowReactions(false); }} className={`w-10 h-10 rounded-full flex items-center justify-center text-xl hover:bg-gray-100 dark:hover:bg-gray-800 ${selectedReaction === reaction ? 'bg-gray-200 dark:bg-gray-700' : ''}`}>
+                  {reaction}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
         <div className="mt-6">
           <h3 className="text-sm font-semibold mb-2">Genres</h3>
