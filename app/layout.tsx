@@ -16,11 +16,15 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryClientProvider client={queryClient}>
-          <TopBar />
-          <main className="min-h-screen pb-16">
-            {children}
-          </main>
-          <BottomBar />
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+            <TopBar />
+            <div className="max-w-7xl mx-auto">
+              <main className="min-h-screen pb-16 md:pb-4">
+                {children}
+              </main>
+            </div>
+            <BottomBar />
+          </div>
         </QueryClientProvider>
       </body>
     </html>
