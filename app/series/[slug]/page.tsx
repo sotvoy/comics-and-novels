@@ -150,13 +150,20 @@ export default function SeriesPage() {
           </div>
           {series.chapters.length > 10 && (<button onClick={() => setShowAllChapters(!showAllChapters)} className="w-full mt-4 py-3 text-center text-red-500 font-medium">{showAllChapters ? 'Show Less' : 'Show All Chapters'}</button>)}
         </div>
-        <div className="mt-8 pb-8">
+        <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4">Comments ({formatNumber(series.comments)})</h3>
           
-          {/* Comment Input */}
+          {/* Comment Input with Media */}
           <div className="flex gap-3 mb-6">
-            <div className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0" />
-            <input type="text" placeholder="Add a comment..." className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2 text-sm" />
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-pink-500 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">Y</div>
+            <div className="flex-1">
+              <input type="text" placeholder="Add a comment..." className="w-full bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2 text-sm" />
+              <div className="flex items-center gap-2 mt-2">
+                <button className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title="Add image">🖼️</button>
+                <button className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title="Add GIF">🎞️</button>
+                <button className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700" title="Add emoji">😊</button>
+              </div>
+            </div>
           </div>
           
           {/* Threaded Comments */}

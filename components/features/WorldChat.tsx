@@ -98,6 +98,9 @@ export default function WorldChat() {
               <span className="font-semibold">World Chat</span>
             </div>
             <div className="flex items-center gap-1">
+              <button onClick={() => alert('Super Chat coming soon!')} className="p-1 hover:bg-red-600 rounded" title="Super Chat">
+                ⭐
+              </button>
               <button onClick={() => setPosition({ x: 16, y: 80 })} className="p-1 hover:bg-red-600 rounded">
                 <Icons.Minimize className="w-4 h-4" />
               </button>
