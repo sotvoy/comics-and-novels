@@ -20,7 +20,7 @@ export default function TopBar() {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center justify-between h-14 px-4">
-          {/* Left: Menu + Logo */}
+          {/* Left: Menu */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => setDrawerOpen(true)}
@@ -29,12 +29,6 @@ export default function TopBar() {
             >
               <Icons.Menu />
             </button>
-            
-            <Link href="/" className="flex items-center">
-              <span className="text-red-500">
-                <Icons.Logo />
-              </span>
-            </Link>
           </div>
 
           {/* Center: Content Type Dropdown */}
@@ -135,9 +129,7 @@ export default function TopBar() {
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
-                  <Link href="/" className="flex items-center gap-2" onClick={() => setDrawerOpen(false)}>
-                    <span className="text-red-500"><Icons.Logo /></span>
-                  </Link>
+                  <span className="font-bold text-xl">Menu</span>
                   <button onClick={() => setDrawerOpen(false)} className="yt-button">
                     <Icons.Close />
                   </button>
