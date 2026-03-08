@@ -17,12 +17,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
       <body>
         <QueryProvider>
           <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
             <TopBar />
-            <div className="max-w-7xl mx-auto">
-              <main className="min-h-screen pb-16 md:pb-4">
+            <div className="w-full px-0 md:px-4">
+              <main className="min-h-screen pb-16 md:pb-4 w-full">
                 {children}
               </main>
             </div>

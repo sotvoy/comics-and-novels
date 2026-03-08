@@ -240,7 +240,7 @@ export default function HomePage() {
               More
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 xs:gap-2 sm:gap-4">
             {demoSeries.slice(0, 6).map((series, index) => (
               <motion.div
                 key={`popular-${series.id}`}
@@ -248,8 +248,8 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Link href={`/series/${series.slug}`} className="flex gap-3">
-                  <div className="relative w-20 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
+                <Link href={`/series/${series.slug}`} className="flex gap-2 sm:gap-3">
+                  <div className="relative w-16 xs:w-16 sm:w-20 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
                     <Image
                       src={series.cover}
                       alt={series.title}
@@ -257,14 +257,14 @@ export default function HomePage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-medium text-sm line-clamp-2">{series.title}</h3>
-                    <p className="text-xs text-gray-500 mt-1">{series.author}</p>
-                    <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
-                      <span className="flex items-center gap-1">
+                  <div className="flex-1 min-w-0 py-0.5">
+                    <h3 className="font-medium text-xs sm:text-sm line-clamp-2">{series.title}</h3>
+                    <p className="text-xs text-gray-500 mt-0.5">{series.author}</p>
+                    <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
+                      <span className="flex items-center gap-0.5">
                         <Icons.Heart className="w-3 h-3" /> {formatNumber(series.likes)}
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-0.5">
                         <Icons.Comment className="w-3 h-3" /> {formatNumber(series.comments)}
                       </span>
                     </div>
@@ -288,7 +288,7 @@ export default function HomePage() {
               </button>
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3 xs:space-y-2 sm:space-y-4">
             {demoSeries.map((series, index) => (
               <motion.div
                 key={`latest-${series.id}`}
@@ -296,8 +296,8 @@ export default function HomePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Link href={`/series/${series.slug}`} className="flex gap-3">
-                  <div className="relative w-24 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
+                <Link href={`/series/${series.slug}`} className="flex gap-2 sm:gap-3">
+                  <div className="relative w-20 xs:w-20 sm:w-24 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
                     <Image
                       src={series.cover}
                       alt={series.title}
@@ -305,20 +305,20 @@ export default function HomePage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="flex-1 min-w-0 py-1">
+                  <div className="flex-1 min-w-0 py-0.5 xs:py-1">
                     <h3 className="font-semibold text-sm line-clamp-1">{series.title}</h3>
                     <p className="text-xs text-gray-500 mt-0.5">{series.author}</p>
                     <p className="text-xs text-gray-400 mt-1">Chapter {series.chapters - 5}</p>
-                    <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
-                      <span className="flex items-center gap-1">
+                    <div className="flex items-center gap-2 xs:gap-3 mt-1 xs:mt-2 text-xs text-gray-500">
+                      <span className="flex items-center gap-0.5">
                         <Icons.Heart className="w-3 h-3" /> {formatNumber(series.likes)}
                       </span>
-                      <span className="flex items-center gap-1">
+                      <span className="flex items-center gap-0.5">
                         <Icons.Comment className="w-3 h-3" /> {formatNumber(series.comments)}
                       </span>
                     </div>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-start pt-1">
                     <span className="text-xs text-gray-400">{timeAgo(new Date())}</span>
                   </div>
                 </Link>
