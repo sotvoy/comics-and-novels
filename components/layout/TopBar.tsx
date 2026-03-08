@@ -212,43 +212,22 @@ export default function TopBar() {
                     <Icons.Settings /> Settings
                   </Link>
                   <Link href="/creator" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Creator Studio
+                    <Icons.Video /> Creator Studio
                   </Link>
                   <Link href="/ranking" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Trophy /> Ranking
                   </Link>
                   <Link href="/trending" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Trending
-                  </Link>
-                  <Link href="/for-you" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    For You
+                    <Icons.Trending /> Trending
                   </Link>
                   <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Community
+                    <Icons.Users /> Community
                   </Link>
                   <Link href="/events" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Events
+                    <Icons.Calendar /> Events
                   </Link>
                   <Link href="/collections" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Collections
-                  </Link>
-                </nav>
-
-                <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
-
-                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Status</h3>
-                <nav className="space-y-1">
-                  <Link href="/comics?status=ongoing" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Ongoing
-                  </Link>
-                  <Link href="/comics?status=completed" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Completed
-                  </Link>
-                  <Link href="/comics?status=hiatus" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Hiatus
-                  </Link>
-                  <Link href="/comics?status=dropped" className="block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Dropped
+                    <Icons.Collections /> Collections
                   </Link>
                 </nav>
               </div>
