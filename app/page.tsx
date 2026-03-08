@@ -196,6 +196,22 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Genre Chips - Quick Filter */}
+        <section className="mb-4 px-4">
+          <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+            {['All', 'Action', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Horror', 'Sci-Fi'].map((genre, i) => (
+              <button
+                key={genre}
+                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium ${
+                  i === 0 ? 'bg-red-500 text-white' : 'bg-gray-100 dark:bg-gray-800'
+                }`}
+              >
+                {genre}
+              </button>
+            ))}
+          </div>
+        </section>
+
         {/* New Chapters from Followed - Comick.io Style */}
         <section className="mb-6">
           <div className="flex items-center justify-between mb-3 px-4">
