@@ -198,6 +198,9 @@ export default function TopBar() {
                   <Link href="/ranking" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Trophy /> Ranking
                   </Link>
+                  <Link href="/trending" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    Trending
+                  </Link>
                   <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     Community
                   </Link>

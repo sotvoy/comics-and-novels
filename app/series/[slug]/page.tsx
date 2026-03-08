@@ -108,6 +108,27 @@ export default function SeriesPage() {
             ))}
           </div>
         </div>
+
+        {/* Recommendations */}
+        <div className="mt-8">
+          <h2 className="text-lg font-semibold mb-3">You Might Also Like</h2>
+          <div className="flex gap-3 overflow-x-auto hide-scrollbar">
+            {[
+              { slug: 'tower-of-god', title: 'Tower of God', cover: 'https://picsum.photos/seed/tower/300/450', author: 'SIU' },
+              { slug: 'omniscient-reader', title: 'Omniscient Reader', cover: 'https://picsum.photos/seed/omni/300/450', author: 'Sing-Shong' },
+              { slug: 'noblesse', title: 'Noblesse', cover: 'https://picsum.photos/seed/noblesse/300/450', author: 'Son JaeHo' },
+              { slug: 'god-of-high-school', title: 'The God of High School', cover: 'https://picsum.photos/seed/godhs/300/450', author: 'Yongje Park' },
+            ].map((rec) => (
+              <Link key={rec.slug} href={`/series/${rec.slug}`} className="flex-shrink-0 w-28">
+                <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2">
+                  <Image src={rec.cover} alt={rec.title} fill className="object-cover" />
+                </div>
+                <p className="text-xs font-medium line-clamp-1">{rec.title}</p>
+                <p className="text-xs text-gray-500 line-clamp-1">{rec.author}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
