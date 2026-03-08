@@ -30,11 +30,11 @@ export default function TopBar() {
               <Icons.Menu />
             </button>
             
-            <Link href="/" className="-ml-1">
+            <Link href="/" className="-ml-2">
               <img 
                 src="/logo.png" 
                 alt="C&N" 
-                className="h-14 w-auto object-contain"
+                className="h-[70px] w-auto object-contain"
               />
             </Link>
           </div>
