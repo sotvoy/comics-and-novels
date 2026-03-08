@@ -30,11 +30,10 @@ export default function TopBar() {
               <Icons.Menu />
             </button>
             
-            <Link href="/" className="flex items-center gap-1 font-bold text-lg">
+            <Link href="/" className="flex items-center">
               <span className="text-red-500">
                 <Icons.Logo />
               </span>
-              <span>C&N</span>
             </Link>
           </div>
 
@@ -136,9 +135,8 @@ export default function TopBar() {
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
-                  <Link href="/" className="flex items-center gap-2 font-bold text-xl" onClick={() => setDrawerOpen(false)}>
+                  <Link href="/" className="flex items-center gap-2" onClick={() => setDrawerOpen(false)}>
                     <span className="text-red-500"><Icons.Logo /></span>
-                    C&N
                   </Link>
                   <button onClick={() => setDrawerOpen(false)} className="yt-button">
                     <Icons.Close />
