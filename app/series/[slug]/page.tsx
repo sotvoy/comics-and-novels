@@ -107,9 +107,30 @@ export default function SeriesPage() {
         <div className="mt-6">
           <h3 className="text-sm font-semibold mb-2">Genres</h3>
           <div className="flex flex-wrap gap-2">
-            {series.genres.map((genre: string) => (<Link key={genre} href={`/search?genre=${genre.toLowerCase()}`} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs">{genre}</Link>))}
+            {series.genres.map((genre: string) => (<Link key={genre} href={`/search?genre=${genre.toLowerCase()}`} className="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-full text-xs hover:bg-red-100 dark:hover:bg-red-900">{genre}</Link>))}
           </div>
         </div>
+        
+        {/* Tags Box - Asura Scans Style */}
+        <div className="mt-4">
+          <h3 className="text-sm font-semibold mb-2">Tags</h3>
+          <div className="flex flex-wrap gap-2">
+            {series.tags.map((tag: string) => (<Link key={tag} href={`/search?tag=${tag.toLowerCase()}`} className="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-xs text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700">#{tag}</Link>))}
+          </div>
+        </div>
+        
+        {/* Author/Artist Links */}
+        <div className="mt-4 flex gap-4 text-sm">
+          <div>
+            <span className="text-gray-500">Author:</span>
+            <Link href={`/author/${series.author.toLowerCase().replace(' ')}`} className="ml-1 text-red-500 hover:underline"> {series.author}</Link>
+          </div>
+          <div>
+            <span className="text-gray-500">Artist:</span>
+            <Link href={`/author/${series.artist?.toLowerCase().replace(' ')}`} className="ml-1 text-red-500 hover:underline"> {series.artist}</Link>
+          </div>
+        </div>
+        
         <div className="mt-4">
           <h3 className="text-sm font-semibold mb-2">Description</h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{series.description}</p>
@@ -153,6 +174,7 @@ export default function SeriesPage() {
                   <p className="text-sm mt-1">This is an amazing series! I love the art style and story development. 🔥</p>
                   <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
                     <button className="flex items-center gap-1 hover:text-red-500"><Icons.Heart className="w-3 h-3" /> 123</button>
+                    <button className="flex items-center gap-1 hover:text-blue-500">👎 12</button>
                     <button className="hover:text-red-500">Reply</button>
                   </div>
                   

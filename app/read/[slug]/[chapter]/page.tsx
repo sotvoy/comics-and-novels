@@ -29,6 +29,7 @@ export default function ReadPage() {
           <div className="flex gap-2">
             <button onClick={() => setShowSettings(true)} className="text-white"><Icons.Settings /></button>
             <button onClick={() => setShowShare(true)} className="text-white"><Icons.Share /></button>
+            <button className="text-white" title="Download"><Icons.Download /></button>
           </div>
         </div>
       </div>

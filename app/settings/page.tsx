@@ -82,6 +82,13 @@ export default function SettingsPage() {
               </div>
             </label>
             <label className="flex items-center justify-between cursor-pointer">
+              <span>Remember my choices</span>
+              <div className="relative">
+                <input type="checkbox" defaultChecked className="sr-only peer" />
+                <div className="w-11 h-6 bg-gray-300 peer-checked:bg-red-500 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all"></div>
+              </div>
+            </label>
+            <label className="flex items-center justify-between cursor-pointer">
               <span>Data saver mode</span>
               <div className="relative">
                 <input type="checkbox" checked={dataSaver} onChange={() => setDataSaver(!dataSaver)} className="sr-only peer" />
