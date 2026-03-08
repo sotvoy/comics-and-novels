@@ -71,6 +71,18 @@ export default function SeriesPage() {
           <button onClick={() => setIsFollowing(!isFollowing)} className={`px-4 py-3 rounded-lg font-medium ${isFollowing ? 'bg-gray-200 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'}`}>{isFollowing ? 'Following' : 'Follow'}</button>
           <button className="px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800"><Icons.Bookmark /></button>
           <button className="px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800"><Icons.Share /></button>
+          <button className="px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-red-500"><Icons.Flag /></button>
+        </div>
+        
+        {/* Rating */}
+        <div className="mt-4 flex items-center gap-3">
+          <span className="text-sm font-medium">Rate:</span>
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button key={star} className="text-xl">⭐</button>
+            ))}
+          </div>
+          <span className="text-sm text-gray-500">({series.rating})</span>
         </div>
 
         {/* Reactions */}
@@ -119,14 +131,48 @@ export default function SeriesPage() {
         </div>
         <div className="mt-8 pb-8">
           <h3 className="text-lg font-semibold mb-4">Comments ({formatNumber(series.comments)})</h3>
+          
+          {/* Comment Input */}
+          <div className="flex gap-3 mb-6">
+            <div className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0" />
+            <input type="text" placeholder="Add a comment..." className="flex-1 bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2 text-sm" />
+          </div>
+          
+          {/* Threaded Comments */}
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
               <div key={i} className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0" />
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-pink-500 flex-shrink-0 flex items-center justify-center text-white text-xs font-bold">
+                  U{i}
+                </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2"><span className="font-medium text-sm">User{i}</span><span className="text-xs text-gray-500">2h ago</span></div>
-                  <p className="text-sm mt-1">This is an amazing series!</p>
-                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500"><span className="flex items-center gap-1"><Icons.Heart className="w-3 h-3" /> 123</span><button>Reply</button></div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium text-sm">User{i}</span>
+                    <span className="text-xs text-gray-500">2h ago</span>
+                  </div>
+                  <p className="text-sm mt-1">This is an amazing series! I love the art style and story development. 🔥</p>
+                  <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                    <button className="flex items-center gap-1 hover:text-red-500"><Icons.Heart className="w-3 h-3" /> 123</button>
+                    <button className="hover:text-red-500">Reply</button>
+                  </div>
+                  
+                  {/* Replies */}
+                  <div className="mt-3 ml-4 pl-4 border-l-2 border-gray-200 dark:border-gray-700 space-y-3">
+                    {[1, 2].map((j) => (
+                      <div key={j} className="flex gap-2">
+                        <div className="w-6 h-6 rounded-full bg-gray-300 flex-shrink-0 flex items-center justify-center text-[10px]">R{j}</div>
+                        <div className="flex-1">
+                          <span className="font-medium text-xs">Reply{j}</span>
+                          <p className="text-xs mt-0.5">Totally agree! The character development is on point.</p>
+                          <div className="flex items-center gap-3 mt-1 text-[10px] text-gray-500">
+                            <button className="flex items-center gap-1"><Icons.Heart className="w-2 h-2" /> 45</button>
+                            <button>Reply</button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    <button className="text-xs text-gray-500 hover:text-red-500">View more replies</button>
+                  </div>
                 </div>
               </div>
             ))}
