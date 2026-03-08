@@ -127,52 +127,48 @@ export default function HomePage() {
       </div>
 
       <div className="p-4">
-        {/* Featured Carousel - Comick.io Style */}
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold mb-3 px-4">Featured</h2>
-          <div className="flex gap-3 overflow-x-auto carousel-container pb-2 hide-scrollbar px-4">
+        {/* Hero Carousel - One Card Per Frame */}
+        <section className="mb-6 -mx-4">
+          <div className="flex overflow-x-auto snap-x snap-mandatory carousel-container hide-scrollbar" style={{ scrollSnapType: 'x mandatory' }}>
             {demoSeries.slice(0, 5).map((series, index) => (
-              <motion.div
-                key={series.id}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className="carousel-item flex-shrink-0 w-[70%] sm:w-[50%] md:w-[35%]"
-              >
+              <div key={series.id} className="flex-shrink-0 w-full snap-center" style={{ scrollSnapAlign: 'start' }}>
                 <Link href={`/series/${series.slug}`}>
-                  <div className="relative aspect-video rounded-xl overflow-hidden mb-2">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden">
                     <Image
                       src={series.cover}
                       alt={series.title}
                       fill
                       className="object-cover"
+                      priority={index === 0}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                    <div className="absolute top-2 left-2">
-                      <span className="inline-block px-2 py-0.5 bg-red-500 text-white text-xs rounded">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                    {/* Content */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4">
+                      <span className="inline-block px-2 py-0.5 bg-red-500 text-white text-xs rounded mb-2">
                         {series.type.toUpperCase()}
                       </span>
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-2">
-                      <h3 className="font-bold text-white text-sm line-clamp-1">{series.title}</h3>
-                    </div>
-                  </div>
-                  {/* Info Below - Comick.io Style */}
-                  <div className="px-1">
-                    <p className="text-xs font-medium text-gray-900 dark:text-white line-clamp-1">{series.author}</p>
-                    <div className="flex items-center gap-2 mt-1 text-[10px] text-gray-500">
-                      <span>{series.chapters} ch</span>
-                      <span className="flex items-center gap-0.5">
-                        <Icons.Heart className="w-2.5 h-2.5" /> {(series.likes / 1000).toFixed(1)}K
-                      </span>
-                      <span className="flex items-center gap-0.5">
-                        <Icons.Comment className="w-2.5 h-2.5" /> {(series.comments / 1000).toFixed(1)}K
-                      </span>
-                      <span>2h ago</span>
+                      <h3 className="font-bold text-white text-xl md:text-2xl line-clamp-1">{series.title}</h3>
+                      <p className="text-white/80 text-sm mt-1">{series.author}</p>
+                      {/* Info Bar */}
+                      <div className="flex items-center gap-4 mt-3 text-white/70 text-xs">
+                        <span>{series.chapters} chapters</span>
+                        <span className="flex items-center gap-1">
+                          <Icons.Heart className="w-3 h-3" /> {(series.likes / 1000).toFixed(1)}K
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Icons.Comment className="w-3 h-3" /> {(series.comments / 1000).toFixed(1)}K
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
+            ))}
+          </div>
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-3">
+            {demoSeries.slice(0, 5).map((_, index) => (
+              <div key={index} className="w-2 h-2 rounded-full bg-gray-300 dark:bg-gray-700" />
             ))}
           </div>
         </section>
