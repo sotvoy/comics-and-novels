@@ -10,7 +10,7 @@ import { useAppStore } from '@/store/app';
 
 export default function TopBar() {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme: toggleTheme } = useTheme();
   const [showDropdown, setShowDropdown] = useState(false);
   const { isDrawerOpen, setDrawerOpen, setSearchOpen } = useAppStore();
 
@@ -115,7 +115,7 @@ export default function TopBar() {
               <Icons.Bell />
             </Link>
             <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={toggleTheme}
               className="yt-button"
               aria-label="Toggle theme"
             >

@@ -22,7 +22,7 @@ export default function WorldChat() {
   const [newMessage, setNewMessage] = useState('');
   const [position, setPosition] = useState({ x: 16, y: 80 });
   const [isDragging, setIsDragging] = useState(false);
-  const dragRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<HTMLButtonElement>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
 
   const handleMouseDown = (e: React.MouseEvent) => {

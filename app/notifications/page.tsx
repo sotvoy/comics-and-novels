@@ -86,7 +86,7 @@ export default function NotificationsPage() {
             {notificationsData.unread.map((notif) => (
               <Link
                 key={notif.id}
-                href={notif.type === 'chapter' ? `/series/${notif.series?.toLowerCase().replace(' ')}` : '/profile'}
+                href={(notif as any).type === 'chapter' ? `/series/${(notif as any).series?.toLowerCase().replace(' ')}` : '/profile'}
                 className={`flex items-start gap-3 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 ${!notif.read ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}
               >
                 <div className={`w-10 h-10 rounded-full ${getColor(notif.type)} flex items-center justify-center text-white flex-shrink-0`}>
@@ -94,14 +94,14 @@ export default function NotificationsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm">{notif.title}</p>
-                  {notif.series && (
-                    <p className="text-xs text-gray-500">{notif.series} - Chapter {notif.chapter}</p>
+                  {(notif as any).series && (
+                    <p className="text-xs text-gray-500">{(notif as any).series} - Chapter {(notif as any).chapter}</p>
                   )}
-                  {notif.user && (
-                    <p className="text-xs text-gray-500">@{notif.user}</p>
+                  {(notif as any).user && (
+                    <p className="text-xs text-gray-500">@{(notif as any).user}</p>
                   )}
-                  {notif.message && (
-                    <p className="text-xs text-gray-500">{notif.message}</p>
+                  {(notif as any).message && (
+                    <p className="text-xs text-gray-500">{(notif as any).message}</p>
                   )}
                   <p className="text-xs text-gray-400 mt-1">{notif.time}</p>
                 </div>
@@ -118,7 +118,7 @@ export default function NotificationsPage() {
             {notificationsData.read.map((notif) => (
               <Link
                 key={notif.id}
-                href={notif.type === 'chapter' ? `/series/${notif.series?.toLowerCase().replace(' ')}` : '/profile'}
+                href={notif.type === 'chapter' ? `/series/${(notif as any).series?.toLowerCase().replace(' ')}` : '/profile'}
                 className="flex items-start gap-3 p-3 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800"
               >
                 <div className={`w-10 h-10 rounded-full ${getColor(notif.type)} flex items-center justify-center text-white flex-shrink-0 opacity-60`}>
@@ -126,14 +126,14 @@ export default function NotificationsPage() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-sm">{notif.title}</p>
-                  {notif.series && (
-                    <p className="text-xs text-gray-500">{notif.series} - Chapter {notif.chapter}</p>
+                  {(notif as any).series && (
+                    <p className="text-xs text-gray-500">{(notif as any).series} - Chapter {(notif as any).chapter}</p>
                   )}
-                  {notif.user && (
-                    <p className="text-xs text-gray-500">@{notif.user}</p>
+                  {(notif as any).user && (
+                    <p className="text-xs text-gray-500">@{(notif as any).user}</p>
                   )}
-                  {notif.message && (
-                    <p className="text-xs text-gray-500">{notif.message}</p>
+                  {(notif as any).message && (
+                    <p className="text-xs text-gray-500">{(notif as any).message}</p>
                   )}
                   <p className="text-xs text-gray-400 mt-1">{notif.time}</p>
                 </div>
