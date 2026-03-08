@@ -195,6 +195,12 @@ export default function TopBar() {
                   <Link href="/creator" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     Creator Studio
                   </Link>
+                  <Link href="/ranking" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Trophy /> Ranking
+                  </Link>
+                  <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    Community
+                  </Link>
                 </nav>
 
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />

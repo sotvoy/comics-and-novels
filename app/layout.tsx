@@ -2,6 +2,7 @@ import './globals.css';
 import QueryProvider from '@/components/providers/QueryProvider';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
+import WorldChat from '@/components/features/WorldChat';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function RootLayout({
               </main>
             </div>
             <BottomBar />
+            <WorldChat />
           </div>
         </QueryProvider>
       </body>
