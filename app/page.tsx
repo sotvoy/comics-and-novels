@@ -18,7 +18,33 @@ const categories = [
   { id: 'news', label: 'News' },
   { id: 'post', label: 'Post' },
   { id: 'community', label: 'Community' },
+  { id: 'shorts', label: 'Shorts' },
+  { id: 'trending', label: 'Trending' },
 ];
+
+// Daily Rewards Data
+const dailyRewards = [
+  { day: 1, reward: 10, claimed: true },
+  { day: 2, reward: 20, claimed: true },
+  { day: 3, reward: 30, claimed: true },
+  { day: 4, reward: 50, claimed: false },
+  { day: 5, reward: 100, claimed: false },
+  { day: 6, reward: 150, claimed: false },
+  { day: 7, reward: 300, claimed: false },
+];
+
+// Battle Pass Data
+const battlePass = {
+  level: 15,
+  xp: 2500,
+  maxXp: 3000,
+  premium: true,
+  rewards: [
+    { level: 1, claimed: true },
+    { level: 2, claimed: true },
+    { level: 3, claimed: false },
+  ]
+};
 
 const demoSeries = [
   {
@@ -104,6 +130,8 @@ const timeAgo = (date: Date) => {
 
 export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showDailyRewards, setShowDailyRewards] = useState(false);
+  const [showBattlePass, setShowBattlePass] = useState(false);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -125,7 +153,51 @@ export default function HomePage() {
       </div>
 
       <div className="p-4">
-        {/* Hero Carousel */}
+        {/* Daily Rewards Banner - Genshin/PUBG Style */}
+        <section className="mb-6">
+          <div 
+            onClick={() => setShowDailyRewards(true)}
+            className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 p-4 cursor-pointer"
+          >
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 left-0 w-20 h-20 bg-white rounded-full -translate-x-10 -translate-y-10" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-white rounded-full translate-x-16 translate-y-16" />
+            </div>
+            <div className="relative flex items-center justify-between">
+              <div>
+                <p className="text-white/80 text-sm font-medium">Daily Rewards</p>
+                <h3 className="text-white font-bold text-lg">Claim Your Free Coins!</h3>
+                <p className="text-white/60 text-xs mt-1">Day 4 of 7 • 50 coins ready</p>
+              </div>
+              <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                <span className="text-3xl">🎁</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Battle Pass Banner - Mobile Legends Style */}
+        <section className="mb-6">
+          <div 
+            onClick={() => setShowBattlePass(true)}
+            className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 p-4 cursor-pointer"
+          >
+            <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -translate-y-8 translate-x-8" />
+            <div className="relative">
+              <div className="flex items-center justify-between mb-2">
+                <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-0.5 rounded">PREMIUM</span>
+                <span className="text-white/80 text-xs">Level {battlePass.level}</span>
+              </div>
+              <h3 className="text-white font-bold text-lg">Battle Pass Season 1</h3>
+              <div className="mt-2 h-2 bg-white/20 rounded-full overflow-hidden">
+                <div className="h-full bg-yellow-400 rounded-full" style={{ width: `${(battlePass.xp / battlePass.maxXp) * 100}%` }} />
+              </div>
+              <p className="text-white/60 text-xs mt-1">{battlePass.xp}/{battlePass.maxXp} XP</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Carousel */}
         <section className="mb-8">
           <h2 className="text-lg font-semibold mb-3">Featured</h2>
           <div className="flex gap-4 overflow-x-auto carousel-container pb-2 hide-scrollbar">
@@ -327,6 +399,69 @@ export default function HomePage() {
           </div>
         </section>
       </div>
+
+      {/* Daily Rewards Modal */}
+      {showDailyRewards && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={() => setShowDailyRewards(false)}>
+          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold">Daily Rewards</h2>
+              <button onClick={() => setShowDailyRewards(false)}><Icons.Close /></button>
+            </div>
+            <div className="grid grid-cols-7 gap-2 mb-4">
+              {dailyRewards.map((day, i) => (
+                <div key={i} className={`flex flex-col items-center p-2 rounded-lg ${day.claimed ? 'bg-green-100 dark:bg-green-900/30' : day.reward === 50 ? 'bg-yellow-100 dark:bg-yellow-900/30' : 'bg-gray-100 dark:bg-gray-800'}`}>
+                  <span className="text-xs font-medium">Day {day.day}</span>
+                  <span className="text-lg">🪙</span>
+                  <span className="text-xs font-bold">{day.reward}</span>
+                  {day.claimed && <span className="text-green-500 text-xs">✓</span>}
+                </div>
+              ))}
+            </div>
+            <button className="w-full py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-bold rounded-xl">
+              Claim 50 Coins
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Battle Pass Modal */}
+      {showBattlePass && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={() => setShowBattlePass(false)}>
+          <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-full max-w-sm" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold">Battle Pass</h2>
+              <button onClick={() => setShowBattlePass(false)}><Icons.Close /></button>
+            </div>
+            <div className="bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl p-4 mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="bg-yellow-500 text-black text-xs font-bold px-2 py-0.5 rounded">PREMIUM</span>
+                <span className="text-white/80 text-sm">Level {battlePass.level}</span>
+              </div>
+              <div className="h-3 bg-white/20 rounded-full overflow-hidden">
+                <div className="h-full bg-yellow-400 rounded-full" style={{ width: `${(battlePass.xp / battlePass.maxXp) * 100}%` }} />
+              </div>
+              <p className="text-white/60 text-xs mt-1">{battlePass.xp}/{battlePass.maxXp} XP to next level</p>
+            </div>
+            <div className="space-y-2 mb-4">
+              {[1,2,3,4,5].map(level => (
+                <div key={level} className="flex items-center justify-between p-3 bg-gray-100 dark:bg-gray-800 rounded-xl">
+                  <div className="flex items-center gap-3">
+                    <span className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold">{level}</span>
+                    <span className="text-sm">Chapter Unlock</span>
+                  </div>
+                  <button className={`px-3 py-1 rounded-lg text-xs font-medium ${level <= battlePass.level ? 'bg-green-500 text-white' : 'bg-gray-300 dark:bg-gray-600'}`}>
+                    {level <= battlePass.level ? 'Claimed' : 'Locked'}
+                  </button>
+                </div>
+              ))}
+            </div>
+            <button className="w-full py-3 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold rounded-xl">
+              Upgrade to Premium
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
