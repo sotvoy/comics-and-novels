@@ -21,7 +21,7 @@ export default function TopBar() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="flex items-center justify-between h-14 px-4">
           {/* Left: Menu + Logo */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => setDrawerOpen(true)}
               className="yt-button"
@@ -30,11 +30,11 @@ export default function TopBar() {
               <Icons.Menu />
             </button>
             
-            <Link href="/" className="flex items-center h-14 py-3">
+            <Link href="/" className="flex items-center -ml-1">
               <img 
                 src="/logo.png" 
                 alt="C&N" 
-                className="h-full w-auto object-contain"
+                className="h-10 w-auto object-contain"
               />
             </Link>
           </div>
