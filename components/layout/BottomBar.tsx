@@ -102,7 +102,7 @@ export default function BottomBar() {
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full bg-white dark:bg-gray-900 rounded-t-3xl p-4"
+            className="w-full bg-white dark:bg-gray-900 rounded-t-3xl p-4 max-h-[85vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
             role="menu"
           >

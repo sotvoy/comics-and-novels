@@ -232,11 +232,11 @@ export default function ReadPage() {
 
       {/* Settings Modal */}
       {showSettings && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={handleBackdropClick}>
-          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[80vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-end safe-area-bottom" onClick={handleBackdropClick}>
+          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6 sticky top-0 bg-gray-900 pt-2 -mx-2 px-2">
               <h2 className="text-white text-lg font-bold">Reader Settings</h2>
-              <button onClick={() => setShowSettings(false)}><Icons.Close className="text-white" /></button>
+              <button onClick={() => setShowSettings(false)} className="text-white p-2"><Icons.Close /></button>
             </div>
             
             {/* Brightness */}
@@ -291,11 +291,11 @@ export default function ReadPage() {
 
       {/* Share Modal */}
       {showShare && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={handleBackdropClick}>
-          <div className="bg-gray-900 rounded-t-2xl w-full p-6" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-end safe-area-bottom" onClick={handleBackdropClick}>
+          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6 sticky top-0 bg-gray-900 pt-2 -mx-2 px-2">
               <h2 className="text-white text-lg font-bold">Share</h2>
-              <button onClick={() => setShowShare(false)}><Icons.Close className="text-white" /></button>
+              <button onClick={() => setShowShare(false)} className="text-white p-2"><Icons.Close /></button>
             </div>
             <div className="flex justify-around">
               <button className="flex flex-col items-center gap-2 text-white">
@@ -329,11 +329,11 @@ export default function ReadPage() {
 
       {/* Chapters Modal */}
       {showChapters && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={handleBackdropClick}>
-          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[80vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
-            <div className="flex items-center justify-between mb-6">
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-end safe-area-bottom" onClick={handleBackdropClick}>
+          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[85vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6 sticky top-0 bg-gray-900 pt-2 -mx-2 px-2">
               <h2 className="text-white text-lg font-bold">Chapters</h2>
-              <button onClick={() => setShowChapters(false)}><Icons.Close className="text-white" /></button>
+              <button onClick={() => setShowChapters(false)} className="text-white p-2"><Icons.Close /></button>
             </div>
             <div className="space-y-2">
               {chapterList.map((ch) => (
