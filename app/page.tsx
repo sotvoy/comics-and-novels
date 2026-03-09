@@ -7,21 +7,6 @@ import { motion } from 'framer-motion';
 import Icons from '@/components/ui/Icons';
 
 // Demo data
-const categories = [
-  { id: 'all', label: 'All' },
-  { id: 'foryou', label: 'For You' },
-  { id: 'top', label: 'Top' },
-  { id: 'new', label: 'New' },
-  { id: 'recent', label: 'Recent' },
-  { id: 'popular', label: 'Popular' },
-  { id: 'ranking', label: 'Ranking' },
-  { id: 'news', label: 'News' },
-  { id: 'post', label: 'Post' },
-  { id: 'community', label: 'Community' },
-  { id: 'shorts', label: 'Shorts' },
-  { id: 'trending', label: 'Trending' },
-];
-
 const demoSeries = [
   {
     id: '1',
@@ -135,19 +120,30 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Category Pills - Hide on Scroll Down, Show on Scroll Up */}
+      {/* Category Pills with Navigation */}
       <div className={`sticky top-14 z-30 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 transition-transform duration-300 ${showCategories ? 'translate-y-0' : '-translate-y-full'}`}>
         <div className="flex items-center gap-2 px-4 py-3 overflow-x-auto hide-scrollbar">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
-              className={`category-pill whitespace-nowrap ${
+          {[
+            { id: 'all', label: 'All', href: '/' },
+            { id: 'foryou', label: 'For You', href: '/for-you' },
+            { id: 'top', label: 'Top', href: '/ranking?sort=top' },
+            { id: 'new', label: 'New', href: '/novels?sort=new' },
+            { id: 'recent', label: 'Recent', href: '/comics?sort=recent' },
+            { id: 'popular', label: 'Popular', href: '/trending' },
+            { id: 'ranking', label: 'Ranking', href: '/ranking' },
+            { id: 'news', label: 'News', href: '/events' },
+            { id: 'post', label: 'Post', href: '/community' },
+            { id: 'community', label: 'Community', href: '/community' },
+            { id: 'shorts', label: 'Shorts', href: '/shorts' },
+            { id: 'trending', label: 'Trending', href: '/trending' },
+          ].map((category) => (
+            <Link key={category.id} href={category.href}>
+              <span className={`category-pill whitespace-nowrap ${
                 selectedCategory === category.id ? 'active' : ''
-              }`}
-            >
-              {category.label}
-            </button>
+              }`}>
+                {category.label}
+              </span>
+            </Link>
           ))}
         </div>
       </div>
