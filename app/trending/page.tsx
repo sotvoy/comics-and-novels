@@ -33,7 +33,7 @@ export default function TrendingPage() {
       {/* Header */}
       <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 pt-20">
         <h1 className="text-2xl font-bold">Trending</h1>
-        <p className="text-white/80 text-sm mt-1">See what's hot right now</p>
+        <p className="text-white/80 text-sm mt-1">See what&apos;s hot right now</p>
       </div>
 
       {/* Time Filter */}

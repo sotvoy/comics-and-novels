@@ -36,5 +36,8 @@
     "tailwindcss": "^3.4.0",
     "typescript": "^5.3.0",
     "vercel": "^50.28.0"
+  },
+  "optionalDependencies": {
+    "stripe": "^20.4.1"
   }
 }
