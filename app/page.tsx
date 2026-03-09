@@ -213,15 +213,25 @@ export default function HomePage() {
         {/* Genre Chips - Quick Filter */}
         <section className="mb-4 px-4">
           <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
-            {['All', 'Action', 'Fantasy', 'Romance', 'Adventure', 'Comedy', 'Drama', 'Horror', 'Sci-Fi'].map((genre, i) => (
-              <button
-                key={genre}
-                className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium ${
-                  i === 0 ? 'bg-red-500 text-white' : 'bg-gray-100 dark:bg-gray-800'
-                }`}
-              >
-                {genre}
-              </button>
+            {[
+              { id: 'all', label: 'All', href: '/search' },
+              { id: 'action', label: 'Action', href: '/search?genre=action' },
+              { id: 'fantasy', label: 'Fantasy', href: '/search?genre=fantasy' },
+              { id: 'romance', label: 'Romance', href: '/search?genre=romance' },
+              { id: 'adventure', label: 'Adventure', href: '/search?genre=adventure' },
+              { id: 'comedy', label: 'Comedy', href: '/search?genre=comedy' },
+              { id: 'drama', label: 'Drama', href: '/search?genre=drama' },
+              { id: 'horror', label: 'Horror', href: '/search?genre=horror' },
+              { id: 'scifi', label: 'Sci-Fi', href: '/search?genre=sci-fi' },
+              { id: 'mystery', label: 'Mystery', href: '/search?genre=mystery' },
+              { id: 'sports', label: 'Sports', href: '/search?genre=sports' },
+              { id: 'sliceoflife', label: 'Slice of Life', href: '/search?genre=slice-of-life' },
+            ].map((genre) => (
+              <Link key={genre.id} href={genre.href}>
+                <span className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white transition-colors">
+                  {genre.label}
+                </span>
+              </Link>
             ))}
           </div>
         </section>
