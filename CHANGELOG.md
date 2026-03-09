@@ -4,6 +4,40 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added (Security Infrastructure v1)
+- **Cloudinary Signed Uploads**
+  - Created `/api/upload/signature` endpoint for server-side signature generation
+  - Added client-side upload signing capability for creator uploads
+
+- **Stripe Payment Integration**
+  - Created `/api/stripe/checkout` endpoint for tips and subscriptions
+  - Created `/api/stripe/webhook` endpoint for payment events
+  - Added Stripe wrapper utility with optional package handling
+
+- **Security Features**
+  - Added rate limiter utility (`lib/rate-limit.ts`)
+  - Added reCAPTCHA verification utility (`lib/recaptcha.ts`)
+  - Added CSP and security headers in `next.config.js`:
+    - Content-Security-Policy
+    - X-Content-Type-Options
+    - X-Frame-Options
+    - X-XSS-Protection
+    - Referrer-Policy
+    - Permissions-Policy
+
+- **Testing**
+  - Added auth smoke tests (`tests/auth.spec.ts`)
+  - Added API smoke tests (`tests/api.spec.ts`)
+
+### Changed
+- Updated `.env.example` with complete list of environment variables
+- Fixed lint error in trending page (unescaped apostrophe)
+
+### Known Issues
+- Rate limiter is in-memory (use Redis for production)
+- Stripe endpoints gracefully handle missing Stripe package
+- reCAPTCHA verification fails open when not configured
+
 ## [1.0.0] - 2024-03-09
 
 ### Added
