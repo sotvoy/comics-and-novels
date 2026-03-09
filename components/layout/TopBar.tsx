@@ -50,6 +50,14 @@ export default function TopBar() {
             
             <AnimatePresence>
               {showDropdown && (
+                <>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-40"
+                    onClick={() => setShowDropdown(false)}
+                  />
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -58,36 +66,37 @@ export default function TopBar() {
                   >
                     <Link
                       href="/manga"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      📚 Manga
+                      <span className="mr-2">📚</span> Manga
                     </Link>
                     <Link
                       href="/manhwa"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      🇰🇷 Manhwa
+                      <span className="mr-2">🇰🇷</span> Manhwa
                     </Link>
                     <Link
                       href="/manhua"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      🇨🇳 Manhua
+                      <span className="mr-2">🇨🇳</span> Manhua
                     </Link>
                     <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
                     <Link
                       href="/comics"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
                       All Comics
                     </Link>
                   </motion.div>
-                )}
-              </AnimatePresence>
+                </>
+              )}
+            </AnimatePresence>
             </div>
 
           {/* Right: Actions */}
