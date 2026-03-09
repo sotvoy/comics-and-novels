@@ -2,9 +2,7 @@ import './globals.css';
 import QueryProvider from '@/components/providers/QueryProvider';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
-import WorldChat from '@/components/features/WorldChat';
-import FloatingStatsBar from '@/components/features/FloatingStatsBar';
-import AudioPlayer from '@/components/features/AudioPlayer';
+import FloatingControlCenter from '@/components/features/FloatingControlCenter';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -36,9 +34,7 @@ export default function RootLayout({
               </main>
             </div>
             <BottomBar />
-            <WorldChat />
-            <FloatingStatsBar />
-            <AudioPlayer />
+            <FloatingControlCenter />
           </div>
         </QueryProvider>
       </body>
