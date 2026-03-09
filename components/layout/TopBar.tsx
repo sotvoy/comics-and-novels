@@ -98,6 +98,22 @@ export default function TopBar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-1">
+            <Link
+              href="/comics"
+              className={`yt-button text-sm font-medium hidden sm:block ${
+                isActive('/comics') ? 'text-red-500' : ''
+              }`}
+            >
+              Comics
+            </Link>
+            <Link
+              href="/novels"
+              className={`yt-button text-sm font-medium hidden sm:block ${
+                isActive('/novels') ? 'text-red-500' : ''
+              }`}
+            >
+              Novels
+            </Link>
             <Link href="/search" className="yt-button" aria-label="Search">
               <Icons.Search />
             </Link>
