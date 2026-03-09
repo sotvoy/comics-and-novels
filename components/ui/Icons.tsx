@@ -217,6 +217,22 @@ export const Icons = {
       <path fillRule="evenodd" d="M7.75 4.5A.75.75 0 018.5 3.75h9a.75.75 0 01.75.75v.268a2.25 2.25 0 01-.659 1.593l-5.492 3.12a.75.75 0 01-1.06 0l-5.492-3.12A2.25 2.25 0 013.75 4.768V4.5z" clipRule="evenodd" />
     </svg>
   ),
+  X: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clipRule="evenodd" />
+    </svg>
+  ),
+  Send: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path d="M3.478 2.405a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+    </svg>
+  ),
+  Maximize2: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5.5a.75.75 0 010 1.5h-5.5z" clipRule="evenodd" />
+      <path fillRule="evenodd" d="M6.75 4.5a.75.75 0 01.75-.75h8.5a.75.75 0 01.75.75v8.5a.75.75 0 01-1.5 0v-5.25a.75.75 0 00-.75-.75h-5.5a.75.75 0 010-1.5h5.25a.75.75 0 01.75.75v5.25z" clipRule="evenodd" />
+    </svg>
+  ),
 };
 
 export default Icons;

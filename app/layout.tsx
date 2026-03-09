@@ -3,6 +3,8 @@ import QueryProvider from '@/components/providers/QueryProvider';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
 import WorldChat from '@/components/features/WorldChat';
+import FloatingStatsBar from '@/components/features/FloatingStatsBar';
+import AudioPlayer from '@/components/features/AudioPlayer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -35,6 +37,8 @@ export default function RootLayout({
             </div>
             <BottomBar />
             <WorldChat />
+            <FloatingStatsBar />
+            <AudioPlayer />
           </div>
         </QueryProvider>
       </body>
