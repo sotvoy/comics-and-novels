@@ -4,6 +4,7 @@ import { AuthProvider } from '@/context/AuthContext';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
 import ServiceWorkerRegistration from '@/components/pwa/ServiceWorkerRegistration';
+import PlausibleAnalytics from '@/components/analytics/PlausibleAnalytics';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -41,6 +42,7 @@ export default function RootLayout({
             </div>
           </AuthProvider>
         </QueryProvider>
+        <PlausibleAnalytics />
       </body>
     </html>
   );
