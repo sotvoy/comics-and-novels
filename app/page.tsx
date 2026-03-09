@@ -132,10 +132,11 @@ export default function HomePage() {
             { id: 'popular', label: 'Popular', href: '/trending' },
             { id: 'ranking', label: 'Ranking', href: '/ranking' },
             { id: 'news', label: 'News', href: '/events' },
-            { id: 'post', label: 'Post', href: '/community' },
-            { id: 'community', label: 'Community', href: '/community' },
             { id: 'shorts', label: 'Shorts', href: '/shorts' },
             { id: 'trending', label: 'Trending', href: '/trending' },
+            { id: 'publish', label: 'Publish Art', href: '/publish-art' },
+            { id: 'write', label: 'Write Stories', href: '/write-stories' },
+            { id: 'post', label: 'Create Post', href: '/community' },
           ].map((category) => (
             <Link key={category.id} href={category.href}>
               <span className={`category-pill whitespace-nowrap ${
