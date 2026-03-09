@@ -23,7 +23,7 @@ const buttons: FloatingButton[] = [
 ];
 
 export default function FloatingControlCenter() {
-  const [position, setPosition] = useState({ x: 20, y: 200 });
+  const [position, setPosition] = useState({ x: 16, y: 200 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isExpanded, setIsExpanded] = useState(false);
@@ -32,7 +32,7 @@ export default function FloatingControlCenter() {
   const [showSettings, setShowSettings] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const buttonSize = 56;
+  const buttonSize = 52;
   const edgeMargin = 10;
 
   const snapToEdge = useCallback((x: number, y: number) => {
@@ -178,7 +178,7 @@ export default function FloatingControlCenter() {
               : '0 4px 20px rgba(124, 58, 237, 0.4)'
           }}
           className={`
-            w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl
+            w-[52px] h-[52px] rounded-full shadow-2xl flex items-center justify-center text-2xl
             bg-gradient-to-br from-violet-600 to-purple-600 border-4 border-white
             ${isDragging ? 'opacity-90' : ''}
           `}

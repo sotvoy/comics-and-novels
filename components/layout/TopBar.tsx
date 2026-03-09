@@ -19,22 +19,22 @@ export default function TopBar() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
-        <div className="flex items-center justify-between h-14 px-4">
+        <div className="flex items-center justify-between h-14 px-2 md:px-4">
           {/* Left: Menu + Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center gap-1">
             <button
               onClick={() => setDrawerOpen(true)}
               className="yt-button"
               aria-label="Menu"
             >
-              <Icons.Menu />
+              <Icons.Menu className="w-5 h-5" />
             </button>
             
-            <Link href="/" className="-ml-2">
+            <Link href="/" className="-ml-1">
               <img 
                 src="/logo.png" 
                 alt="C&N" 
-                className="h-[120px] w-auto object-contain"
+                className="h-8 w-auto object-contain"
               />
             </Link>
           </div>
@@ -45,7 +45,8 @@ export default function TopBar() {
               onClick={() => setShowDropdown(!showDropdown)}
               className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-sm font-medium"
             >
-              C&N <Icons.ChevronDown />
+              <span className="hidden sm:inline">C&N</span>
+              <Icons.ChevronDown className="w-4 h-4" />
             </button>
             
             <AnimatePresence>
