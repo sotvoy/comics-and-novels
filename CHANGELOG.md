@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added (Reader UX Improvements)
+- **Mobile Fullscreen Reader**
+  - Add mobile edge-to-edge display with safe-area-inset support
+  - Hide controls in mobile fullscreen mode for immersive reading
+  - Add scroll snap for webtoon-style mobile reading
+  - Add proper padding for notched devices (iPhone X+)
+
+- **Modal & Drawer Improvements**
+  - Add ESC key to close all modals/drawers
+  - Add backdrop click to close modals/drawers
+
 ### Added (Security Infrastructure v1)
 - **Cloudinary Signed Uploads**
   - Created `/api/upload/signature` endpoint for server-side signature generation
