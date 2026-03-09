@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icons from '@/components/ui/Icons';
+import { useAuth } from '@/context/AuthContext';
+import { supabase } from '@/lib/supabase';
 
 const achievements = [
   { id: 1, name: 'First Read', desc: 'Read your first chapter', icon: '📖', completed: true },
@@ -26,7 +28,10 @@ const demoHistory = [
 
 export default function ProfilePage() {
   const [activeTab, setActiveTab] = useState('uploads');
-  const user = { 
+  const { user: authUser, signOut } = useAuth();
+  
+  // Default user data (fallback for demo)
+  const defaultUser = { 
     username: 'SOT VOY', 
     email: 'demo@cn.com', 
     level: 25, 
@@ -38,6 +43,20 @@ export default function ProfilePage() {
     avatar: 'https://picsum.photos/seed/avatar/200/200',
     badges: ['🌟', '🔥', '💎', '⚡']
   };
+
+  // Use auth user if available, otherwise use demo data
+  const user = authUser ? {
+    username: authUser.user_metadata?.username || authUser.email?.split('@')[0] || 'User',
+    email: authUser.email || '',
+    level: 1,
+    exp: 0,
+    maxExp: 1000,
+    followers: 0,
+    following: 0,
+    uploads: 0,
+    avatar: authUser.user_metadata?.avatar_url || `https://ui-avatars.com/api/?name=${authUser.email}&background=random`,
+    badges: []
+  } : defaultUser;
 
   const tabs = [
     { id: 'uploads', label: 'Uploads' },
@@ -72,9 +91,19 @@ export default function ProfilePage() {
             </div>
             <p className="text-sm text-gray-500">@{user.username.toLowerCase().replace(' ', '_')}</p>
           </div>
-          <Link href="/settings" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
-            <Icons.Settings />
-          </Link>
+          <div className="flex gap-2">
+            {authUser && (
+              <button 
+                onClick={signOut}
+                className="p-2 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/50"
+              >
+                Logout
+              </button>
+            )}
+            <Link href="/settings" className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+              <Icons.Settings />
+            </Link>
+          </div>
         </div>
 
         {/* Level Progress */}

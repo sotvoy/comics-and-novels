@@ -2,17 +2,20 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTheme } from '@/hooks/useTheme';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icons from '@/components/ui/Icons';
 import { useAppStore } from '@/store/app';
+import { useAuth } from '@/context/AuthContext';
 
 export default function TopBar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { theme, setTheme: toggleTheme } = useTheme();
   const [showDropdown, setShowDropdown] = useState(false);
   const { isDrawerOpen, setDrawerOpen, setSearchOpen } = useAppStore();
+  const { user: authUser, loading } = useAuth();
 
   const isActive = (path: string) => pathname === path;
 
@@ -120,6 +123,17 @@ export default function TopBar() {
             <Link href="/notifications" className="yt-button" aria-label="Notifications">
               <Icons.Bell />
             </Link>
+            {authUser ? (
+              <Link href="/profile" className="yt-button" aria-label="Profile">
+                <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold">
+                  {(authUser.user_metadata?.username || authUser.email?.[0] || 'U').toUpperCase()}
+                </div>
+              </Link>
+            ) : (
+              <Link href="/login" className="yt-button text-sm font-medium text-red-500">
+                Sign In
+              </Link>
+            )}
             <button
               onClick={toggleTheme}
               className="yt-button"

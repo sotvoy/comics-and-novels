@@ -328,3 +328,41 @@ INSERT INTO genres (name, slug, color) VALUES
 -- Insert admin user
 INSERT INTO users (id, username, email, role, level) 
 VALUES ('00000000-0000-0000-0000-000000000001', 'admin', 'admin@cn.com', 'admin', 100);
+
+-- Row Level Security (RLS) Policies
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE series ENABLE ROW LEVEL SECURITY;
+ALTER TABLE chapters ENABLE ROW LEVEL SECURITY;
+ALTER TABLE comments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE likes ENABLE ROW LEVEL SECURITY;
+ALTER TABLE follows ENABLE ROW LEVEL SECURITY;
+ALTER TABLE notifications ENABLE ROW LEVEL SECURITY;
+
+-- Users: Anyone can read, only owner can update
+CREATE POLICY "Users are viewable by everyone" ON users FOR SELECT USING (true);
+CREATE POLICY "Users can update their own profile" ON users FOR UPDATE USING (auth.uid() = id);
+
+-- Series: Anyone can read, only creator can insert/update
+CREATE POLICY "Series are viewable by everyone" ON series FOR SELECT USING (true);
+CREATE POLICY "Creators can insert series" ON series FOR INSERT WITH CHECK (auth.uid() = user_id OR user_id IS NULL);
+CREATE POLICY "Creators can update their own series" ON series FOR UPDATE USING (auth.uid() = user_id);
+
+-- Chapters: Anyone can read, only creator can insert/update
+CREATE POLICY "Chapters are viewable by everyone" ON chapters FOR SELECT USING (true);
+CREATE POLICY "Creators can insert chapters" ON chapters FOR INSERT WITH CHECK (true);
+CREATE POLICY "Creators can update their own chapters" ON chapters FOR UPDATE USING (true);
+
+-- Comments: Anyone can read, authenticated users can insert
+CREATE POLICY "Comments are viewable by everyone" ON comments FOR SELECT USING (true);
+CREATE POLICY "Authenticated users can insert comments" ON comments FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+CREATE POLICY "Users can update/delete their own comments" ON comments FOR UPDATE USING (auth.uid() = user_id);
+
+-- Likes: Authenticated users can manage their own likes
+CREATE POLICY "Likes are viewable by everyone" ON likes FOR SELECT USING (true);
+CREATE POLICY "Authenticated users can insert likes" ON likes FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+CREATE POLICY "Users can delete their own likes" ON likes FOR DELETE USING (auth.uid() = user_id);
+
+-- Follows: Authenticated users can manage their own follows
+CREATE POLICY "Follows are viewable by everyone" ON follows FOR SELECT USING (true);
+CREATE POLICY "Authenticated users can insert follows" ON follows FOR INSERT WITH CHECK (auth.uid() IS NOT NULL);
+CREATE POLICY "Users can delete their own follows" ON follows FOR DELETE USING (auth.uid() = user_id);
