@@ -3,6 +3,7 @@ import QueryProvider from '@/components/providers/QueryProvider';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
 import WorldChat from '@/components/features/WorldChat';
+import ClientLayout from '@/components/features/ClientLayout';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -26,16 +27,18 @@ export default function RootLayout({
       </head>
       <body>
         <QueryProvider>
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-            <TopBar />
-            <div className="w-full px-0 md:px-4">
-              <main className="min-h-screen pb-16 md:pb-4 w-full">
-                {children}
-              </main>
+          <ClientLayout>
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+              <TopBar />
+              <div className="w-full px-0 md:px-4">
+                <main className="min-h-screen pb-16 md:pb-4 w-full">
+                  {children}
+                </main>
+              </div>
+              <BottomBar />
+              <WorldChat />
             </div>
-            <BottomBar />
-            <WorldChat />
-          </div>
+          </ClientLayout>
         </QueryProvider>
       </body>
     </html>
