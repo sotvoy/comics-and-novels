@@ -30,12 +30,8 @@ export default function TopBar() {
               <Icons.Menu className="w-5 h-5" />
             </button>
             
-            <Link href="/" className="-ml-1">
-              <img 
-                src="/logo.png" 
-                alt="C&N" 
-                className="h-8 w-auto object-contain"
-              />
+            <Link href="/" className="-ml-1 text-xl font-bold text-red-500">
+              C&N
             </Link>
           </div>
 
@@ -102,22 +98,6 @@ export default function TopBar() {
 
           {/* Right: Actions */}
           <div className="flex items-center gap-1">
-            <Link
-              href="/comics"
-              className={`yt-button text-sm font-medium hidden sm:block ${
-                isActive('/comics') ? 'text-red-500' : ''
-              }`}
-            >
-              Comics
-            </Link>
-            <Link
-              href="/novels"
-              className={`yt-button text-sm font-medium hidden sm:block ${
-                isActive('/novels') ? 'text-red-500' : ''
-              }`}
-            >
-              Novels
-            </Link>
             <Link href="/search" className="yt-button" aria-label="Search">
               <Icons.Search />
             </Link>
@@ -155,13 +135,9 @@ export default function TopBar() {
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
-                  <Link href="/" className="flex items-center gap-2 h-12 py-2" onClick={() => setDrawerOpen(false)}>
-                    <img 
-                      src="/logo.png" 
-                      alt="C&N" 
-                      className="h-full w-auto object-contain"
-                    />
-                  </Link>
+                  <span className="text-2xl font-bold text-red-500" onClick={() => setDrawerOpen(false)}>
+                    C&N
+                  </span>
                   <button onClick={() => setDrawerOpen(false)} className="yt-button">
                     <Icons.Close />
                   </button>
@@ -170,18 +146,6 @@ export default function TopBar() {
                 <nav className="space-y-1">
                   <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Home /> Home
-                  </Link>
-                  <Link href="/comics" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Comics
-                  </Link>
-                  <Link href="/novels" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    Novels
-                  </Link>
-                  <Link href="/following" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Following /> Following
-                  </Link>
-                  <Link href="/my-list" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.List /> My List
                   </Link>
                   <Link href="/organizations" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     👥 Organizations
@@ -221,9 +185,6 @@ export default function TopBar() {
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
 
                 <nav className="space-y-1">
-                  <Link href="/profile" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Profile /> Profile
-                  </Link>
                   <Link href="/settings" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Settings /> Settings
                   </Link>
