@@ -1,3 +1,4 @@
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -13,7 +14,30 @@ export const config = {
 };
 
 export async function middleware(req: NextRequest) {
-  // Skip middleware entirely in production to avoid Supabase connection issues
-  // Page-level auth will handle protection
-  return NextResponse.next();
+  // Skip if Supabase URL is not configured
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL === 'your_supabase_url') {
+    return NextResponse.next();
+  }
+
+  try {
+    const res = NextResponse.next();
+    const supabase = createMiddlewareClient({ req, res });
+
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    // If no session and trying to access protected route, redirect to login
+    if (!session) {
+      const redirectUrl = new URL('/login', req.url);
+      redirectUrl.searchParams.set('redirect', req.nextUrl.pathname);
+      return NextResponse.redirect(redirectUrl);
+    }
+
+    return res;
+  } catch (error) {
+    // If there's an error, allow the request to proceed
+    console.error('Middleware error:', error);
+    return NextResponse.next();
+  }
 }
