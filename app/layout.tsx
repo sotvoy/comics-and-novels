@@ -3,6 +3,7 @@ import QueryProvider from '@/components/providers/QueryProvider';
 import { AuthProvider } from '@/context/AuthContext';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
+import ServiceWorkerRegistration from '@/components/pwa/ServiceWorkerRegistration';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -23,8 +24,10 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="theme-color" content="#ef4444" />
       </head>
       <body>
+        <ServiceWorkerRegistration />
         <QueryProvider>
           <AuthProvider>
             <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
