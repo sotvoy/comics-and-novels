@@ -1,0 +1,43 @@
+import './globals.css';
+import QueryProvider from '@/components/providers/QueryProvider';
+import TopBar from '@/components/layout/TopBar';
+import BottomBar from '@/components/layout/BottomBar';
+import WorldChat from '@/components/features/WorldChat';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'C&N - Read Comics & Novels Online',
+  description: 'Your favorite platform for reading comics and novels online',
+  manifest: '/manifest.json',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
+      <body>
+        <QueryProvider>
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+            <TopBar />
+            <div className="w-full px-0 md:px-4">
+              <main className="min-h-screen pb-16 md:pb-4 w-full">
+                {children}
+              </main>
+            </div>
+            <BottomBar />
+            <WorldChat />
+          </div>
+        </QueryProvider>
+      </body>
+    </html>
+  );
+}
