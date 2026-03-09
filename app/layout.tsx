@@ -2,7 +2,6 @@ import './globals.css';
 import QueryProvider from '@/components/providers/QueryProvider';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
-import FloatingControlCenter from '@/components/features/FloatingControlCenter';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -34,7 +33,6 @@ export default function RootLayout({
               </main>
             </div>
             <BottomBar />
-            <FloatingControlCenter />
           </div>
         </QueryProvider>
       </body>
