@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
@@ -21,8 +21,30 @@ export default function ReadPage() {
   const [autoScroll, setAutoScroll] = useState(false);
   const [autoScrollSpeed, setAutoScrollSpeed] = useState(3);
   const [showControls, setShowControls] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollInterval = useRef<NodeJS.Timeout | null>(null);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Handle escape key to close modals
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setShowSettings(false);
+        setShowShare(false);
+        setShowChapters(false);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Auto-scroll functionality
   useEffect(() => {
@@ -44,7 +66,7 @@ export default function ReadPage() {
   }, [autoScroll, autoScrollSpeed]);
 
   // Toggle fullscreen
-  const toggleFullscreen = () => {
+  const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen();
       setIsFullscreen(true);
@@ -52,7 +74,16 @@ export default function ReadPage() {
       document.exitFullscreen();
       setIsFullscreen(false);
     }
-  };
+  }, []);
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
 
   // Hide controls after 3 seconds of inactivity
   useEffect(() => {
@@ -77,15 +108,29 @@ export default function ReadPage() {
     };
   }, [showSettings, showShare, showChapters]);
 
+  // Close on backdrop click
+  const handleBackdropClick = () => {
+    setShowSettings(false);
+    setShowShare(false);
+    setShowChapters(false);
+  };
+
   const chapterList = Array.from({ length: 15 }, (_, i) => ({
     number: i + 1,
     title: `Chapter ${i + 1}`
   }));
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: background }}>
-      {/* Reader Controls */}
-      <div className={`fixed top-14 left-0 right-0 z-40 bg-gradient-to-b from-black/80 to-transparent py-2 px-4 transition-opacity ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+    <div 
+      className="min-h-screen" 
+      style={{ 
+        backgroundColor: background,
+        paddingTop: isMobile && isFullscreen ? '0' : 'env(safe-area-inset-top)',
+        paddingBottom: isMobile ? 'calc(5rem + env(safe-area-inset-bottom))' : '5rem',
+      }}
+    >
+      {/* Reader Controls - Hidden in mobile fullscreen */}
+      <div className={`fixed top-0 left-0 right-0 z-40 bg-gradient-to-b from-black/80 to-transparent py-2 px-4 transition-opacity ${showControls && (!isMobile || !isFullscreen) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="flex items-center justify-between">
           <Link href={`/series/${slug}`} className="text-white flex items-center gap-2">
             <Icons.Back /> <span className="text-sm">Back</span>
@@ -103,7 +148,7 @@ export default function ReadPage() {
       </div>
 
       {/* Auto-scroll Control */}
-      <div className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 transition-opacity ${showControls ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`fixed right-4 top-1/2 -translate-y-1/2 z-40 transition-opacity ${showControls && (!isMobile || !isFullscreen) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="bg-black/50 backdrop-blur rounded-lg p-2 flex flex-col gap-2">
           <button 
             onClick={() => setAutoScroll(!autoScroll)}
@@ -123,15 +168,31 @@ export default function ReadPage() {
       </div>
 
       {/* Content */}
-      <div className="reading-content pt-16 pb-24" style={{ filter: `brightness(${brightness}%)` }}>
+      <div 
+        ref={scrollRef}
+        className={`reading-content pt-16 pb-24 ${isMobile ? 'scroll-snap-y' : ''}`} 
+        style={{ 
+          filter: `brightness(${brightness}%)`,
+          scrollSnapType: isMobile ? 'y mandatory' : 'none'
+        }}
+      >
         {demoPages.map((page, index) => (
-          <Image key={index} src={page} alt={`Page ${index + 1}`} width={800} height={1200} className="w-full h-auto mx-auto" />
+          <div key={index} className={isMobile ? 'scroll-snap-align-start' : ''}>
+            <Image 
+              src={page} 
+              alt={`Page ${index + 1}`} 
+              width={800} 
+              height={1200} 
+              className="w-full h-auto mx-auto max-w-3xl"
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
+          </div>
         ))}
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="fixed bottom-16 left-0 right-0 z-40 bg-gradient-to-t from-black/80 to-transparent py-4 px-4">
-        <div className="flex items-center justify-between">
+      {/* Bottom Navigation - Hidden in mobile fullscreen */}
+      <div className={`fixed bottom-20 left-0 right-0 z-40 bg-gradient-to-t from-black/80 to-transparent py-4 px-4 transition-opacity ${showControls && (!isMobile || !isFullscreen) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className="flex items-center justify-between max-w-lg mx-auto">
           <Link href={`/read/${slug}/${Number(chapter) - 1}`} className="text-white px-4 py-2 bg-white/20 rounded-lg">Prev</Link>
           <Link href={`/series/${slug}`} className="text-white"><Icons.List /></Link>
           <Link href={`/read/${slug}/${Number(chapter) + 1}`} className="text-white px-4 py-2 bg-white/20 rounded-lg">Next</Link>
@@ -139,8 +200,13 @@ export default function ReadPage() {
       </div>
 
       {/* Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur p-3 z-50">
-        <div className="flex items-center justify-between">
+      <div 
+        className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur p-3 z-50"
+        style={{
+          paddingBottom: isMobile ? 'calc(1rem + env(safe-area-inset-bottom))' : '0.75rem'
+        }}
+      >
+        <div className="flex items-center justify-around max-w-lg mx-auto">
           <button className="flex flex-col items-center gap-1 text-white">
             <Icons.Heart className="w-5 h-5" />
             <span className="text-xs">Like</span>
@@ -166,8 +232,8 @@ export default function ReadPage() {
 
       {/* Settings Modal */}
       {showSettings && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={() => setShowSettings(false)}>
-          <div className="bg-gray-900 rounded-t-2xl w-full p-6" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={handleBackdropClick}>
+          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[80vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-white text-lg font-bold">Reader Settings</h2>
               <button onClick={() => setShowSettings(false)}><Icons.Close className="text-white" /></button>
@@ -179,7 +245,14 @@ export default function ReadPage() {
                 <span className="text-white text-sm">Brightness</span>
                 <span className="text-white/60 text-xs">{brightness}%</span>
               </div>
-              <input type="range" min="30" max="100" value={brightness} onChange={(e) => setBrightness(Number(e.target.value))} className="w-full" />
+              <input 
+                type="range" 
+                min="30" 
+                max="100" 
+                value={brightness} 
+                onChange={(e) => setBrightness(Number(e.target.value))} 
+                className="w-full accent-red-500" 
+              />
             </div>
 
             {/* Background */}
@@ -187,7 +260,12 @@ export default function ReadPage() {
               <span className="text-white text-sm block mb-3">Background</span>
               <div className="flex gap-3">
                 {['black', '#1a1a2e', '#2d3436', '#636e72'].map((bg) => (
-                  <button key={bg} onClick={() => setBackground(bg)} className={`w-10 h-10 rounded-full ${background === bg ? 'ring-2 ring-white' : ''}`} style={{ backgroundColor: bg }} />
+                  <button 
+                    key={bg} 
+                    onClick={() => setBackground(bg)} 
+                    className={`w-10 h-10 rounded-full ${background === bg ? 'ring-2 ring-white' : ''}`} 
+                    style={{ backgroundColor: bg }} 
+                  />
                 ))}
               </div>
             </div>
@@ -197,7 +275,11 @@ export default function ReadPage() {
               <span className="text-white text-sm block mb-3">Reading Mode</span>
               <div className="flex gap-2">
                 {['vertical', 'horizontal', 'webtoon'].map((mode) => (
-                  <button key={mode} onClick={() => setReadingMode(mode)} className={`flex-1 py-2 rounded-lg text-sm capitalize ${readingMode === mode ? 'bg-red-500 text-white' : 'bg-gray-800 text-white/60'}`}>
+                  <button 
+                    key={mode} 
+                    onClick={() => setReadingMode(mode)} 
+                    className={`flex-1 py-2 rounded-lg text-sm capitalize ${readingMode === mode ? 'bg-red-500 text-white' : 'bg-gray-800 text-white/60'}`}
+                  >
                     {mode}
                   </button>
                 ))}
@@ -209,18 +291,59 @@ export default function ReadPage() {
 
       {/* Share Modal */}
       {showShare && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={() => setShowShare(false)}>
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={handleBackdropClick}>
           <div className="bg-gray-900 rounded-t-2xl w-full p-6" onClick={e => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-white text-lg font-bold">Share</h2>
               <button onClick={() => setShowShare(false)}><Icons.Close className="text-white" /></button>
             </div>
-            <div className="grid grid-cols-4 gap-4">
-              {['Copy Link', 'Twitter', 'Facebook', 'WhatsApp'].map((app) => (
-                <button key={app} className="flex flex-col items-center gap-2 p-3 bg-gray-800 rounded-xl">
-                  <div className="w-12 h-12 bg-white/10 rounded-full" />
-                  <span className="text-white text-xs">{app}</span>
-                </button>
+            <div className="flex justify-around">
+              <button className="flex flex-col items-center gap-2 text-white">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                  <Icons.Share className="w-6 h-6" />
+                </div>
+                <span className="text-xs">Facebook</span>
+              </button>
+              <button className="flex flex-col items-center gap-2 text-white">
+                <div className="w-12 h-12 bg-sky-500 rounded-full flex items-center justify-center">
+                  <Icons.Share className="w-6 h-6" />
+                </div>
+                <span className="text-xs">Twitter</span>
+              </button>
+              <button className="flex flex-col items-center gap-2 text-white">
+                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                  <Icons.Share className="w-6 h-6" />
+                </div>
+                <span className="text-xs">WhatsApp</span>
+              </button>
+              <button className="flex flex-col items-center gap-2 text-white" onClick={() => navigator.clipboard.writeText(window.location.href)}>
+                <div className="w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center">
+                  <Icons.Copy className="w-6 h-6" />
+                </div>
+                <span className="text-xs">Copy</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Chapters Modal */}
+      {showChapters && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-end" onClick={handleBackdropClick}>
+          <div className="bg-gray-900 rounded-t-2xl w-full p-6 max-h-[80vh] overflow-y-auto" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-white text-lg font-bold">Chapters</h2>
+              <button onClick={() => setShowChapters(false)}><Icons.Close className="text-white" /></button>
+            </div>
+            <div className="space-y-2">
+              {chapterList.map((ch) => (
+                <Link 
+                  key={ch.number} 
+                  href={`/read/${slug}/${ch.number}`}
+                  className={`block py-3 px-4 rounded-lg ${Number(chapter) === ch.number ? 'bg-red-500 text-white' : 'bg-gray-800 text-white/70'}`}
+                >
+                  {ch.title}
+                </Link>
               ))}
             </div>
           </div>
