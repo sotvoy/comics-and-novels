@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { NAVIGATION_ITEMS } from '@/lib/navigation';
 
 interface Category {
   id: string;
@@ -11,33 +12,25 @@ interface Category {
   href: string;
 }
 
-const defaultCategories: Category[] = [
-  { id: 'all', label: 'All', href: '/' },
-  { id: 'foryou', label: 'For You', href: '/for-you' },
-  { id: 'top', label: 'Top', href: '/ranking?sort=top' },
-  { id: 'new', label: 'New', href: '/novels?sort=new' },
-  { id: 'recent', label: 'Recent', href: '/comics?sort=recent' },
-  { id: 'popular', label: 'Popular', href: '/trending' },
-  { id: 'ranking', label: 'Ranking', href: '/ranking' },
-  { id: 'news', label: 'News', href: '/events' },
-  { id: 'post', label: 'Post', href: '/community' },
-  { id: 'community', label: 'Community', href: '/community' },
-  { id: 'shorts', label: 'Shorts', href: '/shorts' },
-  { id: 'trending', label: 'Trending', href: '/trending' },
-];
-
 interface CategoryPillsProps {
   categories?: Category[];
   scrollable?: boolean;
 }
 
-export default function CategoryPills({ categories = defaultCategories, scrollable = true }: CategoryPillsProps) {
+export default function CategoryPills({ categories, scrollable = true }: CategoryPillsProps) {
   const pathname = usePathname();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
+
+  // Use provided categories or default to canonical navigation
+  const displayCategories = categories || NAVIGATION_ITEMS.map(item => ({
+    id: item.id,
+    label: item.label,
+    href: item.href
+  }));
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
@@ -89,7 +82,7 @@ export default function CategoryPills({ categories = defaultCategories, scrollab
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
           onScroll={checkScroll}
         >
-          {categories.map((cat) => (
+          {displayCategories.map((cat) => (
             <Link key={cat.id} href={cat.href}>
               <motion.span
                 className={`category-pill whitespace-nowrap flex-shrink-0 ${
