@@ -4,12 +4,13 @@ import { useState, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { supabase } from '@/lib/supabase';
+import ImageReorder from './ImageReorder';
 
 interface ChapterFormData {
   title: string;
   chapterNumber: number;
   volume: number;
-  pages: File[];
+  pages: { id: string; src: string; file?: File }[];
   isPaid: boolean;
   price: number;
   releaseDate: string;
@@ -37,22 +38,24 @@ export default function UploadChapterForm({ seriesId, seriesSlug, currentChapter
 
   const handleFilesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
-    setFormData(prev => ({ ...prev, pages: [...prev.pages, ...files] }));
+    const newPages = files.map((file, i) => ({
+      id: `${Date.now()}-${i}-${Math.random().toString(36).substr(2, 9)}`,
+      src: URL.createObjectURL(file),
+      file
+    }));
+    setFormData(prev => ({ ...prev, pages: [...prev.pages, ...newPages] }));
   };
 
-  const removePage = (index: number) => {
+  const removePage = (id: string) => {
     setFormData(prev => ({
       ...prev,
-      pages: prev.pages.filter((_, i) => i !== index)
+      pages: prev.pages.filter(p => p.id !== id)
     }));
   };
 
-  const movePage = (from: number, to: number) => {
-    if (to < 0 || to >= formData.pages.length) return;
-    const newPages = [...formData.pages];
-    [newPages[from], newPages[to]] = [newPages[to], newPages[from]];
+  const handleReorder = useCallback((newPages: { id: string; src: string; file?: File }[]) => {
     setFormData(prev => ({ ...prev, pages: newPages }));
-  };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,9 +77,13 @@ export default function UploadChapterForm({ seriesId, seriesSlug, currentChapter
     try {
       const uploadedUrls: string[] = [];
 
-      // Upload each page to Supabase Storage
+      // Upload each page to Supabase Storage (in the order shown in preview)
       for (let i = 0; i < formData.pages.length; i++) {
-        const file = formData.pages[i];
+        const page = formData.pages[i];
+        const file = page.file;
+        
+        if (!file) continue;
+        
         const fileName = `${seriesSlug}/chapter-${formData.chapterNumber}/${Date.now()}-${i}-${file.name}`;
         
         const { data, error: uploadError } = await supabase.storage
@@ -225,48 +232,11 @@ export default function UploadChapterForm({ seriesId, seriesSlug, currentChapter
 
             {formData.pages.length > 0 && (
               <div className="mt-4">
-                <p className="text-sm font-medium mb-2">{formData.pages.length} pages uploaded</p>
-                <div className="grid grid-cols-6 gap-2 max-h-64 overflow-y-auto">
-                  {formData.pages.map((file, index) => (
-                    <div key={index} className="relative group">
-                      <div className="aspect-[2/3] bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
-                        <img 
-                          src={URL.createObjectURL(file)} 
-                          alt={`Page ${index + 1}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1">
-                        <button
-                          type="button"
-                          onClick={() => movePage(index, index - 1)}
-                          disabled={index === 0}
-                          className="p-1 bg-white rounded disabled:opacity-50"
-                        >
-                          ↑
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => movePage(index, index + 1)}
-                          disabled={index === formData.pages.length - 1}
-                          className="p-1 bg-white rounded disabled:opacity-50"
-                        >
-                          ↓
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => removePage(index)}
-                          className="p-1 bg-red-500 text-white rounded"
-                        >
-                          ×
-                        </button>
-                      </div>
-                      <span className="absolute bottom-1 left-1 text-xs text-white bg-black/50 px-1 rounded">
-                        {index + 1}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+                <ImageReorder
+                  images={formData.pages}
+                  onReorder={handleReorder}
+                  onRemove={removePage}
+                />
               </div>
             )}
           </div>
