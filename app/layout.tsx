@@ -1,5 +1,6 @@
 import './globals.css';
 import QueryProvider from '@/components/providers/QueryProvider';
+import { AuthProvider } from '@/context/AuthContext';
 import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
 import type { Metadata } from 'next';
@@ -25,15 +26,17 @@ export default function RootLayout({
       </head>
       <body>
         <QueryProvider>
-          <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
-            <TopBar />
-            <div className="w-full px-0 md:px-4">
-              <main className="min-h-screen pb-16 md:pb-4 w-full">
-                {children}
-              </main>
+          <AuthProvider>
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+              <TopBar />
+              <div className="w-full px-0 md:px-4">
+                <main className="min-h-screen pb-16 md:pb-4 w-full">
+                  {children}
+                </main>
+              </div>
+              <BottomBar />
             </div>
-            <BottomBar />
-          </div>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>

@@ -80,22 +80,22 @@ export default function CreatorDashboard() {
           <div className="space-y-6">
             {/* Quick Actions */}
             <div className="grid grid-cols-2 gap-3">
-              <Link href="/creator/comic" className="flex items-center gap-3 p-4 bg-red-500 text-white rounded-xl">
+              <Link href="/creator/create" className="flex items-center gap-3 p-4 bg-red-500 text-white rounded-xl">
                 <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                   <Icons.Plus />
                 </div>
                 <div>
-                  <p className="font-semibold">Publish Art</p>
-                  <p className="text-xs text-white/80">Upload comic</p>
+                  <p className="font-semibold">New Series</p>
+                  <p className="text-xs text-white/80">Create comic/novel</p>
                 </div>
               </Link>
-              <Link href="/creator/novel" className="flex items-center gap-3 p-4 bg-blue-500 text-white rounded-xl">
+              <Link href="/publish-art" className="flex items-center gap-3 p-4 bg-blue-500 text-white rounded-xl">
                 <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                   <Icons.Edit />
                 </div>
                 <div>
-                  <p className="font-semibold">Write Story</p>
-                  <p className="text-xs text-white/80">Upload novel</p>
+                  <p className="font-semibold">Publish Art</p>
+                  <p className="text-xs text-white/80">Upload artwork</p>
                 </div>
               </Link>
             </div>
