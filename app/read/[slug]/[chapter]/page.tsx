@@ -27,10 +27,9 @@ export default function ReadPage() {
           </Link>
           <span className="text-white text-sm">Chapter {chapter}</span>
           <div className="flex gap-2">
-            <button onClick={() => setShowSettings(true)} className="text-white" title="Settings"><Icons.Settings /></button>
-            <button onClick={() => setShowShare(true)} className="text-white" title="Share"><Icons.Share /></button>
-            <button onClick={() => { alert('Watch a short ad to download this chapter'); setTimeout(() => alert('Download started!'), 2000); }} className="text-white" title="Download"><Icons.Download /></button>
-            <button onClick={() => document.documentElement.requestFullscreen?.()} className="text-white" title="Fullscreen">⛶</button>
+            <button onClick={() => setShowSettings(true)} className="text-white"><Icons.Settings /></button>
+            <button onClick={() => setShowShare(true)} className="text-white"><Icons.Share /></button>
+            <button className="text-white" title="Download"><Icons.Download /></button>
           </div>
         </div>
       </div>
