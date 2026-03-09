@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import Icons from '@/components/ui/Icons';
+import TipButton from '@/components/payments/TipButton';
 
 const authorData: Record<string, any> = {
   'chugong': {
@@ -50,12 +51,15 @@ export default function AuthorPage() {
             </div>
             <p className="text-sm text-gray-500 mt-1">Level {author.level} Creator</p>
           </div>
-          <button
-            onClick={() => setIsFollowing(!isFollowing)}
-            className={`px-4 py-2 rounded-full font-medium ${isFollowing ? 'bg-gray-200 dark:bg-gray-700' : 'bg-red-500 text-white'}`}
-          >
-            {isFollowing ? 'Following' : 'Follow'}
-          </button>
+          <div className="flex gap-2">
+            <TipButton creatorId={slug} creatorName={author.name} size="md" />
+            <button
+              onClick={() => setIsFollowing(!isFollowing)}
+              className={`px-4 py-2 rounded-full font-medium ${isFollowing ? 'bg-gray-200 dark:bg-gray-700' : 'bg-red-500 text-white'}`}
+            >
+              {isFollowing ? 'Following' : 'Follow'}
+            </button>
+          </div>
         </div>
 
         {/* Bio */}
