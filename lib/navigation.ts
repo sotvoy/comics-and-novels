@@ -51,21 +51,21 @@ export const CREATOR_ACTIONS: CreatorAction[] = [
   { 
     id: 'publish-art', 
     label: 'Publish Art', 
-    href: '/publish-art', 
+    href: '#', 
     icon: 'Image',
     description: 'Upload and publish comics/artwork'
   },
   { 
     id: 'write-stories', 
     label: 'Write Stories', 
-    href: '/write-stories', 
+    href: '#', 
     icon: 'PenTool',
     description: 'Write and publish novels/stories'
   },
   { 
     id: 'create-post', 
     label: 'Create Post', 
-    href: '/upload/post', 
+    href: '#', 
     icon: 'Newspaper',
     description: 'Share news, events, or community posts'
   },
