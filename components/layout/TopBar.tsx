@@ -161,7 +161,7 @@ export default function TopBar() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 z-50 overflow-y-auto overscroll-y-none"
+              className="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 z-50 overflow-y-auto overscroll-y-contain touch-pan-y"
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
