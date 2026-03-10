@@ -130,7 +130,7 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-        className={`bg-gray-900 w-full flex flex-col ${isExpanded ? 'h-screen max-w-4xl rounded-0' : 'rounded-t-3xl h-[70vh] max-w-xl mt-16'}`}
+        className={`bg-gray-900 w-full flex flex-col ${isExpanded ? 'h-screen max-w-4xl rounded-0' : 'rounded-2xl h-[70vh] max-w-xl mt-20'}`}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
