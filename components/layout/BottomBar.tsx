@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icons from '@/components/ui/Icons';
+import { useAppStore } from '@/store/app';
 import { BOTTOM_NAV_ITEMS, CREATOR_ACTIONS } from '@/lib/navigation';
 
 export default function BottomBar() {
@@ -13,6 +14,7 @@ export default function BottomBar() {
   const [showCreateMenu, setShowCreateMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const { isAIAssistantOpen } = useAppStore();
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -46,7 +48,8 @@ export default function BottomBar() {
 
   return (
     <>
-      <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
+      {isAIAssistantOpen ? null : (
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
         <div className="flex items-center justify-around h-16">
           {BOTTOM_NAV_ITEMS.map((item) => {
             const Icon = Icons[item.icon as keyof typeof Icons];
@@ -139,7 +142,7 @@ export default function BottomBar() {
       )}
 
       {/* Spacer for fixed bottom nav */}
-      <div className="h-16" />
+      {isAIAssistantOpen ? null : <div className="h-16" />}
     </>
   );
 }
