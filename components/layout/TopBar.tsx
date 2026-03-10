@@ -161,7 +161,7 @@ export default function TopBar() {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 left-0 w-[85vw] sm:w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 z-50 overflow-y-auto overscroll-y-auto touch-pan-y shadow-2xl"
+              className="fixed top-0 left-0 w-[85vw] sm:w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 z-50 overflow-y-auto overscroll-y-none touch-pan-y shadow-2xl"
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
