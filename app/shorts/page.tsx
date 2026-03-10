@@ -86,13 +86,13 @@ export default function ShortsPage() {
   const [selectedFilter, setSelectedFilter] = useState('all');
 
   const filters = [
-    { id: 'all', label: '🌟 All' },
-    { id: 'action', label: '⚔️ Action' },
-    { id: 'comedy', label: '😂 Comedy' },
-    { id: 'romance', label: '💕 Romance' },
-    { id: 'fantasy', label: '🧙 Fantasy' },
-    { id: 'horror', label: '👻 Horror' },
-    { id: 'scifi', label: '🚀 Sci-Fi' },
+    { id: 'all', label: 'All' },
+    { id: 'action', label: 'Action' },
+    { id: 'comedy', label: 'Comedy' },
+    { id: 'romance', label: 'Romance' },
+    { id: 'fantasy', label: 'Fantasy' },
+    { id: 'horror', label: 'Horror' },
+    { id: 'scifi', label: 'Sci-Fi' },
   ];
 
   const formatNumber = (num: number) => {
@@ -105,7 +105,7 @@ export default function ShortsPage() {
     <div className="min-h-screen bg-black text-white pb-20 md:pb-4">
       {/* Header */}
       <div className="sticky top-0 z-40 bg-black/90 backdrop-blur-sm p-4">
-        <h1 className="text-2xl font-bold mb-4">📱 Shorts</h1>
+        <h1 className="text-2xl font-bold mb-4">Shorts</h1>
         
         {/* Filters - Horizontal Scroll */}
         <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">

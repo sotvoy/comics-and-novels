@@ -141,16 +141,16 @@ export default function ProfilePage() {
         <div className="flex flex-wrap gap-2 mt-4">
           <button className="flex-1 py-2 bg-red-500 text-white rounded-lg font-medium min-w-[100px]">Edit Profile</button>
           <Link href="/analytics" className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            <Icons.Chart /> Analytics
+            <Icons.Chart className="w-4 h-4" /> Analytics
           </Link>
           <Link href="/daily-rewards" className="flex-1 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            🎁 Rewards
+            <Icons.Gift className="w-4 h-4" /> Rewards
           </Link>
           <Link href="/battle-pass" className="flex-1 py-2 bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            ⚔️ Battle Pass
+            <Icons.Trophy className="w-4 h-4" /> Battle Pass
           </Link>
           <Link href="/leaderboard" className="flex-1 py-2 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            🏆 Rank
+            <Icons.Star className="w-4 h-4" /> Rank
           </Link>
           <button className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium min-w-[80px]">Share</button>
         </div>

@@ -108,7 +108,7 @@ export default function EventDetailPage() {
 
         {/* Prizes */}
         <div className="mb-6">
-          <h3 className="text-lg font-semibold mb-3">🏆 Prizes</h3>
+          <h3 className="text-lg font-semibold mb-3">Prizes</h3>
           <div className="space-y-2">
             {event.prizes.map((prize: string, index: number) => (
               <div key={index} className="flex items-center gap-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">

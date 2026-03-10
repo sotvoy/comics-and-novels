@@ -176,19 +176,19 @@ export default function TopBar() {
 
                 <nav className="space-y-1">
                   <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Home /> Home
+                    <Icons.Home className="w-5 h-5" /> Home
                   </Link>
                   <Link href="/organizations" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Users /> Organizations
+                    <Icons.Users className="w-5 h-5" /> Organizations
                   </Link>
                   <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.BookOpen /> Audiobooks
+                    <Icons.BookOpen className="w-5 h-5" /> Audiobooks
                   </Link>
                   <button 
                     onClick={() => { setDrawerOpen(false); setAIAssistantOpen(true); }} 
                     className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-left mb-2"
                   >
-                    <Icons.Star /> AI Assistant
+                    <Icons.Star className="w-5 h-5" /> AI Assistant
                   </button>
                 </nav>
 
@@ -223,56 +223,56 @@ export default function TopBar() {
 
                 <nav className="space-y-1">
                   <Link href="/settings" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Settings /> Settings
+                    <Icons.Settings className="w-5 h-5" /> Settings
                   </Link>
                   <Link href="/creator" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Video /> Creator Studio
+                    <Icons.Video className="w-5 h-5" /> Creator Studio
                   </Link>
                   <Link href="/ranking" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Trophy /> Ranking
+                    <Icons.Trophy className="w-5 h-5" /> Ranking
                   </Link>
                   <Link href="/leaderboard" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Trophy /> 🏆 Leaderboard
+                    <Icons.Trophy className="w-5 h-5" /> Leaderboard
                   </Link>
                   <Link href="/trending" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Trending /> Trending
+                    <Icons.Trending className="w-5 h-5" /> Trending
                   </Link>
                   <Link href="/shorts" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Shorts /> Shorts
+                    <Icons.Shorts className="w-5 h-5" /> Shorts
                   </Link>
                   <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Users /> Community
+                    <Icons.Users className="w-5 h-5" /> Community
                   </Link>
                   <Link href="/news" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Newspaper /> News
+                    <Icons.Newspaper className="w-5 h-5" /> News
                   </Link>
                   <Link href="/events" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Calendar /> Events
+                    <Icons.Calendar className="w-5 h-5" /> Events
                   </Link>
                   <Link href="/collections" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Collections /> Collections
+                    <Icons.Collections className="w-5 h-5" /> Collections
                   </Link>
                   <Link href="/playlists" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.List /> 📋 Playlists
+                    <Icons.List className="w-5 h-5" /> Playlists
                   </Link>
                   <Link href="/history" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.BookOpen /> 📖 History
+                    <Icons.BookOpen className="w-5 h-5" /> History
                   </Link>
                   <div className="h-16" />
                 </nav>
 
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
 
-                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">🎮 Gaming</h3>
+                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Gaming</h3>
                 <nav className="space-y-1">
                   <Link href="/daily-rewards" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <span>🎁</span> Daily Rewards
+                    <Icons.Gift className="w-5 h-5" /> Daily Rewards
                   </Link>
                   <Link href="/battle-pass" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <span>⚔️</span> Battle Pass
+                    <Icons.Trophy className="w-5 h-5" /> Battle Pass
                   </Link>
                   <Link href="/leaderboard" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <span>🏅</span> Leaderboard
+                    <Icons.Trophy className="w-5 h-5" /> Leaderboard
                   </Link>
                 </nav>
               </div>

@@ -45,7 +45,7 @@ export default function HistoryPage() {
             <Link href="/profile" className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg">
               <Icons.ArrowLeft className="w-5 h-5" />
             </Link>
-            <h1 className="text-xl font-bold">📖 Reading History</h1>
+            <h1 className="text-xl font-bold">Reading History</h1>
           </div>
           <button className="text-red-500 font-medium text-sm">Clear All</button>
         </div>
@@ -78,7 +78,7 @@ export default function HistoryPage() {
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400'
               }`}
             >
-              {f === 'all' ? '📚 All' : f === 'comic' ? '🎨 Comics' : '📝 Novels'}
+              {f === 'all' ? 'All' : f === 'comic' ? 'Comics' : 'Novels'}
             </button>
           ))}
           <select

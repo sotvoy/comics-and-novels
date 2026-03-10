@@ -8,12 +8,12 @@ import Icons from '@/components/ui/Icons';
 const genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Slice of Life', 'Sports', 'Mystery', 'Psychological', 'Supernatural', 'Thriller', 'Historical', 'Mecha', 'Music', 'School', 'Superhero', 'Webtoon'];
 
 const popularGenres = [
-  { id: 'action', name: 'Action', icon: '⚔️', count: 1250 },
-  { id: 'romance', name: 'Romance', icon: '💕', count: 980 },
-  { id: 'fantasy', name: 'Fantasy', icon: '🧙', count: 870 },
-  { id: 'comedy', name: 'Comedy', icon: '😂', count: 750 },
-  { id: 'horror', name: 'Horror', icon: '👻', count: 420 },
-  { id: 'sci-fi', name: 'Sci-Fi', icon: '🚀', count: 380 },
+  { id: 'action', name: 'Action', count: 1250 },
+  { id: 'romance', name: 'Romance', count: 980 },
+  { id: 'fantasy', name: 'Fantasy', count: 870 },
+  { id: 'comedy', name: 'Comedy', count: 750 },
+  { id: 'horror', name: 'Horror', count: 420 },
+  { id: 'sci-fi', name: 'Sci-Fi', count: 380 },
 ];
 
 const demoSeries = [
