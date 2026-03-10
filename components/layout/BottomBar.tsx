@@ -51,7 +51,7 @@ export default function BottomBar() {
   return (
     <>
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
-        <div className="flex items-center justify-around h-16">
+        <div className="flex items-center justify-between h-14 px-2 md:px-6 max-w-md mx-auto">
           {BOTTOM_NAV_ITEMS.map((item) => {
             const Icon = Icons[item.icon as keyof typeof Icons];
             const active = isActive(item.href);
@@ -62,13 +62,13 @@ export default function BottomBar() {
                   key={item.id}
                   data-testid="btn-plus"
                   onClick={() => setShowCreateMenu(!showCreateMenu)}
-                  className="flex flex-col items-center justify-center -mt-2"
+                  className="flex flex-col items-center justify-center"
                   aria-label="Create"
                   aria-haspopup="true"
                   aria-expanded={showCreateMenu}
                 >
-                  <div className="w-12 h-8 bg-red-500 rounded-lg flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors">
-                    <Icons.Plus />
+                  <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center shadow-lg hover:bg-red-600 transition-colors">
+                    <Icons.Plus className="w-6 h-6 text-white" />
                   </div>
                 </button>
               );
@@ -143,7 +143,7 @@ export default function BottomBar() {
       )}
 
       {/* Spacer for fixed bottom nav */}
-      <div className="h-16" />
+      <div className="h-14" />
     </>
   );
 }
