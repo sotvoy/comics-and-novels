@@ -183,6 +183,9 @@ export default function TopBar() {
                   <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     🎧 Audiobooks
                   </Link>
+                  <Link href="/ai-assistant" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    ✨ AI Assistant
+                  </Link>
                 </nav>
 
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
@@ -235,9 +238,6 @@ export default function TopBar() {
                   </Link>
                   <Link href="/collections" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Collections /> Collections
-                  </Link>
-                  <Link href="/ai-assistant" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    ✨ AI Assistant
                   </Link>
                   <div className="h-8" />
                 </nav>
