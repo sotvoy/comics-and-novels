@@ -140,6 +140,9 @@ export default function ProfilePage() {
         {/* Action Buttons */}
         <div className="flex gap-2 mt-4">
           <button className="flex-1 py-2 bg-red-500 text-white rounded-lg font-medium">Edit Profile</button>
+          <Link href="/analytics" className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium text-center flex items-center justify-center gap-2">
+            <Icons.Chart /> Analytics
+          </Link>
           <button className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium">Share</button>
         </div>
       </div>
