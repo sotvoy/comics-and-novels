@@ -182,7 +182,7 @@ export default function TopBar() {
                     <Icons.Users className="w-5 h-5" /> Organizations
                   </Link>
                   <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.BookOpen className="w-5 h-5" /> Audiobooks
+                    <Icons.Headphones className="w-5 h-5" /> Audiobooks
                   </Link>
                   <button 
                     onClick={() => { setDrawerOpen(false); setAIAssistantOpen(true); }} 
