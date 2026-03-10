@@ -396,6 +396,12 @@ export const Icons = {
       <path d="M5.25 10.5h1.5v1.5h-1.5v-1.5zM5.25 13.5h1.5v1.5h-1.5v-1.5zM5.25 16.5h1.5v1.5h-1.5v-1.5z" />
     </svg>
   ),
+  Copy: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M7.5 3.75A1.5 1.5 0 006 5.25v13.5a1.5 1.5 0 001.5 1.5h9a1.5 1.5 0 001.5-1.5V6.75a1.5 1.5 0 00-1.5-1.5h-9zm5.25 0a.75.75 0 01.75-.75h4.5a.75.75 0 01.75.75v9a.75.75 0 01-.75.75h-4.5a.75.75 0 01-.75-.75v-9z" clipRule="evenodd" />
+      <path d="M5.5 7.5A.75.75 0 016.25 6.75h3a.75.75 0 010 1.5h-3A.75.75 0 015 7.5z" />
+    </svg>
+  ),
 };
 
 export default Icons;
