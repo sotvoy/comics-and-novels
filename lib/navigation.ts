@@ -24,15 +24,17 @@ export interface CreatorAction {
 
 // Primary navigation items for category pills
 export const NAVIGATION_ITEMS: NavItem[] = [
-  { id: 'home', label: 'All', href: '/', priority: 1, type: 'navigation' },
+  { id: 'all', label: 'All', href: '/', priority: 1, type: 'navigation' },
   { id: 'foryou', label: 'For You', href: '/for-you', priority: 2, type: 'navigation' },
-  { id: 'topranking', label: 'Top Ranking', href: '/ranking', priority: 3, type: 'navigation' },
-  { id: 'new', label: 'New', href: '/novels?sort=new', priority: 4, type: 'navigation' },
-  { id: 'popular', label: 'Popular', href: '/trending', priority: 5, type: 'navigation' },
-  { id: 'news', label: 'News', href: '/events', priority: 6, type: 'navigation' },
-  { id: 'community', label: 'Community', href: '/community', priority: 7, type: 'navigation' },
-  { id: 'shorts', label: 'Shorts', href: '/shorts', priority: 8, type: 'navigation' },
-  { id: 'trending', label: 'Trending', href: '/trending', priority: 9, type: 'navigation' },
+  { id: 'new', label: 'New', href: '/novels?sort=new', priority: 3, type: 'navigation' },
+  { id: 'recent', label: 'Recent', href: '/recent', priority: 4, type: 'navigation' },
+  { id: 'popular', label: 'Popular', href: '/popular', priority: 5, type: 'navigation' },
+  { id: 'trending', label: 'Trending', href: '/trending', priority: 6, type: 'navigation' },
+  { id: 'shorts', label: 'Shorts', href: '/shorts', priority: 7, type: 'navigation' },
+  { id: 'topranking', label: 'Top Ranking', href: '/ranking', priority: 8, type: 'navigation' },
+  { id: 'events', label: 'Events', href: '/events', priority: 9, type: 'navigation' },
+  { id: 'news', label: 'News', href: '/news', priority: 10, type: 'navigation' },
+  { id: 'community', label: 'Community', href: '/community', priority: 11, type: 'navigation' },
 ];
 
 // Bottom navigation items
