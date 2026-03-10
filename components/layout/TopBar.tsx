@@ -178,13 +178,13 @@ export default function TopBar() {
                     <Icons.Home /> Home
                   </Link>
                   <Link href="/organizations" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    👥 Organizations
+                    <Icons.Users /> Organizations
                   </Link>
                   <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    🎧 Audiobooks
+                    <Icons.BookOpen /> Audiobooks
                   </Link>
                   <Link href="/ai-assistant" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    ✨ AI Assistant
+                    <Icons.Star /> AI Assistant
                   </Link>
                 </nav>
 
