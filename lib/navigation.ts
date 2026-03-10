@@ -49,24 +49,24 @@ export const BOTTOM_NAV_ITEMS: NavItem[] = [
 // Creator actions for the plus menu
 export const CREATOR_ACTIONS: CreatorAction[] = [
   { 
-    id: 'upload-comic', 
-    label: 'Upload Comic', 
-    href: '/upload/comic', 
+    id: 'publish-art', 
+    label: 'Publish Art', 
+    href: '/publish-art', 
     icon: 'Image',
-    description: 'Upload a comic series'
+    description: 'Upload and publish comics/artwork'
   },
   { 
-    id: 'upload-novel', 
-    label: 'Upload Novel', 
-    href: '/upload/novel', 
-    icon: 'Pencil',
-    description: 'Write and publish a novel'
+    id: 'write-stories', 
+    label: 'Write Stories', 
+    href: '/write-stories', 
+    icon: 'PenTool',
+    description: 'Write and publish novels/stories'
   },
   { 
     id: 'create-post', 
     label: 'Create Post', 
     href: '/upload/post', 
-    icon: 'Message',
+    icon: 'Newspaper',
     description: 'Share news, events, or community posts'
   },
 ];

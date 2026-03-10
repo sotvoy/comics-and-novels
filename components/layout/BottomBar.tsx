@@ -113,24 +113,32 @@ export default function BottomBar() {
             <div className="w-12 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full mx-auto mb-4" />
             <h3 className="text-xl font-bold mb-4 px-2 dark:text-white">Create</h3>
             <div className="space-y-2" role="menuitem">
-              {CREATOR_ACTIONS.map((action, index) => (
-                <Link
-                  key={action.id}
-                  href={action.href}
-                  className="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 transition-transform"
-                  onClick={() => setShowCreateMenu(false)}
-                  role="menuitem"
-                  data-testid={`creator-action-${action.id}`}
-                >
-                  <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-red-500 text-xl">
-                    {index === 0 ? '📖' : index === 1 ? '✍️' : '📝'}
-                  </div>
-                  <div>
-                    <p className="font-bold text-lg dark:text-white">{action.label}</p>
-                    <p className="text-sm text-gray-500">{action.description}</p>
-                  </div>
-                </Link>
-              ))}
+              {CREATOR_ACTIONS.map((action, index) => {
+                const iconName = action.icon as keyof typeof Icons;
+                const IconComponent = Icons[iconName];
+                return (
+                  <Link
+                    key={action.id}
+                    href={action.href}
+                    className="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 transition-transform"
+                    onClick={() => setShowCreateMenu(false)}
+                    role="menuitem"
+                    data-testid={`creator-action-${action.id}`}
+                  >
+                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-red-500">
+                      {IconComponent ? <IconComponent className="w-6 h-6" /> : (
+                        <span className="text-2xl">
+                          {action.id === 'publish-art' ? '🎨' : action.id === 'write-stories' ? '✍️' : '📰'}
+                        </span>
+                      )}
+                    </div>
+                    <div>
+                      <p className="font-bold text-lg dark:text-white">{action.label}</p>
+                      <p className="text-sm text-gray-500">{action.description}</p>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
             <button
               onClick={() => setShowCreateMenu(false)}
