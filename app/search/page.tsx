@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Icons from '@/components/ui/Icons';
+import SearchAutocomplete from '@/components/ui/SearchAutocomplete';
 
 const genres = ['Action', 'Adventure', 'Comedy', 'Drama', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Slice of Life', 'Sports', 'Mystery', 'Psychological', 'Supernatural', 'Thriller', 'Historical', 'Mecha', 'Music', 'School', 'Superhero', 'Webtoon'];
 
@@ -48,23 +49,12 @@ export default function SearchPage() {
     <div className="min-h-screen bg-white dark:bg-gray-900 pb-20 md:pb-4">
       {/* Search Input */}
       <div className="sticky top-14 z-20 bg-white dark:bg-gray-900 p-4 pt-3 border-b border-gray-200 dark:border-gray-800">
-        <div className="relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-            <Icons.Search />
-          </span>
-          <input
-            type="text"
-            placeholder="Search comics and novels..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-12 py-3 bg-gray-100 dark:bg-gray-800 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
-          />
-          {searchQuery && (
-            <button onClick={() => setSearchQuery('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-              <Icons.Close />
-            </button>
-          )}
-        </div>
+        <SearchAutocomplete
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Search comics and novels..."
+          onSearch={(query) => console.log('Searching for:', query)}
+        />
 
         {/* Quick Filters */}
         <div className="flex items-center gap-2 mt-3 overflow-x-auto hide-scrollbar">

@@ -3,12 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useTheme } from '@/hooks/useTheme';
+import { useTheme } from '@/components/providers/ThemeProvider';
 import { motion, AnimatePresence } from 'framer-motion';
 import Icons from '@/components/ui/Icons';
 import { useAppStore } from '@/store/app';
 import { useAuth } from '@/context/AuthContext';
 import AIAssistant from '@/components/features/AIAssistant';
+import NotificationDropdown from '@/components/ui/NotificationDropdown';
 
 export default function TopBar() {
   const pathname = usePathname();
@@ -121,9 +122,7 @@ export default function TopBar() {
             <Link href="/search" className="yt-button" aria-label="Search">
               <Icons.Search />
             </Link>
-            <Link href="/notifications" className="yt-button" aria-label="Notifications">
-              <Icons.Bell />
-            </Link>
+            <NotificationDropdown userId={authUser?.id} />
             {authUser ? (
               <Link href="/profile" className="yt-button" aria-label="Profile">
                 <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold">

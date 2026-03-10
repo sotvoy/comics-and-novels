@@ -3,8 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Icons from '@/components/ui/Icons';
+import { useKeyboardNavigation } from '@/hooks/useKeyboardNavigation';
 
 const demoPages = Array.from({ length: 15 }, (_, i) => `https://picsum.photos/seed/page${i + 1}/800/1200`);
 
@@ -45,6 +46,35 @@ export default function ReadPage() {
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // Keyboard navigation
+  useKeyboardNavigation({
+    onNextChapter: () => {
+      const nextChapter = parseInt(chapter as string) + 1;
+      if (nextChapter <= 15) {
+        window.location.href = `/read/${slug}/${nextChapter}`;
+      }
+    },
+    onPrevChapter: () => {
+      const prevChapter = parseInt(chapter as string) - 1;
+      if (prevChapter >= 1) {
+        window.location.href = `/read/${slug}/${prevChapter}`;
+      }
+    },
+    onToggleFullscreen: toggleFullscreen,
+    onToggleChapters: () => setShowChapters(prev => !prev),
+    onToggleAutoScroll: () => setAutoScroll(prev => !prev),
+    onScrollUp: () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop -= 200;
+      }
+    },
+    onScrollDown: () => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop += 200;
+      }
+    },
+  });
 
   // Auto-scroll functionality
   useEffect(() => {

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import Icons from '@/components/ui/Icons';
+import ReadingProgress from '@/components/series/ReadingProgress';
 
 const seriesData: Record<string, any> = {
   'solo-leveling': {
@@ -135,6 +136,17 @@ export default function SeriesPage() {
           <h3 className="text-sm font-semibold mb-2">Description</h3>
           <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{series.description}</p>
         </div>
+        
+        {/* Reading Progress */}
+        <div className="mt-6">
+          <ReadingProgress
+            totalChapters={series.chapters.length}
+            currentChapter={5}
+            seriesSlug={series.slug}
+            onChapterSelect={(chapter) => console.log('Navigate to chapter:', chapter)}
+          />
+        </div>
+        
         <div className="mt-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">Chapters</h3>
