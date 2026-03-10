@@ -177,23 +177,68 @@ export default function TopBar() {
                   <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Home className="w-5 h-5" /> Home
                   </Link>
-                  <Link href="/organizations" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Users className="w-5 h-5" /> Organizations
+                  <Link href="/discover" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Compass className="w-5 h-5" /> Discover
                   </Link>
-                  <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Headphones className="w-5 h-5" /> Audiobooks
+                  <Link href="/following" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Following className="w-5 h-5" /> Following
                   </Link>
-                  <button 
-                    onClick={() => { setDrawerOpen(false); setAIAssistantOpen(true); }} 
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-left mb-2"
-                  >
-                    <Icons.Star className="w-5 h-5" /> AI Assistant
-                  </button>
+                  <Link href="/leaderboard" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    🏆 Leaderboard
+                  </Link>
+                  <Link href="/achievements" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    🎖️ Achievements
+                  </Link>
+                  <Link href="/activity" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    📊 Activity
+                  </Link>
                 </nav>
 
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
 
-                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Genres</h3>
+                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Browse</h3>
+                <nav className="space-y-1">
+                  <Link href="/manga" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    📚 Manga
+                  </Link>
+                  <Link href="/manhwa" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    🎌 Manhwa
+                  </Link>
+                  <Link href="/manhua" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    🇨🇳 Manhua
+                  </Link>
+                  <Link href="/novels" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    📖 Novels
+                  </Link>
+                  <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Headphones className="w-5 h-5" /> Audiobooks
+                  </Link>
+                  <Link href="/shorts" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    ⚡ Shorts
+                  </Link>
+                </nav>
+
+                <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
+
+                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Community</h3>
+                <nav className="space-y-1">
+                  <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Users className="w-5 h-5" /> Community
+                  </Link>
+                  <Link href="/events" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    🎉 Events
+                  </Link>
+                  <Link href="/news" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    📰 News
+                  </Link>
+                  <Link href="/messages" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    💬 Messages
+                  </Link>
+                </nav>
+
+                <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
+
+                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Creator</h3>
                 <div className="flex flex-wrap gap-2 px-3">
                   {['Action', 'Romance', 'Fantasy', 'Comedy', 'Horror', 'Sci-Fi', 'Adventure', 'Drama', 'Mystery', 'Sports', 'Slice of Life', 'Supernatural', 'Psychological', 'Thriller', 'Historical', 'Mecha'].map((genre) => (
                     <Link
