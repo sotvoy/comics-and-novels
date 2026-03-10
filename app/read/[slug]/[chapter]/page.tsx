@@ -191,7 +191,7 @@ export default function ReadPage() {
       </div>
 
       {/* Bottom Navigation - Hidden in mobile fullscreen */}
-      <div className={`fixed bottom-20 left-0 right-0 z-40 bg-gradient-to-t from-black/80 to-transparent py-4 px-4 transition-opacity ${showControls && (!isMobile || !isFullscreen) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`fixed bottom-20 left-0 right-0 z-40 bg-gradient-to-t from-black/80 to-transparent py-4 px-4 transition-opacity pb-16 md:pb-4 ${showControls && (!isMobile || !isFullscreen) ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="flex items-center justify-between max-w-lg mx-auto">
           <Link href={`/read/${slug}/${Number(chapter) - 1}`} className="text-white px-4 py-2 bg-white/20 rounded-lg">Prev</Link>
           <Link href={`/series/${slug}`} className="text-white"><Icons.List /></Link>
@@ -199,11 +199,11 @@ export default function ReadPage() {
         </div>
       </div>
 
-      {/* Action Bar */}
+      {/* Action Bar - Hidden on reader pages when BottomBar is present */}
       <div 
-        className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur p-3 z-50"
+        className="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur p-3 z-50 pb-16 md:pb-3"
         style={{
-          paddingBottom: isMobile ? 'calc(1rem + env(safe-area-inset-bottom))' : '0.75rem'
+          paddingBottom: isMobile ? 'calc(4rem + env(safe-area-inset-bottom))' : '0.75rem'
         }}
       >
         <div className="flex items-center justify-around max-w-lg mx-auto">

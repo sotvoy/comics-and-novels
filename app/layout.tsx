@@ -33,7 +33,7 @@ export default function RootLayout({
           <AuthProvider>
             <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
               <TopBar />
-              <div className="w-full px-0 md:px-4">
+              <div className="w-full px-0 md:px-4 max-w-7xl mx-auto">
                 <main className="min-h-screen pb-16 md:pb-4 w-full">
                   {children}
                 </main>
