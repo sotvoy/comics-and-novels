@@ -24,32 +24,36 @@ const CHANNEL_DATA = {
   isFollowing: false,
 };
 
-const VIDEOS = [
-  { id: 1, title: 'Solo Leveling Chapter 179 Review', thumbnail: 'https://picsum.photos/seed/v1/400/225', views: '45K', uploaded: '2 days ago', duration: '12:34' },
-  { id: 2, title: 'Top 10 Manhwa Recommendations 2024', thumbnail: 'https://picsum.photos/seed/v2/400/225', views: '120K', uploaded: '1 week ago', duration: '18:45' },
-  { id: 3, title: 'Tower of God Analysis - Hidden Truths', thumbnail: 'https://picsum.photos/seed/v3/400/225', views: '89K', uploaded: '2 weeks ago', duration: '24:12' },
-  { id: 4, title: 'Omniscient Reader Episode Breakdown', thumbnail: 'https://picsum.photos/seed/v4/400/225', views: '67K', uploaded: '3 weeks ago', duration: '15:20' },
-  { id: 5, title: 'Lookism Character Ranking', thumbnail: 'https://picsum.photos/seed/v5/400/225', views: '156K', uploaded: '1 month ago', duration: '20:15' },
-  { id: 6, title: 'Best Action Manhwa of All Time', thumbnail: 'https://picsum.photos/seed/v6/400/225', views: '234K', uploaded: '1 month ago', duration: '28:30' },
+// Comics/Series content instead of videos
+const SERIES = [
+  { id: 1, title: 'Solo Leveling', cover: 'https://picsum.photos/seed/solo1/300/450', chapters: 179, views: '45K', uploaded: '2 days ago' },
+  { id: 2, title: 'Tower of God', cover: 'https://picsum.photos/seed/tower1/300/450', chapters: 120, views: '120K', uploaded: '1 week ago' },
+  { id: 3, title: 'Omniscient Reader', cover: 'https://picsum.photos/seed/orv1/300/450', chapters: 180, views: '89K', uploaded: '2 weeks ago' },
+  { id: 4, title: 'Lookism', cover: 'https://picsum.photos/seed/look1/300/450', chapters: 450, views: '67K', uploaded: '3 weeks ago' },
+  { id: 5, title: 'The God of High School', cover: 'https://picsum.photos/seed/tgof1/300/450', chapters: 560, views: '156K', uploaded: '1 month ago' },
+  { id: 6, title: 'Noblesse', cover: 'https://picsum.photos/seed/nob1/300/450', chapters: 700, views: '234K', uploaded: '1 month ago' },
 ];
 
+// Shorts - quick reads
+const SHORTS = [
+  { id: 1, title: 'Solo Leveling secret revealed! 😱', cover: 'https://picsum.photos/seed/ss1/300/450', views: '1.2M', uploaded: '1 day ago' },
+  { id: 2, title: 'This plot twist though 🔥', cover: 'https://picsum.photos/seed/ss2/300/450', views: '890K', uploaded: '3 days ago' },
+  { id: 3, title: 'Best fight scenes ranked', cover: 'https://picsum.photos/seed/ss3/300/450', views: '567K', uploaded: '1 week ago' },
+  { id: 4, title: 'Wait for it... 🤯', cover: 'https://picsum.photos/seed/ss4/300/450', views: '1.5M', uploaded: '1 week ago' },
+];
+
+// Playlists - Reading collections
 const PLAYLISTS = [
-  { id: 1, title: 'Solo Leveling All Chapters', thumbnail: 'https://picsum.photos/seed/p1/400/225', videoCount: 179, itemCount: 179 },
-  { id: 2, title: 'Tower of God Reviews', thumbnail: 'https://picsum.photos/seed/p2/400/225', videoCount: 45, itemCount: 45 },
-  { id: 3, title: 'Manhwa Recommendations', thumbnail: 'https://picsum.photos/seed/p3/400/225', videoCount: 25, itemCount: 25 },
+  { id: 1, title: 'Solo Leveling All Chapters', thumbnail: 'https://picsum.photos/seed/p1/300/450', itemCount: 179 },
+  { id: 2, title: 'Tower of God Reviews', thumbnail: 'https://picsum.photos/seed/p2/300/450', itemCount: 45 },
+  { id: 3, title: 'Manhwa Recommendations', thumbnail: 'https://picsum.photos/seed/p3/300/450', itemCount: 25 },
 ];
 
+// Community Posts
 const COMMUNITY_POSTS = [
   { id: 1, content: 'Just finished reading Solo Leveling! What an incredible journey. The artwork is absolutely stunning 🔥', likes: 1234, comments: 89, time: '2 hours ago' },
   { id: 2, content: 'Who else is excited for the new season of Tower of God? The animation looks amazing!', likes: 856, comments: 156, time: '1 day ago' },
   { id: 3, content: 'My top 5 manhwa recommendations for action fans: 1. Solo Leveling 2. Tower of God 3. Omniscient Reader 4. Lookism 5. The God of High School', likes: 2341, comments: 203, time: '3 days ago' },
-];
-
-const SHORTS = [
-  { id: 1, title: 'Solo Leveling secret revealed! 😱', thumbnail: 'https://picsum.photos/seed/s1/400/700', views: '1.2M', uploaded: '1 day ago' },
-  { id: 2, title: 'This plot twist though 🔥', thumbnail: 'https://picsum.photos/seed/s2/400/700', views: '890K', uploaded: '3 days ago' },
-  { id: 3, title: 'Best fight scenes ranked', thumbnail: 'https://picsum.photos/seed/s3/400/700', views: '567K', uploaded: '1 week ago' },
-  { id: 4, title: 'Wait for it... 🤯', thumbnail: 'https://picsum.photos/seed/s4/400/700', views: '1.5M', uploaded: '1 week ago' },
 ];
 
 export default function ProfilePage() {
@@ -153,52 +157,49 @@ export default function ProfilePage() {
 
       {/* Content */}
       <div className="px-4 md:px-8 py-4">
-        {/* Home Tab */}
+        {/* Home Tab - Series Grid */}
         {activeTab === 'home' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {VIDEOS.map((video) => (
-              <Link key={video.id} href="#" className="group">
-                <div className="relative aspect-video rounded-xl overflow-hidden mb-2">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            {SERIES.map((series) => (
+              <Link key={series.id} href={`/series/${series.title.toLowerCase().replace(/ /g, '-')}`} className="group">
+                <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-2">
                   <Image
-                    src={video.thumbnail}
-                    alt={video.title}
+                    src={series.cover}
+                    alt={series.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform"
                   />
                   <div className="absolute bottom-2 right-2 px-1.5 py-0.5 bg-black/80 text-white text-xs rounded">
-                    {video.duration}
-                  </div>
-                  <div className="absolute top-2 right-2">
-                    ⋮
+                    Ch. {series.chapters}
                   </div>
                 </div>
-                <h3 className="font-semibold dark:text-white line-clamp-2 group-hover:text-red-500 transition-colors">
-                  {video.title}
+                <h3 className="font-semibold dark:text-white line-clamp-1 group-hover:text-red-500 transition-colors">
+                  {series.title}
                 </h3>
                 <div className="flex items-center gap-2 mt-1 text-sm text-gray-500">
-                  <span>{video.views} views</span>
+                  <span>{series.views} views</span>
                   <span>•</span>
-                  <span>{video.uploaded}</span>
+                  <span>{series.uploaded}</span>
                 </div>
               </Link>
             ))}
           </div>
         )}
 
-        {/* Shorts Tab */}
+        {/* Shorts Tab - Quick Reads */}
         {activeTab === 'shorts' && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {SHORTS.map((short) => (
-              <Link key={short.id} href="#" className="group">
-                <div className="relative aspect-[9/16] rounded-xl overflow-hidden mb-2">
+              <Link key={short.id} href={`/series/shorts-${short.id}`} className="group">
+                <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-2">
                   <Image
-                    src={short.thumbnail}
+                    src={short.cover}
                     alt={short.title}
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 px-1.5 py-0.5 bg-black/80 text-white text-xs rounded flex items-center gap-1">
-                    <Icons.Play className="w-3 h-3" /> {short.views}
+                  <div className="absolute bottom-2 left-2 px-1.5 py-0.5 bg-black/80 text-white text-xs rounded">
+                    ⚡ {short.views}
                   </div>
                 </div>
                 <h3 className="font-semibold dark:text-white line-clamp-2 text-sm">
@@ -210,12 +211,12 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {/* Playlists Tab */}
+        {/* Playlists Tab - Reading Collections */}
         {activeTab === 'playlists' && (
           <div className="space-y-4">
             {PLAYLISTS.map((playlist) => (
-              <Link key={playlist.id} href="#" className="flex gap-4 group">
-                <div className="relative w-48 aspect-video rounded-lg overflow-hidden flex-shrink-0">
+              <Link key={playlist.id} href={`/playlist/${playlist.id}`} className="flex gap-4 group">
+                <div className="relative w-48 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
                   <Image
                     src={playlist.thumbnail}
                     alt={playlist.title}
@@ -224,16 +225,18 @@ export default function ProfilePage() {
                   />
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <div className="text-white text-center">
-                      <Icons.Play className="w-8 h-8 mx-auto" />
-                      <span className="text-sm">{playlist.videoCount} videos</span>
+                      <span className="text-2xl">📚</span>
+                      <span className="text-sm">{playlist.itemCount} items</span>
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="font-semibold dark:text-white group-hover:text-red-500 transition-colors">
                     {playlist.title}
                   </h3>
-                  <p className="text-sm text-gray-500 mt-1">{playlist.itemCount} items</p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {playlist.itemCount} series
+                  </p>
                 </div>
               </Link>
             ))}
