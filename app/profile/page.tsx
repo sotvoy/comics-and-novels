@@ -138,12 +138,21 @@ export default function ProfilePage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-2 mt-4">
-          <button className="flex-1 py-2 bg-red-500 text-white rounded-lg font-medium">Edit Profile</button>
-          <Link href="/analytics" className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium text-center flex items-center justify-center gap-2">
+        <div className="flex flex-wrap gap-2 mt-4">
+          <button className="flex-1 py-2 bg-red-500 text-white rounded-lg font-medium min-w-[100px]">Edit Profile</button>
+          <Link href="/analytics" className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
             <Icons.Chart /> Analytics
           </Link>
-          <button className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium">Share</button>
+          <Link href="/daily-rewards" className="flex-1 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
+            🎁 Rewards
+          </Link>
+          <Link href="/battle-pass" className="flex-1 py-2 bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
+            ⚔️ Battle Pass
+          </Link>
+          <Link href="/leaderboard" className="flex-1 py-2 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
+            🏆 Rank
+          </Link>
+          <button className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium min-w-[80px]">Share</button>
         </div>
       </div>
 
