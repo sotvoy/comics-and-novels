@@ -144,16 +144,16 @@ export default function ProfilePage() {
             <Icons.Chart className="w-4 h-4" /> Analytics
           </Link>
           <Link href="/daily-rewards" className="flex-1 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            <Icons.Gift className="w-4 h-4" /> Rewards
+            <Icons.Rewards className="w-4 h-4" /> Rewards
           </Link>
           <Link href="/battle-pass" className="flex-1 py-2 bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            <Icons.Trophy className="w-4 h-4" /> Battle Pass
+            <Icons.BattlePass className="w-4 h-4" /> Battle Pass
           </Link>
           <Link href="/quests" className="flex-1 py-2 bg-green-500/20 text-green-600 dark:text-green-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            <Icons.Flag className="w-4 h-4" /> Quests
+            <Icons.Target className="w-4 h-4" /> Quests
           </Link>
           <Link href="/leaderboard" className="flex-1 py-2 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            <Icons.Star className="w-4 h-4" /> Rank
+            <Icons.Leaderboard className="w-4 h-4" /> Rank
           </Link>
           <button className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium min-w-[80px]">Share</button>
         </div>

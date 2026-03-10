@@ -188,6 +188,32 @@ export const Icons = {
       <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 00-1.071-.136 9.742 9.742 0 00-3.539 6.177A7.547 7.547 0 016.648 6.61a.75.75 0 00-1.152-.082A9 9 0 1015.68 4.534a7.46 7.46 0 01-2.717-2.248zM15.75 14.25a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
     </svg>
   ),
+  // Daily Rewards - Calendar with star
+  Rewards: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M12 2.25a.75.75 0 01.75.75v.54a1.5 1.5 0 00.6 1.12l.97.97a1.5 1.5 0 01-.6 1.12l-.36.36a.75.75 0 01-1.06-1.06l.36-.36a.75.75 0 00-.6-1.12h-.54a.75.75 0 01-.75-.75zM9.75 6.75a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V6.75zm6.5 0a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V6.75zM6 9.75a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H6zm9 0a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5H15zm-3.75-4.5a.75.75 0 01.75.75v.54a1.5 1.5 0 00.6 1.12l.97.97a1.5 1.5 0 01-.6 1.12l-.36.36a.75.75 0 01-1.06-1.06l.36-.36a.75.75 0 00-.6-1.12h-.54a.75.75 0 01-.75-.75zM6 4.5a.75.75 0 000 1.5h.75a.75.75 0 000-1.5H6zm9 0a.75.75 0 000 1.5h.75a.75.75 0 000-1.5h-.75z" clipRule="evenodd" />
+      <path d="M6.75 21a.75.75 0 01.75-.75h9a.75.75 0 010 1.5h-9a.75.75 0 01-.75-.75z" />
+    </svg>
+  ),
+  // Battle Pass - Shield with star
+  BattlePass: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
+    </svg>
+  ),
+  // Leaderboard - Chart/ranking
+  Leaderboard: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z" clipRule="evenodd" />
+      <path fillRule="evenodd" d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z" clipRule="evenodd" />
+    </svg>
+  ),
+  // Quests - Target/goal
+  Target: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12 17a5 5 0 100-10 5 5 0 000 10z" clipRule="evenodd" />
+    </svg>
+  ),
   // YouTube-style Trophy (ranking)
   Trophy: ({ className = "w-5 h-5" }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
