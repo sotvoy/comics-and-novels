@@ -140,8 +140,8 @@ export default function ProfilePage() {
         {/* Action Buttons */}
         <div className="flex flex-wrap gap-2 mt-4">
           <button className="flex-1 py-2 bg-red-500 text-white rounded-lg font-medium min-w-[100px]">Edit Profile</button>
-          <Link href="/analytics" className="flex-1 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
-            <Icons.Chart className="w-4 h-4" /> Analytics
+          <Link href="/messages" className="flex-1 py-2 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
+            <Icons.MessageCircle className="w-4 h-4" /> Messages
           </Link>
           <Link href="/achievements" className="flex-1 py-2 bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
             <Icons.Trophy className="w-4 h-4" /> Badges
