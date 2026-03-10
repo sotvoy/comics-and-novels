@@ -272,7 +272,7 @@ export default function TopBar() {
                     <Icons.Trophy className="w-5 h-5" /> Battle Pass
                   </Link>
                   <Link href="/leaderboard" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Trophy className="w-5 h-5" /> Leaderboard
+                    <Icons.Star className="w-5 h-5" /> Leaderboard
                   </Link>
                   <Link href="/quests" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Flag className="w-5 h-5" /> Quests
