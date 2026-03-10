@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Icons from '@/components/ui/Icons';
+import CategoryPills from '@/components/ui/CategoryPills';
 
 // Demo data
 const demoSeries = [
@@ -90,10 +91,7 @@ const timeAgo = (date: Date) => {
 };
 
 export default function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [showCategories, setShowCategories] = useState(true);
-  const lastScrollY = useRef(0);
 
   // Auto carousel
   useEffect(() => {
@@ -103,51 +101,10 @@ export default function HomePage() {
     return () => clearInterval(timer);
   }, []);
 
-  // Hide on scroll down, show on scroll up
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setShowCategories(false);
-      } else {
-        setShowCategories(true);
-      }
-      lastScrollY.current = currentScrollY;
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Category Pills with Navigation */}
-      <div className={`sticky top-14 z-30 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 transition-transform duration-300 ${showCategories ? 'translate-y-0' : '-translate-y-full'}`}>
-        <div className="flex items-center gap-2 px-4 py-3 overflow-x-auto hide-scrollbar">
-          {[
-            { id: 'all', label: 'All', href: '/' },
-            { id: 'foryou', label: 'For You', href: '/for-you' },
-            { id: 'top', label: 'Top', href: '/ranking?sort=top' },
-            { id: 'new', label: 'New', href: '/novels?sort=new' },
-            { id: 'recent', label: 'Recent', href: '/comics?sort=recent' },
-            { id: 'popular', label: 'Popular', href: '/trending' },
-            { id: 'ranking', label: 'Ranking', href: '/ranking' },
-            { id: 'news', label: 'News', href: '/events' },
-            { id: 'shorts', label: 'Shorts', href: '/shorts' },
-            { id: 'trending', label: 'Trending', href: '/trending' },
-            { id: 'publish', label: 'Publish Art', href: '/publish-art' },
-            { id: 'write', label: 'Write Stories', href: '/write-stories' },
-            { id: 'post', label: 'Create Post', href: '/community' },
-          ].map((category) => (
-            <Link key={category.id} href={category.href}>
-              <span className={`category-pill whitespace-nowrap ${
-                selectedCategory === category.id ? 'active' : ''
-              }`}>
-                {category.label}
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
+      {/* Category Pills with Navigation - Uses canonical CategoryPills component */}
+      <CategoryPills />
 
       <div className="p-4">
         {/* Hero Carousel - Auto Play with Cut Corners */}
