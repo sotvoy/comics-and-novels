@@ -26,7 +26,7 @@ export interface CreatorAction {
 export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'all', label: 'All', href: '/', priority: 1, type: 'navigation' },
   { id: 'foryou', label: 'For You', href: '/for-you', priority: 2, type: 'navigation' },
-  { id: 'new', label: 'New', href: '/novels?sort=new', priority: 3, type: 'navigation' },
+  { id: 'new', label: 'New', href: '/new', priority: 3, type: 'navigation' },
   { id: 'recent', label: 'Recent', href: '/recent', priority: 4, type: 'navigation' },
   { id: 'popular', label: 'Popular', href: '/popular', priority: 5, type: 'navigation' },
   { id: 'trending', label: 'Trending', href: '/trending', priority: 6, type: 'navigation' },
