@@ -185,7 +185,7 @@ export default function HomePage() {
               { id: 'sliceoflife', label: 'Slice of Life', href: '/search?genre=slice-of-life' },
             ].map((genre) => (
               <Link key={genre.id} href={genre.href}>
-                <span className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white transition-colors">
+                <span className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white transition-colors whitespace-nowrap">
                   {genre.label}
                 </span>
               </Link>
