@@ -1,3 +1,5 @@
+'use client';
+
 import AIAssistant from '@/components/features/AIAssistant';
 
 export default function AIAssistantPage() {
