@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { NAVIGATION_ITEMS } from '@/lib/navigation';
 
 interface Category {
@@ -22,6 +22,8 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const { scrollY } = useScroll();
 
   const displayCategories = categories || NAVIGATION_ITEMS.map(item => ({
     id: item.id,
@@ -33,6 +35,15 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href.split('?')[0]);
   };
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    if (latest > previous && latest > 100) {
+      setIsHidden(true);
+    } else {
+      setIsHidden(false);
+    }
+  });
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -49,7 +60,11 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
   }, []);
 
   return (
-    <div className="sticky top-14 z-30 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+    <motion.div 
+      className="sticky top-14 z-30 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800"
+      animate={{ y: isHidden ? -100 : 0 }}
+      transition={{ duration: 0.2 }}
+    >
       <div className="relative">
         {showLeftFade && (
           <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
@@ -81,6 +96,6 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
           <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }
