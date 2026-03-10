@@ -87,6 +87,14 @@ export const STATUS_FILTERS = [
   { id: 'adopted', label: 'Adopted', color: 'blue' },
 ];
 
+// All Content Types for dropdown
+export const CONTENT_TYPES = [
+  { id: 'manga', label: 'Manga', href: '/manga', icon: '📚' },
+  { id: 'manhwa', label: 'Manhwa', href: '/manhwa', icon: '🇰🇷' },
+  { id: 'manhua', label: 'Manhua', href: '/manhua', icon: '🇨🇳' },
+  { id: 'comics', label: 'All Comics', href: '/comics', icon: '📖' },
+];
+
 // Aliases for backward compatibility
 export const NAV_ALIASES: Record<string, string> = {
   'recent': 'new',
