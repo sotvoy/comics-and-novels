@@ -136,7 +136,7 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
         {/* Header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700 bg-gray-800/50">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg flex items-center justify-center">
               <Icons.Chat className="w-4 h-4 text-white" />
             </div>
             <div>
@@ -173,7 +173,7 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
                 }`}
               >
                 {msg.role === 'assistant' && (
-                  <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center mb-2">
+                  <div className="w-6 h-6 bg-gradient-to-br from-green-400 to-blue-500 rounded-lg flex items-center justify-center mb-2">
                     <Icons.Chat className="w-3 h-3 text-white" />
                   </div>
                 )}

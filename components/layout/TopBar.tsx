@@ -186,7 +186,7 @@ export default function TopBar() {
                   </Link>
                   <button 
                     onClick={() => { setDrawerOpen(false); setAIAssistantOpen(true); }} 
-                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-left"
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-left mb-2"
                   >
                     <Icons.Star /> AI Assistant
                   </button>
