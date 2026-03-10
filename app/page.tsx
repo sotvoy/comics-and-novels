@@ -112,7 +112,7 @@ export default function HomePage() {
           <div className="flex overflow-x-auto snap-x snap-mandatory carousel-container hide-scrollbar" style={{ scrollSnapType: 'x mandatory' }}>
             {demoSeries.slice(0, 5).map((series, index) => (
               <div key={series.id} className="flex-shrink-0 w-full snap-center" style={{ scrollSnapAlign: 'start' }}>
-                <Link href={`/series/${series.slug}`}>
+                <div className="cursor-default">
                   <div className="relative aspect-[3/2] w-full overflow-hidden" style={{ 
                     borderRadius: '20px',
                     clipPath: 'polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%)'
@@ -151,7 +151,7 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -210,7 +210,7 @@ export default function HomePage() {
                 transition={{ delay: index * 0.05 }}
                 className="carousel-item flex-shrink-0 w-32"
               >
-                <Link href={`/series/${series.slug}`}>
+                <div className="cursor-default">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2">
                     <Image
                       src={series.cover}
@@ -229,7 +229,7 @@ export default function HomePage() {
                       <Icons.Comment className="w-2 h-2" /> {(series.comments / 1000).toFixed(1)}K
                     </span>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -252,7 +252,7 @@ export default function HomePage() {
                 transition={{ delay: index * 0.05 }}
                 className="carousel-item flex-shrink-0 w-32"
               >
-                <Link href={`/series/${series.slug}`}>
+                <div className="cursor-default">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2">
                     <Image
                       src={series.cover}
@@ -272,7 +272,7 @@ export default function HomePage() {
                       <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
                     </span>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -300,7 +300,7 @@ export default function HomePage() {
                 transition={{ delay: index * 0.03 }}
                 className="carousel-item flex-shrink-0 w-32"
               >
-                <Link href={`/series/${series.slug}`}>
+                <div className="cursor-default">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2 series-card">
                     <Image
                       src={series.cover}
@@ -317,7 +317,7 @@ export default function HomePage() {
                       <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
                     </span>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -339,7 +339,7 @@ export default function HomePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Link href={`/series/${series.slug}`}>
+                <div className="cursor-default">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden mb-2 series-card">
                     <Image
                       src={series.cover}
@@ -359,7 +359,7 @@ export default function HomePage() {
                       <Icons.Heart className="w-2 h-2" /> {(series.likes / 1000).toFixed(1)}K
                     </span>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -386,7 +386,7 @@ export default function HomePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.05 }}
               >
-                <Link href={`/series/${series.slug}`} className="flex gap-3">
+                <div className="flex gap-3 cursor-default">
                   <div className="relative w-20 aspect-[3/4] rounded-lg overflow-hidden flex-shrink-0">
                     <Image
                       src={series.cover}
@@ -411,7 +411,7 @@ export default function HomePage() {
                   <div className="flex items-start pt-1">
                     <span className="text-xs text-gray-400">{timeAgo(new Date())}</span>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
