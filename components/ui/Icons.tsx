@@ -386,6 +386,16 @@ export const Icons = {
       <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
     </svg>
   ),
+  Newspaper: ({ className }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className || "w-5 h-5"}>
+      <path fillRule="evenodd" d="M4.125 21h15.75a1.125 1.125 0 001.125-1.125V5.625a1.125 1.125 0 00-1.125-1.125H4.125A1.125 1.125 0 003 5.625v14.25a1.125 1.125 0 001.125 1.125zM3 5.625a2.25 2.25 0 012.25-2.25h15.75a2.25 2.25 0 012.25 2.25v.75H3v-.75z" clipRule="evenodd" />
+      <path d="M8.25 7.5V4.875a2.25 2.25 0 012.25-2.25h2.25v2.25h-2.25a.75.75 0 00-.75.75V7.5h1.5z" />
+      <path d="M8.25 10.5h6.75v1.5h-6.75v-1.5z" />
+      <path d="M8.25 13.5h6.75v1.5h-6.75v-1.5z" />
+      <path d="M8.25 16.5h6.75v1.5h-6.75v-1.5z" />
+      <path d="M5.25 10.5h1.5v1.5h-1.5v-1.5zM5.25 13.5h1.5v1.5h-1.5v-1.5zM5.25 16.5h1.5v1.5h-1.5v-1.5z" />
+    </svg>
+  ),
 };
 
 export default Icons;
