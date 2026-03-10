@@ -51,7 +51,7 @@ export default function BottomBar() {
   return (
     <>
     <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
-        <div className="flex items-center justify-between h-14 px-2 md:px-6 max-w-md mx-auto">
+        <div className="flex items-center justify-between h-14 px-2">
           {BOTTOM_NAV_ITEMS.map((item) => {
             const Icon = Icons[item.icon as keyof typeof Icons];
             const active = isActive(item.href);
