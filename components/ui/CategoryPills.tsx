@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { NAVIGATION_ITEMS } from '@/lib/navigation';
 
 interface Category {
@@ -23,7 +22,7 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
   const [showLeftFade, setShowLeftFade] = useState(false);
   const [showRightFade, setShowRightFade] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
-  const { scrollY } = useScroll();
+  const lastScrollY = useRef(0);
 
   const displayCategories = categories || NAVIGATION_ITEMS.map(item => ({
     id: item.id,
@@ -36,14 +35,24 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
     return pathname.startsWith(href.split('?')[0]);
   };
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() || 0;
-    if (latest > previous && latest > 100) {
-      setIsHidden(true);
-    } else {
-      setIsHidden(false);
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        // Scrolling down - hide
+        setIsHidden(true);
+      } else {
+        // Scrolling up - show
+        setIsHidden(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const checkScroll = () => {
     if (scrollRef.current) {
@@ -60,10 +69,15 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
   }, []);
 
   return (
-    <motion.div 
-      className="sticky top-14 z-30 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800"
-      animate={{ y: isHidden ? -100 : 0 }}
-      transition={{ duration: 0.2 }}
+    <div 
+      className={`sticky top-14 z-30 bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800 transition-transform duration-300 ease-in-out ${
+        isHidden ? '-translate-y-full' : 'translate-y-0'
+      }`}
+      style={{ 
+        position: 'sticky',
+        top: '56px',
+        zIndex: 30
+      }}
     >
       <div className="relative">
         {showLeftFade && (
@@ -80,14 +94,13 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
         >
           {displayCategories.map((cat) => (
             <Link key={cat.id} href={cat.href}>
-              <motion.span
+              <span
                 className={`category-pill whitespace-nowrap flex-shrink-0 ${
                   isActive(cat.href) ? 'active' : ''
                 }`}
-                whileTap={{ scale: 0.95 }}
               >
                 {cat.label}
-              </motion.span>
+              </span>
             </Link>
           ))}
         </div>
@@ -96,6 +109,6 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
           <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
