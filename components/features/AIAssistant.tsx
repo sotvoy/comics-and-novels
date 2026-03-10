@@ -122,7 +122,7 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       exit={{ opacity: 0 }}
-      className={`fixed inset-0 bg-black/90 z-50 flex ${isExpanded ? 'items-center justify-center' : 'items-start justify-center pt-16'}`}
+      className={`fixed inset-0 bg-black/90 z-50 flex ${isExpanded ? 'items-center justify-center' : 'items-end justify-center'}`}
       onClick={onClose}
     >
       <motion.div 
@@ -130,7 +130,7 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
         animate={{ y: 0 }}
         exit={{ y: '100%' }}
         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-        className={`bg-gray-900 w-full flex flex-col ${isExpanded ? 'h-screen max-w-4xl rounded-0' : 'rounded-2xl h-[70vh] max-w-xl mt-20'}`}
+        className={`bg-gray-900 w-full flex flex-col ${isExpanded ? 'h-screen max-w-4xl rounded-0' : 'rounded-t-2xl h-[60vh] max-w-lg mb-8'}`}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
