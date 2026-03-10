@@ -24,7 +24,7 @@ export interface CreatorAction {
 
 // Primary navigation items for category pills
 export const NAVIGATION_ITEMS: NavItem[] = [
-  { id: 'home', label: 'Home', href: '/', priority: 1, type: 'navigation' },
+  { id: 'home', label: 'All', href: '/', priority: 1, type: 'navigation' },
   { id: 'foryou', label: 'For You', href: '/for-you', priority: 2, type: 'navigation' },
   { id: 'topranking', label: 'Top Ranking', href: '/ranking', priority: 3, type: 'navigation' },
   { id: 'new', label: 'New', href: '/novels?sort=new', priority: 4, type: 'navigation' },
