@@ -37,12 +37,11 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'community', label: 'Community', href: '/community', priority: 11, type: 'navigation' },
 ];
 
-// Bottom navigation items - YouTube/Instagram style
+// Bottom navigation items
 export const BOTTOM_NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Home', href: '/', icon: 'Home', type: 'navigation' },
-  { id: 'discover', label: 'Discover', href: '/discover', icon: 'Globe', type: 'navigation' },
   { id: 'my-list', label: 'My List', href: '/my-list', icon: 'List', type: 'navigation' },
-  { id: 'following', label: 'Following', href: '/following', icon: 'Following', type: 'social' },
+  { id: 'create', label: 'Create', href: '#create', icon: 'Plus', type: 'creator' },
   { id: 'profile', label: 'Profile', href: '/profile', icon: 'Profile', type: 'social' },
 ];
 
