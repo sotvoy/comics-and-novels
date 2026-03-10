@@ -37,7 +37,7 @@ export default function CategoryPills({ categories, scrollable = true, disableNa
   };
 
   // Categories that should not have navigation
-  const noNavCategories = ['new', 'recent', 'popular'];
+  const noNavCategories = ['new', 'recent', 'popular', 'news'];
 
   useEffect(() => {
     const handleScroll = () => {
