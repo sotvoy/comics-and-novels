@@ -41,8 +41,8 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 export const BOTTOM_NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Home', href: '/', icon: 'Home', type: 'navigation' },
   { id: 'discover', label: 'Discover', href: '/discover', icon: 'Globe', type: 'navigation' },
-  { id: 'create', label: 'Create', href: '#create', icon: 'Plus', type: 'creator' },
-  { id: 'notifications', label: 'Activity', href: '/notifications', icon: 'Bell', type: 'social' },
+  { id: 'my-list', label: 'My List', href: '/my-list', icon: 'List', type: 'navigation' },
+  { id: 'following', label: 'Following', href: '/following', icon: 'Following', type: 'social' },
   { id: 'profile', label: 'Profile', href: '/profile', icon: 'Profile', type: 'social' },
 ];
 
