@@ -29,27 +29,21 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'new', label: 'New', href: '/new', priority: 3, type: 'navigation' },
   { id: 'recent', label: 'Recent', href: '/recent', priority: 4, type: 'navigation' },
   { id: 'popular', label: 'Popular', href: '/popular', priority: 5, type: 'navigation' },
-  { id: 'manga', label: 'Manga', href: '/manga', priority: 6, type: 'navigation' },
-  { id: 'manhwa', label: 'Manhwa', href: '/manhwa', priority: 7, type: 'navigation' },
-  { id: 'manhua', label: 'Manhua', href: '/manhua', priority: 8, type: 'navigation' },
-  { id: 'novels', label: 'Novels', href: '/novels', priority: 9, type: 'navigation' },
-  { id: 'shorts', label: 'Shorts', href: '/shorts', priority: 10, type: 'navigation' },
-  { id: 'audiobooks', label: 'Audiobooks', href: '/audiobooks', priority: 11, type: 'navigation' },
-  { id: 'trending', label: 'Trending', href: '/trending', priority: 12, type: 'navigation' },
-  { id: 'ranking', label: 'Top Ranking', href: '/ranking', priority: 13, type: 'navigation' },
-  { id: 'events', label: 'Events', href: '/events', priority: 14, type: 'navigation' },
-  { id: 'news', label: 'News', href: '/news', priority: 15, type: 'navigation' },
-  { id: 'community', label: 'Community', href: '/community', priority: 16, type: 'navigation' },
+  { id: 'trending', label: 'Trending', href: '/trending', priority: 6, type: 'navigation' },
+  { id: 'shorts', label: 'Shorts', href: '/shorts', priority: 7, type: 'navigation' },
+  { id: 'topranking', label: 'Top Ranking', href: '/ranking', priority: 8, type: 'navigation' },
+  { id: 'events', label: 'Events', href: '/events', priority: 9, type: 'navigation' },
+  { id: 'news', label: 'News', href: '/news', priority: 10, type: 'navigation' },
+  { id: 'community', label: 'Community', href: '/community', priority: 11, type: 'navigation' },
 ];
 
 // Bottom navigation items
 export const BOTTOM_NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Home', href: '/', icon: 'Home', type: 'navigation' },
-  { id: 'discover', label: 'Discover', href: '/discover', icon: 'Compass', type: 'navigation' },
   { id: 'my-list', label: 'My List', href: '/my-list', icon: 'List', type: 'navigation' },
   { id: 'create', label: 'Create', href: '#create', icon: 'Plus', type: 'creator' },
-  { id: 'wallet', label: 'Wallet', href: '/wallet', icon: 'Wallet', type: 'navigation' },
-  { id: 'profile', label: 'Profile', href: '/profile/test', icon: 'Profile', type: 'social' },
+  { id: 'following', label: 'Following', href: '/following', icon: 'Following', type: 'social' },
+  { id: 'profile', label: 'Profile', href: '/profile', icon: 'Profile', type: 'social' },
 ];
 
 // Creator actions for the plus menu
@@ -57,21 +51,21 @@ export const CREATOR_ACTIONS: CreatorAction[] = [
   { 
     id: 'publish-art', 
     label: 'Publish Art', 
-    href: '#', 
+    href: '/publish-art', 
     icon: 'Image',
     description: 'Upload and publish comics/artwork'
   },
   { 
     id: 'write-stories', 
     label: 'Write Stories', 
-    href: '#', 
+    href: '/write-stories', 
     icon: 'PenTool',
     description: 'Write and publish novels/stories'
   },
   { 
     id: 'create-post', 
     label: 'Create Post', 
-    href: '#', 
+    href: '/upload/post', 
     icon: 'Newspaper',
     description: 'Share news, events, or community posts'
   },
