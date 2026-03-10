@@ -229,10 +229,10 @@ export default function TopBar() {
                     <Icons.Video className="w-5 h-5" /> Creator Studio
                   </Link>
                   <Link href="/ranking" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Trophy className="w-5 h-5" /> Ranking
+                    <Icons.Ranking className="w-5 h-5" /> Ranking
                   </Link>
                   <Link href="/leaderboard" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Trophy className="w-5 h-5" /> Leaderboard
+                    <Icons.Leaderboard className="w-5 h-5" /> Leaderboard
                   </Link>
                   <Link href="/trending" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Trending className="w-5 h-5" /> Trending
@@ -241,7 +241,7 @@ export default function TopBar() {
                     <Icons.Shorts className="w-5 h-5" /> Shorts
                   </Link>
                   <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Users className="w-5 h-5" /> Community
+                    <Icons.Group className="w-5 h-5" /> Community
                   </Link>
                   <Link href="/news" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Newspaper className="w-5 h-5" /> News
