@@ -5,6 +5,8 @@ interface AppState {
   setDrawerOpen: (open: boolean) => void;
   isSearchOpen: boolean;
   setSearchOpen: (open: boolean) => void;
+  isAIAssistantOpen: boolean;
+  setAIAssistantOpen: (open: boolean) => void;
   selectedCategory: string;
   setSelectedCategory: (category: string) => void;
   contentType: 'comic' | 'novel' | 'all';
@@ -18,6 +20,8 @@ export const useAppStore = create<AppState>((set) => ({
   setDrawerOpen: (open) => set({ isDrawerOpen: open }),
   isSearchOpen: false,
   setSearchOpen: (open) => set({ isSearchOpen: open }),
+  isAIAssistantOpen: false,
+  setAIAssistantOpen: (open) => set({ isAIAssistantOpen: open }),
   selectedCategory: 'all',
   setSelectedCategory: (category) => set({ selectedCategory: category }),
   contentType: 'all',

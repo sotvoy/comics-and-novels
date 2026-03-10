@@ -8,13 +8,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Icons from '@/components/ui/Icons';
 import { useAppStore } from '@/store/app';
 import { useAuth } from '@/context/AuthContext';
+import AIAssistant from '@/components/features/AIAssistant';
 
 export default function TopBar() {
   const pathname = usePathname();
   const router = useRouter();
   const { theme, setTheme: toggleTheme } = useTheme();
   const [showDropdown, setShowDropdown] = useState(false);
-  const { isDrawerOpen, setDrawerOpen, setSearchOpen } = useAppStore();
+  const { isDrawerOpen, setDrawerOpen, setSearchOpen, isAIAssistantOpen, setAIAssistantOpen } = useAppStore();
   const { user: authUser, loading } = useAuth();
 
   const isActive = (path: string) => pathname === path;
@@ -183,9 +184,12 @@ export default function TopBar() {
                   <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.BookOpen /> Audiobooks
                   </Link>
-                  <Link href="/ai-assistant" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                  <button 
+                    onClick={() => { setDrawerOpen(false); setAIAssistantOpen(true); }} 
+                    className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 w-full text-left"
+                  >
                     <Icons.Star /> AI Assistant
-                  </Link>
+                  </button>
                 </nav>
 
                 <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
@@ -247,6 +251,13 @@ export default function TopBar() {
               </div>
             </motion.div>
           </>
+        )}
+      </AnimatePresence>
+
+      {/* AI Assistant Popup */}
+      <AnimatePresence>
+        {isAIAssistantOpen && (
+          <AIAssistant onClose={() => setAIAssistantOpen(false)} />
         )}
       </AnimatePresence>
 
