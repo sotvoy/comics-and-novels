@@ -9,8 +9,17 @@ test.describe('Smoke Tests', () => {
 
   test('category pills are visible and clickable', async ({ page }) => {
     await page.goto('/');
-    // Check category pills exist
+    // Check category pills exist (from canonical CategoryPills component)
     await expect(page.locator('text=All')).toBeVisible();
+    await expect(page.locator('text=For You')).toBeVisible();
+    // Creator actions are now in PlusMenu, not category pills
+  });
+
+  test('plus menu has creator actions', async ({ page }) => {
+    await page.goto('/');
+    // Click the plus button in bottom nav to open PlusMenu
+    await page.click('[data-testid="btn-plus"]');
+    // Check creator actions are in PlusMenu
     await expect(page.locator('text=Publish Art')).toBeVisible();
     await expect(page.locator('text=Write Stories')).toBeVisible();
   });
