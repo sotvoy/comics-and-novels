@@ -124,7 +124,7 @@ export default function TopBar() {
             </Link>
             <NotificationDropdown userId={authUser?.id} />
             {authUser ? (
-              <Link href="/profile" className="yt-button" aria-label="Profile">
+              <Link href="/profile/test" className="yt-button" aria-label="Profile">
                 <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold">
                   {(authUser.user_metadata?.username || authUser.email?.[0] || 'U').toUpperCase()}
                 </div>
