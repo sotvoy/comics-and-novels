@@ -153,15 +153,15 @@ export default function TopBar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 z-50"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
               onClick={() => setDrawerOpen(false)}
             />
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 left-0 w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 z-50 overflow-y-auto overscroll-y-auto touch-pan-y"
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 left-0 w-[85vw] sm:w-80 max-w-[85vw] h-full bg-white dark:bg-gray-900 z-50 overflow-y-auto overscroll-y-auto touch-pan-y shadow-2xl"
             >
               <div className="p-4">
                 <div className="flex items-center justify-between mb-6">
@@ -232,6 +232,9 @@ export default function TopBar() {
                   </Link>
                   <Link href="/community" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Users /> Community
+                  </Link>
+                  <Link href="/news" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Newspaper /> News
                   </Link>
                   <Link href="/events" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Calendar /> Events
