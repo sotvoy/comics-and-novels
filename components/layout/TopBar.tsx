@@ -252,6 +252,12 @@ export default function TopBar() {
                   <Link href="/collections" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Collections /> Collections
                   </Link>
+                  <Link href="/playlists" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.List /> 📋 Playlists
+                  </Link>
+                  <Link href="/history" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.BookOpen /> 📖 History
+                  </Link>
                   <div className="h-16" />
                 </nav>
 
