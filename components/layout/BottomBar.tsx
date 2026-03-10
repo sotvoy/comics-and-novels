@@ -46,10 +46,11 @@ export default function BottomBar() {
     router.push(href);
   };
 
+  if (isAIAssistantOpen) return null;
+
   return (
     <>
-      {isAIAssistantOpen ? null : (
-      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
         <div className="flex items-center justify-around h-16">
           {BOTTOM_NAV_ITEMS.map((item) => {
             const Icon = Icons[item.icon as keyof typeof Icons];
@@ -142,7 +143,7 @@ export default function BottomBar() {
       )}
 
       {/* Spacer for fixed bottom nav */}
-      {isAIAssistantOpen ? null : <div className="h-16" />}
+      <div className="h-16" />
     </>
   );
 }
