@@ -116,12 +116,16 @@ export default function BottomBar() {
               {CREATOR_ACTIONS.map((action, index) => {
                 const iconName = action.icon as keyof typeof Icons;
                 const IconComponent = Icons[iconName];
+                const isDisabled = action.href === '#';
                 return (
-                  <Link
+                  <div
                     key={action.id}
-                    href={action.href}
-                    className="flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 active:scale-95 transition-transform"
-                    onClick={() => setShowCreateMenu(false)}
+                    className={`flex items-center gap-4 p-4 rounded-2xl active:scale-95 transition-transform ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer'}`}
+                    onClick={() => {
+                      if (!isDisabled) {
+                        setShowCreateMenu(false);
+                      }
+                    }}
                     role="menuitem"
                     data-testid={`creator-action-${action.id}`}
                   >
@@ -136,7 +140,7 @@ export default function BottomBar() {
                       <p className="font-bold text-lg dark:text-white">{action.label}</p>
                       <p className="text-sm text-gray-500">{action.description}</p>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>
