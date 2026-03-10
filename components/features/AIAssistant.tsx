@@ -216,6 +216,22 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
           <div ref={messagesEnd} />
         </div>
 
+        {/* Quick Actions */}
+        <div className="px-4 pb-2">
+          <div className="flex gap-2 overflow-x-auto pb-2">
+            {quickActions.map((action, i) => (
+              <button
+                key={i}
+                onClick={() => handleQuickAction(action.prompt)}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 hover:border-gray-600 rounded-lg text-xs text-gray-300 whitespace-nowrap transition-colors"
+              >
+                <span>{action.icon}</span>
+                {action.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* Input */}
         <div className="p-4 border-t border-gray-700 bg-gray-800/30">
           <div className="relative bg-gray-800 rounded-xl border border-gray-700 focus-within:border-green-500 transition-colors">
@@ -237,9 +253,6 @@ export default function AIAssistant({ onClose }: { onClose: () => void }) {
               <Icons.Send className="w-4 h-4" />
             </button>
           </div>
-          <p className="text-center text-xs text-gray-500 mt-2">
-            AI can make mistakes. Please verify important information.
-          </p>
         </div>
       </motion.div>
     </motion.div>
