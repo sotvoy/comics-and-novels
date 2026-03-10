@@ -14,9 +14,10 @@ interface Category {
 interface CategoryPillsProps {
   categories?: Category[];
   scrollable?: boolean;
+  disableNavigation?: boolean;
 }
 
-export default function CategoryPills({ categories, scrollable = true }: CategoryPillsProps) {
+export default function CategoryPills({ categories, scrollable = true, disableNavigation = false }: CategoryPillsProps) {
   const pathname = usePathname();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftFade, setShowLeftFade] = useState(false);
@@ -34,6 +35,9 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
     if (href === '/') return pathname === '/';
     return pathname.startsWith(href.split('?')[0]);
   };
+
+  // Categories that should not have navigation
+  const noNavCategories = ['new', 'recent', 'popular'];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,17 +96,34 @@ export default function CategoryPills({ categories, scrollable = true }: Categor
           style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
           onScroll={checkScroll}
         >
-          {displayCategories.map((cat) => (
-            <Link key={cat.id} href={cat.href}>
-              <span
-                className={`category-pill whitespace-nowrap flex-shrink-0 ${
-                  isActive(cat.href) ? 'active' : ''
-                }`}
-              >
-                {cat.label}
-              </span>
-            </Link>
-          ))}
+          {displayCategories.map((cat) => {
+            const shouldDisableNav = disableNavigation && noNavCategories.includes(cat.id);
+            
+            if (shouldDisableNav) {
+              return (
+                <span
+                  key={cat.id}
+                  className={`category-pill whitespace-nowrap flex-shrink-0 cursor-default ${
+                    isActive(cat.href) ? 'active' : ''
+                  }`}
+                >
+                  {cat.label}
+                </span>
+              );
+            }
+            
+            return (
+              <Link key={cat.id} href={cat.href}>
+                <span
+                  className={`category-pill whitespace-nowrap flex-shrink-0 ${
+                    isActive(cat.href) ? 'active' : ''
+                  }`}
+                >
+                  {cat.label}
+                </span>
+              </Link>
+            );
+          })}
         </div>
 
         {showRightFade && (

@@ -104,7 +104,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Category Pills with Navigation - Uses canonical CategoryPills component */}
-      <CategoryPills />
+      <CategoryPills disableNavigation={true} />
 
       <div className="p-4">
         {/* Hero Carousel - Auto Play with Cut Corners */}
