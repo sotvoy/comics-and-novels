@@ -149,6 +149,9 @@ export default function ProfilePage() {
           <Link href="/battle-pass" className="flex-1 py-2 bg-purple-500/20 text-purple-600 dark:text-purple-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
             <Icons.Trophy className="w-4 h-4" /> Battle Pass
           </Link>
+          <Link href="/quests" className="flex-1 py-2 bg-green-500/20 text-green-600 dark:text-green-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
+            <Icons.Flag className="w-4 h-4" /> Quests
+          </Link>
           <Link href="/leaderboard" className="flex-1 py-2 bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-lg font-medium text-center flex items-center justify-center gap-1 text-sm min-w-[80px]">
             <Icons.Star className="w-4 h-4" /> Rank
           </Link>
