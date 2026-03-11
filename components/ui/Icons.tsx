@@ -640,178 +640,37 @@ export const Icons = {
     </svg>
   ),
 
-  // Comics/Novels Platform Icons
-  Book: ({ className = "w-6 h-6" }: IconProps) => (
+  // Comics platform icons
+  Book: ({ className = "w-5 h-5" }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
       <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75v6.75a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25V12a.75.75 0 01.75-.75h-2.25a.75.75 0 010-1.5h1.5a.75.75 0 01.75.75v6.75a.75.75 0 01-.75.75H6.75v-5.25a.75.75 0 01.75-.75h9a.75.75 0 01.75.75v5.25h-4.5a.75.75 0 010-1.5h4.5V12a.75.75 0 01-.75-.75h-9z" clipRule="evenodd" />
-      <path d="M9.75 12a.75.75 0 01.75-.75h3a.75.75 0 010 1.5h-3a.75.75 0 01-.75-.75z" />
     </svg>
   ),
-
-  // Open book for reading
-  BookOpen: ({ className = "w-6 h-6" }: IconProps) => (
+  BookOpen: ({ className = "w-5 h-5" }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75v6.75a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25V12a.75.75 0 01.75-.75h-2.25a.75.75 0 010-1.5h1.5a.75.75 0 01.75.75v6.75a.75.75 0 01-.75.75H6.75v-5.25a.75.75 0 01.75-.75h9a.75.75 0 01.75.75v5.25h-4.5a.75.75 0 010-1.5h4.5V12a.75.75 0 01-.75-.75h-9z" clipRule="evenodd" />
-      <path fillRule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75z" clipRule="evenodd" />
+      <path d="M2 6.75A2.25 2.25 0 014.25 4.5h15.5A2.25 2.25 0 0122 6.75v-.5a.75.75 0 011.5 0v.5a3 3 0 01-3 3H4.25a3 3 0 01-3-3v-.5a.75.75 0 011.5 0v.5zM4.25 12a.75.75 0 01.75-.75h15.5a.75.75 0 010 1.5H5a.75.75 0 01-.75-.75zM2.25 15.75a2.25 2.25 0 012.25-2.25h15.5a2.25 2.25 0 012.25 2.25V18a.75.75 0 01-1.5 0v-.75a3 3 0 00-3-3H4.25a3 3 0 00-3 3v.75a.75.75 0 01-1.5 0v-.75z" />
     </svg>
   ),
-
-  // Scroll for novels
-  Scroll: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Bookmark for saved content
-  BookmarkPlus: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z" clipRule="evenodd" />
-      <path d="M12 10.5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5a.75.75 0 01.75-.75z" />
-      <path d="M12 10.5a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0v-4.5z" />
-    </svg>
-  ),
-
-  // Trending/Fire icon
-  TrendingUp: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12.53 2.281a.75.75 0 01.94 0l2.092 1.789a5.924 5.924 0 013.351 3.351l1.789 2.092a.75.75 0 01-.94 1.414l-2.092-1.789a5.924 5.924 0 01-3.351 3.351l-1.789 2.092a.75.75 0 01-.94-1.414l2.092-1.789a5.924 5.924 0 013.351-3.351l1.789-2.092a.75.75 0 010-.94l-2.092-1.789a5.924 5.924 0 01-3.351-3.351l-1.789-2.092z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Library/Collection
-  Library: ({ className = "w-6 h-6" }: IconProps) => (
+  Library: ({ className = "w-5 h-5" }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
       <path fillRule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h16.5c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5z" clipRule="evenodd" />
       <path d="M10.875 18.75a.375.375 0 01-.375-.375v-1.5a.375.375 0 01.375-.375h7.5a.375.375 0 01.375.375v1.5a.375.375 0 01-.375.375h-7.5z" />
     </svg>
   ),
-
-  // Calendar for events
-  Calendar: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M6.75 3a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V3zm9 0a.75.75 0 00-1.5 0v1.5a.75.75 0 001.5 0V3z" clipRule="evenodd" />
-      <path fillRule="evenodd" d="M2.25 5.25a3 3 0 013-3h13.5a3 3 0 013 3v15a3 3 0 01-3 3H5.25a3 3 0 01-3-3V5.25zm3.75 8.25v-1.5a.75.75 0 011.5 0v1.5h1.5a.75.75 0 010 1.5h-3a.75.75 0 010-1.5h1.5v-1.5a.75.75 0 00-1.5 0v1.5h-1.5a.75.75 0 010-1.5h3z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Users/Community
-  Users: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M8.25 6.75a3.75 3.75 0 117.5 0 3.75 3.75 0 01-7.5 0zM15.75 9.75a3 3 0 116 0 3 3 0 01-6 0zM2.25 9.75a3 3 0 116 0 3 3 0 01-6 0zM6.31 15.117A6.745 6.745 0 0112 12a6.745 6.745 0 016.709 7.498.75.75 0 01-.372.568A12.696 12.696 0 0112 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 01-.372-.568 6.787 6.787 0 011.019-4.38z" clipRule="evenodd" />
-      <path d="M5.082 14.254l.001-.144a2.25 2.25 0 012.115-2.098l5.455.322a2.25 2.25 0 012.115 2.098l.001.144.001.144a2.25 2.25 0 01-2.098 2.115l-5.455.322a2.25 2.25 0 01-2.098-2.115l.001-.144-.001-.144zM8.522 14.254l-.001.144a2.25 2.25 0 002.098 2.115l5.455.322a2.25 2.25 0 002.115-2.098l-.001-.144-.001.144a2.25 2.25 0 01-2.115 2.098l-5.455.322a2.25 2.25 0 01-2.098-2.115l.001-.144-.001-.144z" />
-      <path fillRule="evenodd" d="M12 2.25c-2.035 0-4.05.704-5.785 1.883a.75.75 0 01-.707-.432A12.68 12.68 0 003 12.75c0 2.035.704 4.05 1.883 5.785a.75.75 0 01.432.707A12.68 12.68 0 009 21.75c2.035 0 4.05-.704 5.785-1.883a.75.75 0 01.707.432 12.68 12.68 0 001.883-2.208c0-2.035-.704-4.05-1.883-5.785a.75.75 0 01-.432-.707A12.68 12.68 0 0012 3.75a12.68 12.68 0 00-1.883 2.208.75.75 0 01-.432.707 12.68 12.68 0 00-1.508-2.208z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Globe/Discover
-  Globe: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.5-3.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12 9.75a.75.75 0 100-1.5.75.75 0 000 1.5z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Trophy for rankings
-  Trophy: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-      <path d="M12 14.5a.75.75 0 01.75-.75h3a.75.75 0 010 1.5h-3a.75.75 0 01-.75-.75z" />
-    </svg>
-  ),
-
-  // Headphones for audiobooks
-  Headphones: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75v3.75a2.25 2.25 0 01-2.25 2.25H3.75a2.25 2.25 0 00-2.25 2.25v3.75a2.25 2.25 0 002.25 2.25h16.5a2.25 2.25 0 002.25-2.25v-3.75a2.25 2.25 0 00-2.25-2.25h-6.75a2.25 2.25 0 01-2.25-2.25V12z" clipRule="evenodd" />
-      <path d="M9.527 7.087a.75.75 0 01.943-.596l4.305 1.03a.75.75 0 01.596.943l-1.03 4.305a2.25 2.25 0 01-1.244 1.244l-4.305 1.03a.75.75 0 01-.943-.596l1.03-4.305a2.25 2.25 0 011.244-1.244l4.305 1.03z" />
-      <path fillRule="evenodd" d="M12 10.5a.75.75 0 01.75-.75h3a.75.75 0 010 1.5h-3a.75.75 0 01-.75-.75z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Map/Explore
-  MapPin: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12 6.75a3.75 3.75 0 100 7.5 3.75 3.75 0 000-7.5zm0 9a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Award/Badge
-  Award: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Activity
-  Activity: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z" clipRule="evenodd" />
-      <path fillRule="evenodd" d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Settings
-  Settings: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 00-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 00-2.282.819l-.922 1.597a1.875 1.875 0 00.432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 000 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 00-.432 2.385l.922 1.597a1.875 1.875 0 002.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 002.28-.819l.923-1.597a1.875 1.875 0 00-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 000-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 00-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 00-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 00-1.85-1.567h-1.843zM12 15.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Wallet
-  Wallet: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12 6.75a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V7.5a.75.75 0 01.75-.75zm4.5.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Mail/Message
-  Mail: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M4.5 3.75a3 3 0 00-3 3v.75h18v-.75a3 3 0 00-3-3h-12zm9 4.5a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm2.25 3.75a.75.75 0 100-1.5.75.75 0 000 1.5z" clipRule="evenodd" />
-      <path d="M6.75 6.75h10.5v4.5h-10.5v-4.5z" />
-    </svg>
-  ),
-
-  // Chat/Message
-  MessageCircle: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M4.804 21.644A6.707 6.707 0 006 21.75a6.721 6.721 0 003.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 01-.814 1.686.75.75 0 00.44 1.223z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Bell/Notification
-  Bell: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M5.25 9a6.75 6.75 0 0113.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 01-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 11-7.48 0 24.585 24.585 0 01-4.831-1.244.75.75 0 01-.298-1.205A8.217 8.217 0 005.25 9.75V9zm4.502 8.9a2.25 2.25 0 104.496 0 25.057 25.057 0 01-4.496 0z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Star/Rating
-  Star: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
-    </svg>
-  ),
-
-  // Heart/Like
-  Heart: ({ className = "w-6 h-6" }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
-    </svg>
-  ),
-
-  // Grid/Menu
-  Grid: ({ className = "w-6 h-6" }: IconProps) => (
+  Grid: ({ className = "w-5 h-5" }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
       <path fillRule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
     </svg>
   ),
-
-  // Columns/Layout
-  Columns: ({ className = "w-6 h-6" }: IconProps) => (
+  Scroll: ({ className = "w-5 h-5" }: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
-      <path fillRule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h17.25c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5z" clipRule="evenodd" />
-      <path fillRule="evenodd" d="M10.875 18.75a.375.375 0 01-.375-.375v-1.5a.375.375 0 01.375-.375h7.5a.375.375 0 01.375.375v1.5a.375.375 0 01-.375.375h-7.5z" clipRule="evenodd" />
+      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 0v12h8V4H6z" clipRule="evenodd" />
+    </svg>
+  ),
+  Headphones: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75v3.75a2.25 2.25 0 01-2.25 2.25H3.75a2.25 2.25 0 00-2.25 2.25v3.75a2.25 2.25 0 002.25 2.25h16.5a2.25 2.25 0 002.25-2.25v-3.75a2.25 2.25 0 00-2.25-2.25h-6.75a2.25 2.25 0 01-2.25-2.25V12z" clipRule="evenodd" />
+      <path d="M9.527 7.087a.75.75 0 01.943-.596l4.305 1.03a.75.75 0 01.596.943l-1.03 4.305a2.25 2.25 0 01-1.244 1.244l-4.305 1.03a.75.75 0 01-.943-.596l1.03-4.305a2.25 2.25 0 011.244-1.244l4.305 1.03z" />
     </svg>
   ),
 };
