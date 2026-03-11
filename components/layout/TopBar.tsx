@@ -68,32 +68,32 @@ export default function TopBar() {
                   >
                     <Link
                       href="/manga"
-                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      <span className="mr-2">📚</span> Manga
+                      <Icons.Book className="w-5 h-5" /> Manga
                     </Link>
                     <Link
                       href="/manhwa"
-                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      <span className="mr-2">🇰🇷</span> Manhwa
+                      <Icons.BookOpen className="w-5 h-5" /> Manhwa
                     </Link>
                     <Link
                       href="/manhua"
-                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      <span className="mr-2">🇨🇳</span> Manhua
+                      <Icons.Library className="w-5 h-5" /> Manhua
                     </Link>
                     <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
                     <Link
                       href="/comics"
-                      className="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
                       onClick={() => setShowDropdown(false)}
                     >
-                      All Comics
+                      <Icons.Grid className="w-5 h-5" /> All Comics
                     </Link>
                   </motion.div>
                 </>

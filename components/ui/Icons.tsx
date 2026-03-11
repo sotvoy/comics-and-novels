@@ -639,6 +639,40 @@ export const Icons = {
       <path fillRule="evenodd" d="M10.5 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm0 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm0 6a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clipRule="evenodd" />
     </svg>
   ),
+
+  // Comics platform icons
+  Book: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75v6.75a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25V12a.75.75 0 01.75-.75h-2.25a.75.75 0 010-1.5h1.5a.75.75 0 01.75.75v6.75a.75.75 0 01-.75.75H6.75v-5.25a.75.75 0 01.75-.75h9a.75.75 0 01.75.75v5.25h-4.5a.75.75 0 010-1.5h4.5V12a.75.75 0 01-.75-.75h-9z" clipRule="evenodd" />
+    </svg>
+  ),
+  BookOpen: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M2 6.75A2.25 2.25 0 014.25 4.5h15.5A2.25 2.25 0 0122 6.75v-.5a.75.75 0 011.5 0v.5a3 3 0 01-3 3H4.25a3 3 0 01-3-3v-.5a.75.75 0 011.5 0v.5zM4.25 12a.75.75 0 01.75-.75h15.5a.75.75 0 010 1.5H5a.75.75 0 01-.75-.75zM2.25 15.75a2.25 2.25 0 012.25-2.25h15.5a2.25 2.25 0 012.25 2.25V18a.75.75 0 01-1.5 0v-.75a3 3 0 00-3-3H4.25a3 3 0 00-3 3v.75a.75.75 0 01-1.5 0v-.75z" />
+    </svg>
+  ),
+  Library: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path fillRule="evenodd" d="M1.5 5.625c0-1.036.84-1.875 1.875-1.875h16.5c1.035 0 1.875.84 1.875 1.875v12.75c0 1.035-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 011.5 18.375V5.625zM21 9.375A.375.375 0 0020.625 9h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5zm0 3.75a.375.375 0 00-.375-.375h-7.5a.375.375 0 00-.375.375v1.5c0 .207.168.375.375.375h7.5a.375.375 0 00.375-.375v-1.5z" clipRule="evenodd" />
+      <path d="M10.875 18.75a.375.375 0 01-.375-.375v-1.5a.375.375 0 01.375-.375h7.5a.375.375 0 01.375.375v1.5a.375.375 0 01-.375.375h-7.5z" />
+    </svg>
+  ),
+  Grid: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path fillRule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
+    </svg>
+  ),
+  Scroll: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 0v12h8V4H6z" clipRule="evenodd" />
+    </svg>
+  ),
+  Headphones: ({ className = "w-5 h-5" }: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75v3.75a2.25 2.25 0 01-2.25 2.25H3.75a2.25 2.25 0 00-2.25 2.25v3.75a2.25 2.25 0 002.25 2.25h16.5a2.25 2.25 0 002.25-2.25v-3.75a2.25 2.25 0 00-2.25-2.25h-6.75a2.25 2.25 0 01-2.25-2.25V12z" clipRule="evenodd" />
+      <path d="M9.527 7.087a.75.75 0 01.943-.596l4.305 1.03a.75.75 0 01.596.943l-1.03 4.305a2.25 2.25 0 01-1.244 1.244l-4.305 1.03a.75.75 0 01-.943-.596l1.03-4.305a2.25 2.25 0 011.244-1.244l4.305 1.03z" />
+    </svg>
+  ),
 };
 
 export default Icons;
