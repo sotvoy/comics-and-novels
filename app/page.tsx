@@ -436,6 +436,32 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* Quick Access - Links to important pages */}
+        <section className="px-4 pb-8">
+          <h2 className="text-lg font-semibold mb-3">Quick Access</h2>
+          <div className="grid grid-cols-4 gap-3">
+            {[
+              { id: 'discover', label: 'Discover', href: '/discover', color: 'bg-red-500' },
+              { id: 'ranking', label: 'Ranking', href: '/ranking', color: 'bg-yellow-500' },
+              { id: 'events', label: 'Events', href: '/events', color: 'bg-green-500' },
+              { id: 'news', label: 'News', href: '/news', color: 'bg-blue-500' },
+              { id: 'community', label: 'Community', href: '/community', color: 'bg-purple-500' },
+              { id: 'leaderboard', label: 'Leaderboard', href: '/leaderboard', color: 'bg-orange-500' },
+              { id: 'achievements', label: 'Achievements', href: '/achievements', color: 'bg-pink-500' },
+              { id: 'activity', label: 'Activity', href: '/activity', color: 'bg-cyan-500' },
+            ].map((item) => (
+              <Link key={item.id} href={item.href}>
+                <div className="flex flex-col items-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                  <div className={`w-10 h-10 ${item.color} rounded-full flex items-center justify-center`}>
+                    <Icons.Star className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-xs font-medium">{item.label}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
