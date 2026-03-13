@@ -29,44 +29,75 @@
 | ComicsRanking | /comics/ranking |
 | ComicsEvents | /comics/events |
 
-### Comic Series Page
-Route: /series/[slug]
-| Component | Description |
-|-----------|-------------|
-| ComicSeriesPage | Main series page wrapper |
-| ComicSeriesOverview | Banner, cover, description |
-| ComicSeriesChapters | Chapter list |
-| ComicSeriesComments | User comments |
-| ComicSeriesRatings | User ratings |
-| ComicSeriesRecommendations | Similar series |
-| ComicSeriesRelated | Related series |
-| ComicSeriesDiscussion | Fan discussion |
-| ComicSeriesFanArt | Fan art gallery |
-| ComicSeriesNews | Series news |
+### Comic Series Page (Route: /series/[slug])
+| Component |
+|-----------|
+| ComicSeriesPage |
+| ComicSeriesOverview |
+| ComicSeriesChapters |
+| ComicSeriesComments |
+| ComicSeriesRatings |
+| ComicSeriesRecommendations |
+| ComicSeriesRelated |
+| ComicSeriesDiscussion |
+| ComicSeriesFanArt |
+| ComicSeriesNews |
 
 ### Comic Reader Modes
-| Component | Description |
-|-----------|-------------|
-| ComicReaderVertical | Vertical scroll (webtoon) |
-| ComicReaderHorizontal | Horizontal page flip |
-| ComicReaderFullscreen | Fullscreen immersive |
-| ComicReaderOffline | Offline reading |
-| ComicReaderNightMode | Dark theme |
-| ComicReaderAutoScroll | Auto-scroll |
-| ComicReaderPanelMode | Grid panel view |
+| Component |
+|-----------|
+| ComicReaderVertical |
+| ComicReaderHorizontal |
+| ComicReaderFullscreen |
+| ComicReaderOffline |
+| ComicReaderNightMode |
+| ComicReaderAutoScroll |
+| ComicReaderPanelMode |
 
 ### Reader Tools
-| Component | Description |
-|-----------|-------------|
-| ReaderToolbar | Top toolbar |
-| ReaderSettings | Settings panel |
-| ReaderBookmarks | Save positions |
-| ReaderChapterSelector | Chapter nav |
-| ReaderDownloadManager | Download manager |
+| Component |
+|-----------|
+| ReaderToolbar |
+| ReaderSettings |
+| ReaderBookmarks |
+| ReaderChapterSelector |
+| ReaderDownloadManager |
 
 ---
 
-## NOVELS SYSTEM (Similar Structure)
+## NOVEL SYSTEM (200+ Pages)
+
+### Novels Home Pages
+| Page | Route |
+|------|-------|
+| NovelsHome | /novels |
+| NovelsTrending | /novels/trending |
+| NovelsPopular | /novels/popular |
+| NovelsNew | /novels/new |
+| NovelsCompleted | /novels/completed |
+| NovelsRanking | /novels/ranking |
+
+### Novel Series Page (Route: /novels/[slug])
+| Component |
+|-----------|
+| NovelSeriesPage |
+| NovelSeriesOverview |
+| NovelSeriesChapters |
+| NovelSeriesReviews |
+| NovelSeriesDiscussion |
+| NovelSeriesFanArt |
+| NovelSeriesRecommendations |
+
+### Novel Reader
+| Component |
+|-----------|
+| NovelReader |
+| NovelReaderFullscreen |
+| NovelReaderNightMode |
+| NovelReaderOffline |
+| NovelReaderAudio |
+| NovelReaderBookmark |
+| NovelReaderFontSettings |
 
 ---
 
