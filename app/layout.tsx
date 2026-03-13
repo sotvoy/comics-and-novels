@@ -5,6 +5,10 @@ import TopBar from '@/components/layout/TopBar';
 import BottomBar from '@/components/layout/BottomBar';
 import ServiceWorkerRegistration from '@/components/pwa/ServiceWorkerRegistration';
 import PlausibleAnalytics from '@/components/analytics/PlausibleAnalytics';
+import LoadingOverlay from '@/components/ui/LoadingOverlay';
+import ModalManager from '@/components/ui/ModalManager';
+import FloatingChatWindow from '@/components/features/FloatingChatWindow';
+import OfflineCacheController from '@/components/pwa/OfflineCacheController';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -37,9 +41,13 @@ export default function RootLayout({
                 {children}
               </main>
               <BottomBar />
+              <FloatingChatWindow />
+              <OfflineCacheController />
             </div>
           </AuthProvider>
         </QueryProvider>
+        <LoadingOverlay />
+        <ModalManager />
         <PlausibleAnalytics />
       </body>
     </html>

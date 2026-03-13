@@ -13,129 +13,120 @@
 | **Analytics** | Plausible |
 | **Error Tracking** | Sentry |
 
+## CORE APP SHELL (Load on Every Page)
+
+| Component | Description |
+|-----------|-------------|
+| **AppShell** | Main shell wrapping all pages |
+| **TopBar** | Navigation header with menu, search, notifications |
+| **BottomBar** | Mobile bottom navigation |
+| **DrawerMenu** | Side drawer with navigation |
+| **FloatingChatWindow** | Draggable global chat |
+| **NotificationCenter** | Notification dropdown |
+| **ThemeManager** | Light/Dark mode provider |
+| **ModalSystem** | Global modal manager |
+| **LoadingSystem** | Page transition loading overlay |
+| **PWAController** | Service worker registration |
+| **OfflineCacheController** | Offline detection & caching |
+
 ## Project Structure
 
 ```
 comics-and-novels/
-├── app/                    # Next.js App Router pages
-│   ├── page.tsx           # Home page
-│   ├── comics/             # Comics page
-│   ├── novels/            # Novels page
-│   ├── search/            # Search page
-│   ├── series/[slug]/     # Series detail page
-│   ├── read/[slug]/[chapter]/  # Reader page
-│   ├── creator/           # Creator studio
-│   ├── profile/           # User profiles
-│   ├── api/               # API routes (Supabase Edge Functions)
-│   └── ...                # Other pages
-├── components/            # React components
-│   ├── layout/            # TopBar, BottomBar, Drawer
-│   ├── ui/                # Reusable UI components
-│   ├── reader/            # Comic/Novel reader
-│   └── creator/           # Creator tools
+├── app/                    # Next.js App Router pages (55+ pages)
+├── components/            # React components (39+ components)
+│   ├── layout/           # TopBar, BottomBar, Drawer
+│   ├── ui/               # Reusable UI components
+│   ├── reader/           # Comic/Novel reader
+│   ├── creator/          # Creator tools
+│   ├── features/         # FloatingChat, AIAssistant, WorldChat
+│   ├── providers/        # Theme, Query, Supabase providers
+│   ├── pwa/              # PWA & Offline controllers
+│   ├── analytics/        # Plausible analytics
+│   ├── auth/             # Login, Register forms
+│   ├── social/           # Follow, Bookmark buttons
+│   ├── comments/         # Comments section
+│   └── moderation/       # Report, Moderation
 ├── lib/                   # Utilities & configs
-│   ├── supabaseClient.ts  # Supabase client
-│   ├── navigation.ts      # Navigation config
-│   └── ...
 ├── database/              # Database schema & seeds
-│   ├── schema.sql         # Database schema
-│   └── seed.sql           # Demo data
-├── supabase/              # Supabase configuration
-│   └── seed.ts           # Seed data script
-└── public/                # Static assets
+└── public/               # Static assets
 ```
 
-## Backend - Supabase
+## Components List (39+)
 
-### Supabase Provides:
-- **PostgreSQL Database** - All data storage
-- **Authentication** - Email, Google, GitHub login
-- **Row Level Security (RLS)** - Secure data access
-- **Real-time Subscriptions** - Live updates
-- **Edge Functions** - Serverless API endpoints
-- **Storage** - File uploads (via Cloudinary)
+### Layout Components
+- TopBar - Navigation header
+- BottomBar - Mobile bottom nav
 
-### Database Tables:
-- `users` - User profiles, levels, achievements
-- `series` - Comics & novels
-- `chapters` - Chapter content
-- `comments` - User comments
-- `likes` - Reactions & likes
-- `follows` - Follow/Subscribe system
-- `bookmarks` - Saved content
-- `reading_history` - User reading progress
-- `genres` - Content categories
-- `tags` - Content tags
-- `notifications` - User notifications
-- `posts` - Community posts
-- `world_chat` - Global chat
-- `ratings` - User ratings
+### Core Shell Components
+- AppShell - Main shell wrapper
+- LoadingOverlay - Global loading
+- ModalManager - Global modal system
+- FloatingChatWindow - World chat
+- OfflineCacheController - Offline support
+- ServiceWorkerRegistration - PWA
 
-## Features
+### UI Components
+- CategoryPills - Genre navigation
+- Icons - SVG icon library
+- NotificationDropdown - Notifications
+- SearchAutocomplete - Search input
+- UIComponents - Reusable UI elements
+- AnimatedButtons - Button animations
 
-### Core Features
-- Comics & Novels reading platform
-- Multiple content types: Manga, Manhwa, Manhua
-- Genre-based filtering & search
-- Reading history & bookmarks
-- Follow/Subscription system
-- Comments & Reactions
-- User ratings
+### Feature Components
+- AIAssistant - AI chat assistant
+- WorldChat - Global chat
+- AudioPlayer - Audio playback
+- ClientLayout - Client-side layout
 
-### Creator Tools
-- Publish comics and novels
-- Chapter management
-- Analytics dashboard
+### Creator Components
+- SeriesManagement
+- NovelEditor
+- UploadProgress
+- ContentScheduling
+- CreatorAnalytics
+- CommentModeration
+- ImageReorder
+- CreateSeriesForm
+- UploadChapterForm
 
-### User Features
-- User profiles with achievements
-- Reading lists & favorites
-- Notifications
-- Dark/Light theme
+### Series Components
+- SeriesCard
+- ReadingProgress
 
-## Environment Variables
+### Auth Components
+- LoginForm
+- RegisterForm
 
-Required environment variables for production:
+### Social Components
+- BookmarkButton
+- FollowButton
 
-```env
-# Supabase
-NEXT_PUBLIC_SUPABASE_URL=https://zfsxduowawvnimojbtvk.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+### Comments Components
+- CommentsSection
 
-# Cloudinary
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
-NEXT_PUBLIC_CLOUDINARY_UNSIGNED_PRESET=your_preset
+### Moderation Components
+- ReportButton
 
-# Analytics
-NEXT_PUBLIC_PLAUSIBLE_DOMAIN=your_domain
-SENTRY_DSN=your_sentry_dsn
+### Providers
+- QueryProvider
+- SupabaseProvider
+- ThemeProvider
 
-# Auth
-NEXT_PUBLIC_GOOGLE_CLIENT_ID=your_google_client_id
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
-```
+### Analytics
+- PlausibleAnalytics
+
+## Database Tables
+
+- users, series, chapters, comments, likes
+- follows, bookmarks, reading_history
+- genres, tags, notifications, posts
+- world_chat, ratings
 
 ## Deployment
 
-The app deploys automatically to Vercel when pushed to GitHub main branch.
-
-### Build Command
-```bash
-npm run build
-```
-
-### Output Directory
-```bash
-.next
-```
-
-## Database Setup
-
-1. Create a Supabase project
-2. Run the SQL schema from `database/schema.sql`
-3. Seed demo data from `database/seed.sql`
-4. Configure RLS policies
+Automatic deployment to Vercel on GitHub push.
 
 ## License
 
