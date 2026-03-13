@@ -13,6 +13,25 @@
 | **Analytics** | Plausible |
 | **Error Tracking** | Sentry |
 
+## Total Pages/Components: 150+
+
+## CARD SYSTEM
+
+Each card contains a link to the **Series Info Page** (`/series/[slug]`)
+
+### Card Information Display:
+- Series Cover Image
+- Series Title
+- Author/Creator Name
+- Chapter Count
+- Like Count (with heart icon)
+- Comment Count (with comment icon)
+- Time Since Update
+
+Cards are clickable and navigate to the Series Info Page.
+
+---
+
 ## HOME SYSTEM (120+ Pages)
 
 ### Main Home Sections (Category Pills Navigation)
@@ -83,7 +102,7 @@ Each section contains **comics + novels** mixed together.
 | Leaderboard | `/leaderboard` |
 | Achievements | `/achievements` |
 
-### Additional Pages (55+ total)
+### Additional Pages
 
 - `/settings` - App settings
 - `/login` - User login
@@ -93,7 +112,11 @@ Each section contains **comics + novels** mixed together.
 - `/quests` - Daily quests
 - `/levels` - User levels
 - `/activity` - Activity feed
+- `/organizations` - Organizations
+- `/author/[slug]` - Author profile
 - And more...
+
+---
 
 ## CORE APP SHELL (Load on Every Page)
 
@@ -109,7 +132,7 @@ Each section contains **comics + novels** mixed together.
 | **PWAController** | Service worker registration |
 | **OfflineCacheController** | Offline detection & caching |
 
-## Components (39+)
+## Components (40+)
 
 - TopBar, BottomBar
 - AppShell, LoadingOverlay, ModalManager
