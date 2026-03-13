@@ -16,6 +16,33 @@
 
 ---
 
+## COMMUNITY SYSTEM (120+ Pages)
+
+Inspired by Reddit and Discord.
+
+### Community Pages
+| Page |
+|------|
+| CommunityHome |
+| CommunityTrending |
+| CommunityPosts |
+| CommunityNews |
+| CommunityEvents |
+| CommunityPolls |
+| CommunityMemes |
+| CommunityFanArt |
+| CommunityDiscussions |
+
+### Post System
+| Component |
+|-----------|
+| PostEditor |
+| PostComments |
+| PostReactions |
+| PostModeration |
+
+---
+
 ## CREATOR STUDIO (150+ Pages)
 
 Creator dashboard like YouTube Studio.
@@ -48,7 +75,7 @@ Creator dashboard like YouTube Studio.
 ---
 
 ## GENRES SYSTEM (120+ Pages)
-50 genres × 4 pages each = 200+ pages
+50 genres × 4 pages each
 
 ### Example Genres
 | Genre |
@@ -65,59 +92,25 @@ Creator dashboard like YouTube Studio.
 | GenreHistorical |
 | ... (50 total) |
 
-### Each Genre Has 4 Pages
-| Page Type |
-|-----------|
-| GenreTrending |
-| GenrePopular |
-| GenreNew |
-| GenreTopRanking |
-
 ---
 
 ## SEARCH SYSTEM (80+ Pages)
 Similar to YouTube search UI.
-| Page |
-|------|
-| SearchPage |
-| SearchComics |
-| SearchNovels |
-| SearchCreators |
-| SearchGenres |
-| SearchTags |
-
-### Search Filters
-| Component |
-|-----------|
-| SearchFilterGenres |
-| SearchFilterTags |
-| SearchFilterStatus |
-| SearchFilterLanguage |
-| SearchFilterPopularity |
-| SearchFilterRating |
-| SearchFilterDate |
-
-### Advanced Search
-| Component |
-|-----------|
-| MultiGenreSelector |
-| TagSelector |
-| ContentTypeSelector |
 
 ---
 
 ## COMICS SYSTEM (200+ Pages)
 
 ### Comics Home Pages
-| Page | Route |
-|------|-------|
-| ComicsHome | /comics |
-| ComicsTrending | /comics/trending |
-| ComicsPopular | /comics/popular |
-| ComicsNew | /comics/new |
-| ComicsCompleted | /comics/completed |
-| ComicsRanking | /comics/ranking |
-| ComicsEvents | /comics/events |
+| Page |
+|------|
+| ComicsHome |
+| ComicsTrending |
+| ComicsPopular |
+| ComicsNew |
+| ComicsCompleted |
+| ComicsRanking |
+| ComicsEvents |
 
 ### Comic Series Page
 | Component |
