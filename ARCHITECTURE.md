@@ -23,17 +23,10 @@ Each carousel contains these components:
 
 | Component | Description |
 |-----------|-------------|
-| **ComicCard** | Card display for comic series with cover, title, author, chapters, likes, comments |
-| **NovelCard** | Card display for novel series with cover, title, author, chapters, likes, comments |
-| **SeriesInfoPopup** | Quick info popup on card hover/tap showing series details |
-| **QuickActionsMenu** | Quick action buttons (like, bookmark, share, follow) on each card |
-
-### Carousel Features:
-- Horizontal scrolling
-- 3 cards visible per frame on mobile
-- Lazy loading images
-- Touch/swipe support
-- Navigation dots or arrows
+| **ComicCard** | Card display for comic series |
+| **NovelCard** | Card display for novel series |
+| **SeriesInfoPopup** | Quick info popup on hover/tap |
+| **QuickActionsMenu** | Like, bookmark, share, follow buttons |
 
 ---
 
@@ -41,49 +34,73 @@ Each carousel contains these components:
 
 Each card contains a link to the **Series Info Page** (`/series/[slug]`)
 
-### Card Information Display:
 - Series Cover Image
 - Series Title
 - Author/Creator Name
 - Chapter Count
-- Like Count (with heart icon)
-- Comment Count (with comment icon)
+- Like Count (heart icon)
+- Comment Count (comment icon)
 - Time Since Update
 
-Cards are clickable and navigate to the Series Info Page.
+---
+
+## COMIC SERIES PAGE
+
+Route: `/series/[slug]`
+
+### Components:
+
+| Component | Description |
+|-----------|-------------|
+| **ComicSeriesPage** | Main series page wrapper |
+| **ComicSeriesOverview** | Banner, cover, description, genres, status |
+| **ComicSeriesChapters** | Chapter list with numbers, titles, dates |
+| **ComicSeriesComments** | User comments and replies |
+| **ComicSeriesRatings** | User ratings and reviews |
+| **ComicSeriesRecommendations** | Similar series suggestions |
+| **ComicSeriesRelated** | Related series recommendations |
+| **ComicSeriesDiscussion** | Fan discussion threads |
+| **ComicSeriesFanArt** | Fan art gallery |
+| **ComicSeriesNews** | Series-related news and updates |
+
+---
+
+## NOVEL SERIES PAGE
+
+Route: `/novels/[slug]`
+
+Similar components as Comic Series Page with novel-specific formatting.
 
 ---
 
 ## HOME SYSTEM (120+ Pages)
 
-### Main Home Sections (Category Pills Navigation)
+### Main Home Sections
 
-| Page | Route | Description |
-|------|-------|-------------|
-| **All** | `/` | Main home - all comics + novels |
-| **For You** | `/for-you` | Personalized recommendations |
-| **New** | `/new` | Newly added content |
-| **Recent** | `/recent` | Recently updated |
-| **Popular** | `/popular` | Popular now |
-| **Trending** | `/trending` | Trending content |
-| **Shorts** | `/shorts` | Short comics/novels |
-| **Top Ranking** | `/ranking` | Top ranked content |
-| **Events** | `/events` | Special events |
-| **News** | `/news` | Latest news |
-| **Community** | `/community` | Community posts |
-
-Each section contains **comics + novels** mixed together.
+| Page | Route |
+|------|-------|
+| All | `/` |
+| For You | `/for-you` |
+| New | `/new` |
+| Recent | `/recent` |
+| Popular | `/popular` |
+| Trending | `/trending` |
+| Shorts | `/shorts` |
+| Top Ranking | `/ranking` |
+| Events | `/events` |
+| News | `/news` |
+| Community | `/community` |
 
 ### Content Type Pages
 
-| Page | Route | Description |
-|------|-------|-------------|
-| Comics | `/comics` | All comics only |
-| Novels | `/novels` | All novels only |
-| Manga | `/manga` | Japanese comics |
-| Manhwa | `/manhwa` | Korean comics |
-| Manhua | `/manhua` | Chinese comics |
-| Audiobooks | `/audiobooks` | Audio content |
+| Page | Route |
+|------|-------|
+| Comics | `/comics` |
+| Novels | `/novels` |
+| Manga | `/manga` |
+| Manhwa | `/manhwa` |
+| Manhua | `/manhua` |
+| Audiobooks | `/audiobooks` |
 
 ### Library Pages
 
@@ -94,15 +111,12 @@ Each section contains **comics + novels** mixed together.
 | History | `/history` |
 | Watch Later | `/watch-later` |
 | Collections | `/collections` |
-| Playlists | `/playlists` |
 
 ### Creator Pages
 
 | Page | Route |
 |------|-------|
 | Creator Studio | `/creator` |
-| Publish Art | `/publish-art` |
-| Write Stories | `/write-stories` |
 | Upload Comic | `/upload/comic` |
 | Upload Novel | `/upload/novel` |
 
@@ -115,44 +129,23 @@ Each section contains **comics + novels** mixed together.
 | Messages | `/messages` |
 | Notifications | `/notifications` |
 
-### Discovery Pages
-
-| Page | Route |
-|------|-------|
-| Discover | `/discover` |
-| Search | `/search` |
-| Leaderboard | `/leaderboard` |
-| Achievements | `/achievements` |
-
 ---
 
-## CORE APP SHELL (Load on Every Page)
+## CORE APP SHELL
 
 | Component | Description |
 |-----------|-------------|
-| **TopBar** | Navigation header with menu, search, notifications |
-| **BottomBar** | Mobile bottom navigation |
-| **FloatingChatWindow** | Draggable global chat |
-| **NotificationCenter** | Notification dropdown |
-| **ThemeManager** | Light/Dark mode provider |
-| **ModalSystem** | Global modal manager |
-| **LoadingSystem** | Page transition loading overlay |
-| **PWAController** | Service worker registration |
-| **OfflineCacheController** | Offline detection & caching |
+| **TopBar** | Navigation header |
+| **BottomBar** | Mobile bottom nav |
+| **FloatingChatWindow** | Global chat |
+| **NotificationCenter** | Notifications |
+| **ThemeManager** | Dark mode |
+| **ModalSystem** | Global modals |
+| **LoadingSystem** | Page transitions |
+| **PWAController** | PWA support |
+| **OfflineCacheController** | Offline support |
 
-## Components (40+)
-
-- TopBar, BottomBar
-- AppShell, LoadingOverlay, ModalManager
-- FloatingChatWindow, OfflineCacheController
-- CategoryPills, Icons, NotificationDropdown
-- SearchAutocomplete, AnimatedButtons
-- AIAssistant, WorldChat, AudioPlayer
-- SeriesCard, ReadingProgress
-- LoginForm, RegisterForm
-- BookmarkButton, FollowButton
-- CommentsSection, ReportButton
-- And more...
+---
 
 ## Deployment
 
