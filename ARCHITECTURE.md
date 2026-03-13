@@ -16,11 +16,37 @@
 
 ---
 
+## GENRES SYSTEM (120+ Pages)
+
+50 genres × 4 pages each = 200+ pages
+
+### Example Genres
+| Genre |
+|-------|
+| GenreAction |
+| GenreRomance |
+| GenreFantasy |
+| GenreAdventure |
+| GenreDrama |
+| GenreComedy |
+| GenreHorror |
+| GenreSciFi |
+| GenreMystery |
+| GenreHistorical |
+| ... (50 total) |
+
+### Each Genre Has 4 Pages
+| Page Type | Description |
+|-----------|-------------|
+| GenreTrending | Trending in this genre |
+| GenrePopular | Popular in this genre |
+| GenreNew | New releases in this genre |
+| GenreTopRanking | Top ranked in this genre |
+
+---
+
 ## SEARCH SYSTEM (80+ Pages)
-
 Similar to YouTube search UI.
-
-### Search Pages
 | Page | Route |
 |------|-------|
 | SearchPage | /search |
