@@ -46,7 +46,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'achievements', label: 'Achievements', href: '/achievements', priority: 20, type: 'navigation' },
   { id: 'chat', label: 'Chat', href: '/chat', priority: 21, type: 'navigation' },
   { id: 'messages', label: 'Messages', href: '/messages', priority: 22, type: 'navigation' },
-  { id: 'settings', label: 'Settings', href: '/settings', priority: 23, type: 'navigation' },
 ];
 
 // Bottom navigation items
@@ -61,31 +60,10 @@ export const BOTTOM_NAV_ITEMS: NavItem[] = [
 // Creator actions for the plus menu
 export const CREATOR_ACTIONS: CreatorAction[] = [
   { 
-    id: 'creator-studio', 
-    label: 'Creator Studio', 
-    href: '/creator', 
-    icon: 'LayoutDashboard',
-    description: 'Manage your content'
-  },
-  { 
-    id: 'upload-comic', 
-    label: 'Upload Comic', 
-    href: '/upload/comic', 
-    icon: 'Image',
-    description: 'Upload a new comic chapter'
-  },
-  { 
-    id: 'upload-novel', 
-    label: 'Upload Novel', 
-    href: '/upload/novel', 
-    icon: 'BookOpen',
-    description: 'Upload a new novel chapter'
-  },
-  { 
     id: 'publish-art', 
     label: 'Publish Art', 
     href: '/publish-art', 
-    icon: 'Palette',
+    icon: 'Image',
     description: 'Upload and publish comics/artwork'
   },
   { 
@@ -101,13 +79,6 @@ export const CREATOR_ACTIONS: CreatorAction[] = [
     href: '/upload/post', 
     icon: 'Newspaper',
     description: 'Share news, events, or community posts'
-  },
-  { 
-    id: 'organization', 
-    label: 'Create Organization', 
-    href: '/organizations', 
-    icon: 'Users',
-    description: 'Create a scanlation team'
   },
 ];
 
