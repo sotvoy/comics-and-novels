@@ -12,13 +12,32 @@
 | Analytics | Plausible |
 | Error Tracking | Sentry |
 
-## Total UI Components: 250+
+---
+
+# TOTAL UI SCALE
+
+## Approximate Size:
+
+| System | Components |
+|--------|------------|
+| Core Components | 40 |
+| Home System | 150 |
+| Comics System | 250 |
+| Novels System | 220 |
+| Search System | 100 |
+| Genres System | 200 |
+| Creator Studio | 180 |
+| Community System | 120 |
+| Profile System | 100 |
+| Organizations | 80 |
+| Chat System | 60 |
+| Settings | 100 |
+
+## Total ≈ 1600+ UI pages/components
 
 ---
 
 ## SETTINGS SYSTEM (100+ Pages)
-
-### Settings Pages
 | Page |
 |------|
 | SettingsGeneral |
@@ -35,10 +54,6 @@
 ---
 
 ## CHAT SYSTEM (60+ Pages)
-
-Game-style global chat.
-
-### Chat Pages
 | Page |
 |------|
 | WorldChat |
@@ -51,10 +66,6 @@ Game-style global chat.
 ---
 
 ## ORGANIZATION SYSTEM (80+ Pages)
-
-Groups similar to scanlation teams.
-
-### Organization Pages
 | Page |
 |------|
 | OrganizationPage |
@@ -67,38 +78,99 @@ Groups similar to scanlation teams.
 ---
 
 ## PROFILE SYSTEM (100+ Pages)
-
-Inspired by YouTube + game profile systems.
+| Page |
+|------|
+| ProfilePage |
+| ProfileSeries |
+| ProfileFavorites |
+| ProfileReadingHistory |
+| ProfileAchievements |
+| ProfileFollowers |
+| ProfileFollowing |
+| ProfileOrganizations |
+| ProfileSettings |
 
 ---
 
 ## COMMUNITY SYSTEM (120+ Pages)
-
-Inspired by Reddit and Discord.
+| Page |
+|------|
+| CommunityHome |
+| CommunityTrending |
+| CommunityPosts |
+| CommunityNews |
+| CommunityEvents |
+| CommunityPolls |
+| CommunityMemes |
+| CommunityFanArt |
+| CommunityDiscussions |
 
 ---
 
-## CREATOR STUDIO (150+ Pages)
-
-Creator dashboard like YouTube Studio.
+## CREATOR STUDIO (180+ Pages)
+| Page |
+|------|
+| CreatorDashboard |
+| CreatorAnalytics |
+| CreatorSeriesManager |
+| CreatorChapterManager |
+| CreatorUploadComic |
+| CreatorUploadNovel |
+| CreatorDraftManager |
+| CreatorScheduledPosts |
 
 ---
 
-## GENRES SYSTEM (120+ Pages)
+## GENRES SYSTEM (200+ Pages)
 50 genres × 4 pages each
 
 ---
 
-## SEARCH SYSTEM (80+ Pages)
-Similar to YouTube search UI.
+## SEARCH SYSTEM (100+ Pages)
+| Page |
+|------|
+| SearchPage |
+| SearchComics |
+| SearchNovels |
+| SearchCreators |
+| SearchGenres |
+| SearchTags |
 
 ---
 
-## COMICS SYSTEM (200+ Pages)
+## COMICS SYSTEM (250+ Pages)
+| Page |
+|------|
+| ComicsHome |
+| ComicsTrending |
+| ComicsPopular |
+| ComicsNew |
+| ComicsCompleted |
+| ComicsRanking |
+| ComicsEvents |
+
+### Comic Reader
+| Component |
+|-----------|
+| ComicReaderVertical |
+| ComicReaderHorizontal |
+| ComicReaderFullscreen |
+| ComicReaderOffline |
+| ComicReaderNightMode |
+| ComicReaderAutoScroll |
+| ComicReaderPanelMode |
 
 ---
 
-## NOVEL SYSTEM (200+ Pages)
+## NOVELS SYSTEM (220+ Pages)
+| Page |
+|------|
+| NovelsHome |
+| NovelsTrending |
+| NovelsPopular |
+| NovelsNew |
+| NovelsCompleted |
+| NovelsRanking |
 
 ---
 
@@ -117,11 +189,35 @@ Each card links to Series Info Page
 
 ---
 
-## HOME SYSTEM (120+ Pages)
+## HOME SYSTEM (150+ Pages)
+| Page |
+|------|
+| All |
+| For You |
+| New |
+| Recent |
+| Popular |
+| Trending |
+| Shorts |
+| Ranking |
+| Events |
+| News |
+| Community |
 
 ---
 
-## CORE APP SHELL
+## CORE APP SHELL (40 Components)
+| Component |
+|-----------|
+| TopBar |
+| BottomBar |
+| FloatingChatWindow |
+| NotificationCenter |
+| ThemeManager |
+| ModalSystem |
+| LoadingSystem |
+| PWAController |
+| OfflineCacheController |
 
 ---
 
