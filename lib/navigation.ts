@@ -35,11 +35,24 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'events', label: 'Events', href: '/events', priority: 9, type: 'navigation' },
   { id: 'news', label: 'News', href: '/news', priority: 10, type: 'navigation' },
   { id: 'community', label: 'Community', href: '/community', priority: 11, type: 'navigation' },
+  { id: 'manga', label: 'Manga', href: '/manga', priority: 12, type: 'navigation' },
+  { id: 'manhwa', label: 'Manhwa', href: '/manhwa', priority: 13, type: 'navigation' },
+  { id: 'manhua', label: 'Manhua', href: '/manhua', priority: 14, type: 'navigation' },
+  { id: 'novels', label: 'Novels', href: '/novels', priority: 15, type: 'navigation' },
+  { id: 'audiobooks', label: 'Audiobooks', href: '/audiobooks', priority: 16, type: 'navigation' },
+  { id: 'search', label: 'Search', href: '/search', priority: 17, type: 'navigation' },
+  { id: 'discover', label: 'Discover', href: '/discover', priority: 18, type: 'navigation' },
+  { id: 'leaderboard', label: 'Leaderboard', href: '/leaderboard', priority: 19, type: 'navigation' },
+  { id: 'achievements', label: 'Achievements', href: '/achievements', priority: 20, type: 'navigation' },
+  { id: 'chat', label: 'Chat', href: '/chat', priority: 21, type: 'navigation' },
+  { id: 'messages', label: 'Messages', href: '/messages', priority: 22, type: 'navigation' },
+  { id: 'settings', label: 'Settings', href: '/settings', priority: 23, type: 'navigation' },
 ];
 
 // Bottom navigation items
 export const BOTTOM_NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Home', href: '/', icon: 'Home', type: 'navigation' },
+  { id: 'explore', label: 'Explore', href: '/discover', icon: 'Compass', type: 'navigation' },
   { id: 'my-list', label: 'My List', href: '/my-list', icon: 'List', type: 'navigation' },
   { id: 'create', label: 'Create', href: '#create', icon: 'Plus', type: 'creator' },
   { id: 'following', label: 'Following', href: '/following', icon: 'Following', type: 'social' },
@@ -49,10 +62,31 @@ export const BOTTOM_NAV_ITEMS: NavItem[] = [
 // Creator actions for the plus menu
 export const CREATOR_ACTIONS: CreatorAction[] = [
   { 
+    id: 'creator-studio', 
+    label: 'Creator Studio', 
+    href: '/creator', 
+    icon: 'LayoutDashboard',
+    description: 'Manage your content'
+  },
+  { 
+    id: 'upload-comic', 
+    label: 'Upload Comic', 
+    href: '/upload/comic', 
+    icon: 'Image',
+    description: 'Upload a new comic chapter'
+  },
+  { 
+    id: 'upload-novel', 
+    label: 'Upload Novel', 
+    href: '/upload/novel', 
+    icon: 'BookOpen',
+    description: 'Upload a new novel chapter'
+  },
+  { 
     id: 'publish-art', 
     label: 'Publish Art', 
     href: '/publish-art', 
-    icon: 'Image',
+    icon: 'Palette',
     description: 'Upload and publish comics/artwork'
   },
   { 
@@ -68,6 +102,13 @@ export const CREATOR_ACTIONS: CreatorAction[] = [
     href: '/upload/post', 
     icon: 'Newspaper',
     description: 'Share news, events, or community posts'
+  },
+  { 
+    id: 'organization', 
+    label: 'Create Organization', 
+    href: '/organizations', 
+    icon: 'Users',
+    description: 'Create a scanlation team'
   },
 ];
 
