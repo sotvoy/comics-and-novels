@@ -16,6 +16,22 @@
 
 ---
 
+## CHAT SYSTEM (60+ Pages)
+
+Game-style global chat.
+
+### Chat Pages
+| Page |
+|------|
+| WorldChat |
+| SeriesChat |
+| ChapterChat |
+| PrivateMessages |
+| GroupChat |
+| ChatSettings |
+
+---
+
 ## ORGANIZATION SYSTEM (80+ Pages)
 
 Groups similar to scanlation teams.
@@ -46,46 +62,11 @@ Groups similar to scanlation teams.
 
 Inspired by YouTube + game profile systems.
 
-### Profile Pages
-| Page |
-|------|
-| ProfilePage |
-| ProfileSeries |
-| ProfileFavorites |
-| ProfileReadingHistory |
-| ProfileAchievements |
-| ProfileFollowers |
-| ProfileFollowing |
-| ProfileOrganizations |
-| ProfileSettings |
-
-### Game Features
-| Feature |
-|---------|
-| AvatarFrame |
-| AnimatedName |
-| BadgeSystem |
-| AchievementShowcase |
-| RankDisplay |
-
 ---
 
 ## COMMUNITY SYSTEM (120+ Pages)
 
 Inspired by Reddit and Discord.
-
-### Community Pages
-| Page |
-|------|
-| CommunityHome |
-| CommunityTrending |
-| CommunityPosts |
-| CommunityNews |
-| CommunityEvents |
-| CommunityPolls |
-| CommunityMemes |
-| CommunityFanArt |
-| CommunityDiscussions |
 
 ---
 
