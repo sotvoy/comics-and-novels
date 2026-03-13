@@ -15,6 +15,28 @@
 
 ## Total Pages/Components: 150+
 
+---
+
+## CAROUSEL SYSTEM
+
+Each carousel contains these components:
+
+| Component | Description |
+|-----------|-------------|
+| **ComicCard** | Card display for comic series with cover, title, author, chapters, likes, comments |
+| **NovelCard** | Card display for novel series with cover, title, author, chapters, likes, comments |
+| **SeriesInfoPopup** | Quick info popup on card hover/tap showing series details |
+| **QuickActionsMenu** | Quick action buttons (like, bookmark, share, follow) on each card |
+
+### Carousel Features:
+- Horizontal scrolling
+- 3 cards visible per frame on mobile
+- Lazy loading images
+- Touch/swipe support
+- Navigation dots or arrows
+
+---
+
 ## CARD SYSTEM
 
 Each card contains a link to the **Series Info Page** (`/series/[slug]`)
@@ -101,20 +123,6 @@ Each section contains **comics + novels** mixed together.
 | Search | `/search` |
 | Leaderboard | `/leaderboard` |
 | Achievements | `/achievements` |
-
-### Additional Pages
-
-- `/settings` - App settings
-- `/login` - User login
-- `/register` - User registration
-- `/series/[slug]` - Series detail
-- `/read/[slug]/[chapter]` - Chapter reader
-- `/quests` - Daily quests
-- `/levels` - User levels
-- `/activity` - Activity feed
-- `/organizations` - Organizations
-- `/author/[slug]` - Author profile
-- And more...
 
 ---
 
