@@ -13,14 +13,94 @@
 | **Analytics** | Plausible |
 | **Error Tracking** | Sentry |
 
+## HOME SYSTEM (120+ Pages)
+
+### Main Home Sections (Category Pills Navigation)
+
+| Page | Route | Description |
+|------|-------|-------------|
+| **All** | `/` | Main home - all comics + novels |
+| **For You** | `/for-you` | Personalized recommendations |
+| **New** | `/new` | Newly added content |
+| **Recent** | `/recent` | Recently updated |
+| **Popular** | `/popular` | Popular now |
+| **Trending** | `/trending` | Trending content |
+| **Shorts** | `/shorts` | Short comics/novels |
+| **Top Ranking** | `/ranking` | Top ranked content |
+| **Events** | `/events` | Special events |
+| **News** | `/news` | Latest news |
+| **Community** | `/community` | Community posts |
+
+Each section contains **comics + novels** mixed together.
+
+### Content Type Pages
+
+| Page | Route | Description |
+|------|-------|-------------|
+| Comics | `/comics` | All comics only |
+| Novels | `/novels` | All novels only |
+| Manga | `/manga` | Japanese comics |
+| Manhwa | `/manhwa` | Korean comics |
+| Manhua | `/manhua` | Chinese comics |
+| Audiobooks | `/audiobooks` | Audio content |
+
+### Library Pages
+
+| Page | Route |
+|------|-------|
+| My List | `/my-list` |
+| Favorites | `/favorites` |
+| History | `/history` |
+| Watch Later | `/watch-later` |
+| Collections | `/collections` |
+| Playlists | `/playlists` |
+
+### Creator Pages
+
+| Page | Route |
+|------|-------|
+| Creator Studio | `/creator` |
+| Publish Art | `/publish-art` |
+| Write Stories | `/write-stories` |
+| Upload Comic | `/upload/comic` |
+| Upload Novel | `/upload/novel` |
+
+### Social Pages
+
+| Page | Route |
+|------|-------|
+| Following | `/following` |
+| Profile | `/profile` |
+| Messages | `/messages` |
+| Notifications | `/notifications` |
+
+### Discovery Pages
+
+| Page | Route |
+|------|-------|
+| Discover | `/discover` |
+| Search | `/search` |
+| Leaderboard | `/leaderboard` |
+| Achievements | `/achievements` |
+
+### Additional Pages (55+ total)
+
+- `/settings` - App settings
+- `/login` - User login
+- `/register` - User registration
+- `/series/[slug]` - Series detail
+- `/read/[slug]/[chapter]` - Chapter reader
+- `/quests` - Daily quests
+- `/levels` - User levels
+- `/activity` - Activity feed
+- And more...
+
 ## CORE APP SHELL (Load on Every Page)
 
 | Component | Description |
 |-----------|-------------|
-| **AppShell** | Main shell wrapping all pages |
 | **TopBar** | Navigation header with menu, search, notifications |
 | **BottomBar** | Mobile bottom navigation |
-| **DrawerMenu** | Side drawer with navigation |
 | **FloatingChatWindow** | Draggable global chat |
 | **NotificationCenter** | Notification dropdown |
 | **ThemeManager** | Light/Dark mode provider |
@@ -29,100 +109,19 @@
 | **PWAController** | Service worker registration |
 | **OfflineCacheController** | Offline detection & caching |
 
-## Project Structure
+## Components (39+)
 
-```
-comics-and-novels/
-├── app/                    # Next.js App Router pages (55+ pages)
-├── components/            # React components (39+ components)
-│   ├── layout/           # TopBar, BottomBar, Drawer
-│   ├── ui/               # Reusable UI components
-│   ├── reader/           # Comic/Novel reader
-│   ├── creator/          # Creator tools
-│   ├── features/         # FloatingChat, AIAssistant, WorldChat
-│   ├── providers/        # Theme, Query, Supabase providers
-│   ├── pwa/              # PWA & Offline controllers
-│   ├── analytics/        # Plausible analytics
-│   ├── auth/             # Login, Register forms
-│   ├── social/           # Follow, Bookmark buttons
-│   ├── comments/         # Comments section
-│   └── moderation/       # Report, Moderation
-├── lib/                   # Utilities & configs
-├── database/              # Database schema & seeds
-└── public/               # Static assets
-```
-
-## Components List (39+)
-
-### Layout Components
-- TopBar - Navigation header
-- BottomBar - Mobile bottom nav
-
-### Core Shell Components
-- AppShell - Main shell wrapper
-- LoadingOverlay - Global loading
-- ModalManager - Global modal system
-- FloatingChatWindow - World chat
-- OfflineCacheController - Offline support
-- ServiceWorkerRegistration - PWA
-
-### UI Components
-- CategoryPills - Genre navigation
-- Icons - SVG icon library
-- NotificationDropdown - Notifications
-- SearchAutocomplete - Search input
-- UIComponents - Reusable UI elements
-- AnimatedButtons - Button animations
-
-### Feature Components
-- AIAssistant - AI chat assistant
-- WorldChat - Global chat
-- AudioPlayer - Audio playback
-- ClientLayout - Client-side layout
-
-### Creator Components
-- SeriesManagement
-- NovelEditor
-- UploadProgress
-- ContentScheduling
-- CreatorAnalytics
-- CommentModeration
-- ImageReorder
-- CreateSeriesForm
-- UploadChapterForm
-
-### Series Components
-- SeriesCard
-- ReadingProgress
-
-### Auth Components
-- LoginForm
-- RegisterForm
-
-### Social Components
-- BookmarkButton
-- FollowButton
-
-### Comments Components
-- CommentsSection
-
-### Moderation Components
-- ReportButton
-
-### Providers
-- QueryProvider
-- SupabaseProvider
-- ThemeProvider
-
-### Analytics
-- PlausibleAnalytics
-
-## Database Tables
-
-- users, series, chapters, comments, likes
-- follows, bookmarks, reading_history
-- genres, tags, notifications, posts
-- world_chat, ratings
+- TopBar, BottomBar
+- AppShell, LoadingOverlay, ModalManager
+- FloatingChatWindow, OfflineCacheController
+- CategoryPills, Icons, NotificationDropdown
+- SearchAutocomplete, AnimatedButtons
+- AIAssistant, WorldChat, AudioPlayer
+- SeriesCard, ReadingProgress
+- LoginForm, RegisterForm
+- BookmarkButton, FollowButton
+- CommentsSection, ReportButton
+- And more...
 
 ## Deployment
 
