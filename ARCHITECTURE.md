@@ -16,6 +16,42 @@
 
 ---
 
+## SEARCH SYSTEM (80+ Pages)
+
+Similar to YouTube search UI.
+
+### Search Pages
+| Page | Route |
+|------|-------|
+| SearchPage | /search |
+| SearchComics | /search/comics |
+| SearchNovels | /search/novels |
+| SearchCreators | /search/creators |
+| SearchGenres | /search/genres |
+| SearchTags | /search/tags |
+| SearchOrganizations | /search/organizations |
+| SearchGroups | /search/groups |
+
+### Search Filters
+| Component |
+|-----------|
+| SearchFilterGenres |
+| SearchFilterTags |
+| SearchFilterStatus |
+| SearchFilterLanguage |
+| SearchFilterPopularity |
+| SearchFilterRating |
+| SearchFilterDate |
+
+### Advanced Search
+| Component |
+|-----------|
+| MultiGenreSelector |
+| TagSelector |
+| ContentTypeSelector |
+
+---
+
 ## COMICS SYSTEM (200+ Pages)
 
 ### Comics Home Pages
@@ -29,7 +65,7 @@
 | ComicsRanking | /comics/ranking |
 | ComicsEvents | /comics/events |
 
-### Comic Series Page (Route: /series/[slug])
+### Comic Series Page
 | Component |
 |-----------|
 | ComicSeriesPage |
@@ -43,7 +79,7 @@
 | ComicSeriesFanArt |
 | ComicSeriesNews |
 
-### Comic Reader Modes
+### Comic Reader
 | Component |
 |-----------|
 | ComicReaderVertical |
@@ -77,7 +113,7 @@
 | NovelsCompleted | /novels/completed |
 | NovelsRanking | /novels/ranking |
 
-### Novel Series Page (Route: /novels/[slug])
+### Novel Series Page
 | Component |
 |-----------|
 | NovelSeriesPage |
