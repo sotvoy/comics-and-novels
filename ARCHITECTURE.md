@@ -16,6 +16,34 @@
 
 ---
 
+## PROFILE SYSTEM (100+ Pages)
+
+Inspired by YouTube + game profile systems.
+
+### Profile Pages
+| Page |
+|------|
+| ProfilePage |
+| ProfileSeries |
+| ProfileFavorites |
+| ProfileReadingHistory |
+| ProfileAchievements |
+| ProfileFollowers |
+| ProfileFollowing |
+| ProfileOrganizations |
+| ProfileSettings |
+
+### Game Features
+| Feature |
+|---------|
+| AvatarFrame |
+| AnimatedName |
+| BadgeSystem |
+| AchievementShowcase |
+| RankDisplay |
+
+---
+
 ## COMMUNITY SYSTEM (120+ Pages)
 
 Inspired by Reddit and Discord.
@@ -77,21 +105,6 @@ Creator dashboard like YouTube Studio.
 ## GENRES SYSTEM (120+ Pages)
 50 genres × 4 pages each
 
-### Example Genres
-| Genre |
-|-------|
-| GenreAction |
-| GenreRomance |
-| GenreFantasy |
-| GenreAdventure |
-| GenreDrama |
-| GenreComedy |
-| GenreHorror |
-| GenreSciFi |
-| GenreMystery |
-| GenreHistorical |
-| ... (50 total) |
-
 ---
 
 ## SEARCH SYSTEM (80+ Pages)
@@ -101,86 +114,9 @@ Similar to YouTube search UI.
 
 ## COMICS SYSTEM (200+ Pages)
 
-### Comics Home Pages
-| Page |
-|------|
-| ComicsHome |
-| ComicsTrending |
-| ComicsPopular |
-| ComicsNew |
-| ComicsCompleted |
-| ComicsRanking |
-| ComicsEvents |
-
-### Comic Series Page
-| Component |
-|-----------|
-| ComicSeriesPage |
-| ComicSeriesOverview |
-| ComicSeriesChapters |
-| ComicSeriesComments |
-| ComicSeriesRatings |
-| ComicSeriesRecommendations |
-| ComicSeriesRelated |
-| ComicSeriesDiscussion |
-| ComicSeriesFanArt |
-| ComicSeriesNews |
-
-### Comic Reader
-| Component |
-|-----------|
-| ComicReaderVertical |
-| ComicReaderHorizontal |
-| ComicReaderFullscreen |
-| ComicReaderOffline |
-| ComicReaderNightMode |
-| ComicReaderAutoScroll |
-| ComicReaderPanelMode |
-
-### Reader Tools
-| Component |
-|-----------|
-| ReaderToolbar |
-| ReaderSettings |
-| ReaderBookmarks |
-| ReaderChapterSelector |
-| ReaderDownloadManager |
-
 ---
 
 ## NOVEL SYSTEM (200+ Pages)
-
-### Novels Home Pages
-| Page |
-|------|
-| NovelsHome |
-| NovelsTrending |
-| NovelsPopular |
-| NovelsNew |
-| NovelsCompleted |
-| NovelsRanking |
-
-### Novel Series Page
-| Component |
-|-----------|
-| NovelSeriesPage |
-| NovelSeriesOverview |
-| NovelSeriesChapters |
-| NovelSeriesReviews |
-| NovelSeriesDiscussion |
-| NovelSeriesFanArt |
-| NovelSeriesRecommendations |
-
-### Novel Reader
-| Component |
-|-----------|
-| NovelReader |
-| NovelReaderFullscreen |
-| NovelReaderNightMode |
-| NovelReaderOffline |
-| NovelReaderAudio |
-| NovelReaderBookmark |
-| NovelReaderFontSettings |
 
 ---
 
@@ -200,34 +136,10 @@ Each card links to Series Info Page
 ---
 
 ## HOME SYSTEM (120+ Pages)
-| Page |
-|------|
-| All |
-| For You |
-| New |
-| Recent |
-| Popular |
-| Trending |
-| Shorts |
-| Ranking |
-| Events |
-| News |
-| Community |
 
 ---
 
 ## CORE APP SHELL
-| Component |
-|-----------|
-| TopBar |
-| BottomBar |
-| FloatingChatWindow |
-| NotificationCenter |
-| ThemeManager |
-| ModalSystem |
-| LoadingSystem |
-| PWAController |
-| OfflineCacheController |
 
 ---
 
