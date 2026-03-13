@@ -177,6 +177,9 @@ export default function TopBar() {
                   <Link href="/" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Home className="w-5 h-5" /> Home
                   </Link>
+                  <Link href="/organizations" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Users className="w-5 h-5" /> Organizations
+                  </Link>
                   <Link href="/audiobooks" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Headphones className="w-5 h-5" /> Audiobooks
                   </Link>
@@ -220,6 +223,9 @@ export default function TopBar() {
                 <nav className="space-y-1">
                   <Link href="/settings" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Settings className="w-5 h-5" /> Settings
+                  </Link>
+                  <Link href="/creator" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
+                    <Icons.Video className="w-5 h-5" /> Creator Studio
                   </Link>
                   <Link href="/discover" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
                     <Icons.Globe className="w-5 h-5" /> Discover
