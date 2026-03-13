@@ -250,20 +250,7 @@ export default function TopBar() {
                   </Link>
                 </nav>
 
-                <div className="border-t border-gray-200 dark:border-gray-700 my-4" />
 
-                <h3 className="px-3 text-sm font-semibold text-gray-500 mb-2">Gaming</h3>
-                <nav className="space-y-1">
-                  <Link href="/daily-rewards" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Rewards className="w-5 h-5" /> Daily Rewards
-                  </Link>
-                  <Link href="/battle-pass" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.BattlePass className="w-5 h-5" /> Battle Pass
-                  </Link>
-                  <Link href="/quests" className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800" onClick={() => setDrawerOpen(false)}>
-                    <Icons.Target className="w-5 h-5" /> Quests
-                  </Link>
-                </nav>
               </div>
             </motion.div>
           </>

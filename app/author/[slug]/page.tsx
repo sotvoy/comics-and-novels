@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import Icons from '@/components/ui/Icons';
-import TipButton from '@/components/payments/TipButton';
 import FollowButton from '@/components/social/FollowButton';
 
 const authorData: Record<string, any> = {
@@ -52,8 +51,7 @@ export default function AuthorPage() {
             <p className="text-sm text-gray-500 mt-1">Level {author.level} Creator</p>
           </div>
           <div className="flex gap-2">
-            <TipButton creatorId={slug} creatorName={author.name} size="md" />
-            <FollowButton userId={slug} initialFollowing={isFollowing} size="md" />
+            <FollowButton userId={slug} initialFollowing={false} size="md" />
           </div>
         </div>
 
