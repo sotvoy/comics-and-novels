@@ -193,25 +193,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Content Type Tabs - Link to dedicated pages */}
-        <section className="mb-4 px-4">
-          <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 border-b border-gray-200 dark:border-gray-700">
-            {[
-              { id: 'manga', label: 'Manga', href: '/manga', icon: 'Book' },
-              { id: 'manhwa', label: 'Manhwa', href: '/manhwa', icon: 'BookOpen' },
-              { id: 'manhua', label: 'Manhua', href: '/manhua', icon: 'Book' },
-              { id: 'novels', label: 'Novels', href: '/novels', icon: 'Scroll' },
-              { id: 'audiobooks', label: 'Audiobooks', href: '/audiobooks', icon: 'Headphones' },
-              { id: 'shorts', label: 'Shorts', href: '/shorts', icon: 'Grid' },
-            ].map((type) => (
-              <Link key={type.id} href={type.href}>
-                <span className="flex-shrink-0 px-4 py-2 text-sm font-medium border-b-2 border-transparent hover:border-red-500 transition-colors whitespace-nowrap">
-                  {type.label}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </section>
+
 
         {/* New Chapters from Followed - Comick.io Style */}
         <section className="mb-6">
