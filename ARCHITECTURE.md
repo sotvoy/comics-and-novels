@@ -16,6 +16,24 @@
 
 ---
 
+## SETTINGS SYSTEM (100+ Pages)
+
+### Settings Pages
+| Page |
+|------|
+| SettingsGeneral |
+| SettingsAccount |
+| SettingsNotifications |
+| SettingsPrivacy |
+| SettingsSecurity |
+| SettingsAppearance |
+| SettingsTheme |
+| SettingsReader |
+| SettingsDownloads |
+| SettingsLanguage |
+
+---
+
 ## CHAT SYSTEM (60+ Pages)
 
 Game-style global chat.
@@ -45,16 +63,6 @@ Groups similar to scanlation teams.
 | OrganizationAnnouncements |
 | OrganizationSettings |
 | OrganizationRoles |
-
-### Roles
-| Role |
-|------|
-| Owner |
-| Admin |
-| Translator |
-| Author |
-| Artist |
-| Uploader |
 
 ---
 
