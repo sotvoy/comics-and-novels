@@ -16,8 +16,38 @@
 
 ---
 
-## GENRES SYSTEM (120+ Pages)
+## CREATOR STUDIO (150+ Pages)
 
+Creator dashboard like YouTube Studio.
+
+### Creator Pages
+| Page |
+|------|
+| CreatorDashboard |
+| CreatorAnalytics |
+| CreatorSeriesManager |
+| CreatorChapterManager |
+| CreatorUploadComic |
+| CreatorUploadNovel |
+| CreatorDraftManager |
+| CreatorScheduledPosts |
+| CreatorFollowers |
+| CreatorMessages |
+| CreatorOrganizations |
+
+### Upload Tools
+| Tool |
+|------|
+| ComicUploadWizard |
+| NovelEditorMarkdown |
+| NovelEditorWYSIWYG |
+| ImageUploader |
+| TagManager |
+| GenreSelector |
+
+---
+
+## GENRES SYSTEM (120+ Pages)
 50 genres × 4 pages each = 200+ pages
 
 ### Example Genres
@@ -36,27 +66,25 @@
 | ... (50 total) |
 
 ### Each Genre Has 4 Pages
-| Page Type | Description |
-|-----------|-------------|
-| GenreTrending | Trending in this genre |
-| GenrePopular | Popular in this genre |
-| GenreNew | New releases in this genre |
-| GenreTopRanking | Top ranked in this genre |
+| Page Type |
+|-----------|
+| GenreTrending |
+| GenrePopular |
+| GenreNew |
+| GenreTopRanking |
 
 ---
 
 ## SEARCH SYSTEM (80+ Pages)
 Similar to YouTube search UI.
-| Page | Route |
-|------|-------|
-| SearchPage | /search |
-| SearchComics | /search/comics |
-| SearchNovels | /search/novels |
-| SearchCreators | /search/creators |
-| SearchGenres | /search/genres |
-| SearchTags | /search/tags |
-| SearchOrganizations | /search/organizations |
-| SearchGroups | /search/groups |
+| Page |
+|------|
+| SearchPage |
+| SearchComics |
+| SearchNovels |
+| SearchCreators |
+| SearchGenres |
+| SearchTags |
 
 ### Search Filters
 | Component |
@@ -130,14 +158,14 @@ Similar to YouTube search UI.
 ## NOVEL SYSTEM (200+ Pages)
 
 ### Novels Home Pages
-| Page | Route |
-|------|-------|
-| NovelsHome | /novels |
-| NovelsTrending | /novels/trending |
-| NovelsPopular | /novels/popular |
-| NovelsNew | /novels/new |
-| NovelsCompleted | /novels/completed |
-| NovelsRanking | /novels/ranking |
+| Page |
+|------|
+| NovelsHome |
+| NovelsTrending |
+| NovelsPopular |
+| NovelsNew |
+| NovelsCompleted |
+| NovelsRanking |
 
 ### Novel Series Page
 | Component |
@@ -179,19 +207,19 @@ Each card links to Series Info Page
 ---
 
 ## HOME SYSTEM (120+ Pages)
-| Page | Route |
-|------|-------|
-| All | / |
-| For You | /for-you |
-| New | /new |
-| Recent | /recent |
-| Popular | /popular |
-| Trending | /trending |
-| Shorts | /shorts |
-| Ranking | /ranking |
-| Events | /events |
-| News | /news |
-| Community | /community |
+| Page |
+|------|
+| All |
+| For You |
+| New |
+| Recent |
+| Popular |
+| Trending |
+| Shorts |
+| Ranking |
+| Events |
+| News |
+| Community |
 
 ---
 
