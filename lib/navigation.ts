@@ -52,7 +52,6 @@ export const NAVIGATION_ITEMS: NavItem[] = [
 // Bottom navigation items
 export const BOTTOM_NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Home', href: '/', icon: 'Home', type: 'navigation' },
-  { id: 'explore', label: 'Explore', href: '/discover', icon: 'Compass', type: 'navigation' },
   { id: 'my-list', label: 'My List', href: '/my-list', icon: 'List', type: 'navigation' },
   { id: 'create', label: 'Create', href: '#create', icon: 'Plus', type: 'creator' },
   { id: 'following', label: 'Following', href: '/following', icon: 'Following', type: 'social' },
