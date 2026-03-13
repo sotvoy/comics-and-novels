@@ -16,6 +16,32 @@
 
 ---
 
+## ORGANIZATION SYSTEM (80+ Pages)
+
+Groups similar to scanlation teams.
+
+### Organization Pages
+| Page |
+|------|
+| OrganizationPage |
+| OrganizationMembers |
+| OrganizationSeries |
+| OrganizationAnnouncements |
+| OrganizationSettings |
+| OrganizationRoles |
+
+### Roles
+| Role |
+|------|
+| Owner |
+| Admin |
+| Translator |
+| Author |
+| Artist |
+| Uploader |
+
+---
+
 ## PROFILE SYSTEM (100+ Pages)
 
 Inspired by YouTube + game profile systems.
@@ -61,44 +87,11 @@ Inspired by Reddit and Discord.
 | CommunityFanArt |
 | CommunityDiscussions |
 
-### Post System
-| Component |
-|-----------|
-| PostEditor |
-| PostComments |
-| PostReactions |
-| PostModeration |
-
 ---
 
 ## CREATOR STUDIO (150+ Pages)
 
 Creator dashboard like YouTube Studio.
-
-### Creator Pages
-| Page |
-|------|
-| CreatorDashboard |
-| CreatorAnalytics |
-| CreatorSeriesManager |
-| CreatorChapterManager |
-| CreatorUploadComic |
-| CreatorUploadNovel |
-| CreatorDraftManager |
-| CreatorScheduledPosts |
-| CreatorFollowers |
-| CreatorMessages |
-| CreatorOrganizations |
-
-### Upload Tools
-| Tool |
-|------|
-| ComicUploadWizard |
-| NovelEditorMarkdown |
-| NovelEditorWYSIWYG |
-| ImageUploader |
-| TagManager |
-| GenreSelector |
 
 ---
 
