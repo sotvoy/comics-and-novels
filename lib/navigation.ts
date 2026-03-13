@@ -46,6 +46,7 @@ export const NAVIGATION_ITEMS: NavItem[] = [
   { id: 'achievements', label: 'Achievements', href: '/achievements', priority: 20, type: 'navigation' },
   { id: 'chat', label: 'Chat', href: '/chat', priority: 21, type: 'navigation' },
   { id: 'messages', label: 'Messages', href: '/messages', priority: 22, type: 'navigation' },
+  { id: 'settings', label: 'Settings', href: '/settings', priority: 23, type: 'navigation' },
 ];
 
 // Bottom navigation items
