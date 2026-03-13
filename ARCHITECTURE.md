@@ -37,6 +37,43 @@
 
 ---
 
+# EXAMPLE FOLDER LAYOUT
+
+```
+src/
+ │
+ ├ app/
+ │ ├ home/
+ │ ├ comics/
+ │ ├ novels/
+ │ ├ genres/
+ │ ├ search/
+ │ ├ profile/
+ │ ├ creator/
+ │ ├ community/
+ │ ├ chat/
+ │ ├ organizations/
+ │ └ settings/
+ │
+ ├ components/
+ │ ├ cards/
+ │ ├ carousels/
+ │ ├ reader/
+ │ ├ navigation/
+ │ ├ chat/
+ │ ├ upload/
+ │ └ ui/
+ │
+ ├ features/
+ │ ├ achievements/
+ │ ├ ranking/
+ │ ├ recommendations/
+ │ ├ notifications/
+ │ └ analytics/
+```
+
+---
+
 ## SETTINGS SYSTEM (100+ Pages)
 | Page |
 |------|
