@@ -36,6 +36,24 @@ export default function BottomBar() {
     setShowCreateMenu(false);
   }, [pathname]);
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (showCreateMenu) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [showCreateMenu]);
+
   const isActive = (path: string) => {
     if (path === '/') return pathname === '/';
     return pathname.startsWith(path);
@@ -106,7 +124,7 @@ export default function BottomBar() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="w-full max-w-md bg-white dark:bg-gray-900 rounded-t-3xl p-6"
+            className="w-full max-w-md bg-white dark:bg-gray-900 rounded-t-3xl p-6 pb-8"
             onClick={(e) => e.stopPropagation()}
             role="menu"
           >
