@@ -124,6 +124,7 @@ export default function BottomBar() {
                     onClick={() => {
                       if (!isDisabled) {
                         setShowCreateMenu(false);
+                        router.push(action.href);
                       }
                     }}
                     role="menuitem"
