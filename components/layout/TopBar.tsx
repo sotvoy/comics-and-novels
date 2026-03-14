@@ -123,17 +123,15 @@ export default function TopBar() {
               <Icons.Search />
             </Link>
             <NotificationDropdown userId={authUser?.id} />
-            {authUser ? (
-              <Link href="/profile" className="yt-button" aria-label="Profile">
+            <Link href="/profile" className="yt-button" aria-label="Profile">
+              {authUser ? (
                 <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center text-white text-xs font-bold">
                   {(authUser.user_metadata?.username || authUser.email?.[0] || 'U').toUpperCase()}
                 </div>
-              </Link>
-            ) : (
-              <Link href="/login" className="yt-button text-sm font-medium text-red-500">
-                Sign In
-              </Link>
-            )}
+              ) : (
+                <Icons.User className="w-5 h-5" />
+              )}
+            </Link>
             <button
               onClick={toggleTheme}
               className="yt-button"
