@@ -88,13 +88,13 @@ export default function BottomBar() {
         </div>
       </nav>
 
-      {/* Create Menu Modal */}
+      {/* Create Menu Modal - YouTube Style */}
       {showCreateMenu && (
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 z-50 flex items-end safe-area-bottom"
+          className="fixed inset-0 bg-black/60 z-50 flex items-end justify-center safe-area-bottom"
           onClick={() => setShowCreateMenu(false)}
           role="dialog"
           aria-modal="true"
@@ -102,52 +102,49 @@ export default function BottomBar() {
         >
           <motion.div 
             ref={menuRef}
-            initial={{ y: '100%' }}
-            animate={{ y: 0 }}
-            exit={{ y: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="w-full bg-white dark:bg-gray-900 rounded-t-3xl p-4 max-h-[85vh] overflow-y-auto"
+            initial={{ y: '100%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: '100%', opacity: 0 }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="w-full max-w-md bg-white dark:bg-gray-900 rounded-t-3xl p-6"
             onClick={(e) => e.stopPropagation()}
             role="menu"
           >
-            <div className="w-12 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-4 px-2 dark:text-white">Create</h3>
-            <div className="space-y-2" role="menuitem">
-              {CREATOR_ACTIONS.map((action, index) => {
+            <div className="w-12 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full mx-auto mb-6" />
+            
+            <h3 className="text-xl font-bold mb-6 px-2 dark:text-white">Create</h3>
+            
+            {/* YouTube-style horizontal layout */}
+            <div className="grid grid-cols-3 gap-4" role="menuitem">
+              {CREATOR_ACTIONS.map((action) => {
                 const iconName = action.icon as keyof typeof Icons;
                 const IconComponent = Icons[iconName];
-                const isDisabled = action.href === '#';
                 return (
-                  <div
+                  <button
                     key={action.id}
-                    className={`flex items-center gap-4 p-4 rounded-2xl active:scale-95 transition-transform ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer'}`}
                     onClick={() => {
-                      if (!isDisabled) {
-                        setShowCreateMenu(false);
-                        router.push(action.href);
-                      }
+                      setShowCreateMenu(false);
+                      router.push(action.href);
                     }}
+                    className="flex flex-col items-center gap-3 p-4 rounded-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     role="menuitem"
-                    data-testid={`creator-action-${action.id}`}
                   >
-                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center text-red-500">
-                      {IconComponent ? <IconComponent className="w-6 h-6" /> : (
-                        <span className="text-2xl">
+                    <div className="w-14 h-14 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center text-red-500">
+                      {IconComponent ? <IconComponent className="w-7 h-7" /> : (
+                        <span className="text-3xl">
                           {action.id === 'publish-art' ? '🎨' : action.id === 'write-stories' ? '✍️' : '📰'}
                         </span>
                       )}
                     </div>
-                    <div>
-                      <p className="font-bold text-lg dark:text-white">{action.label}</p>
-                      <p className="text-sm text-gray-500">{action.description}</p>
-                    </div>
-                  </div>
+                    <span className="font-medium text-sm dark:text-white text-center">{action.label}</span>
+                  </button>
                 );
               })}
             </div>
+            
             <button
               onClick={() => setShowCreateMenu(false)}
-              className="w-full mt-4 py-4 text-gray-500 font-semibold text-lg active:bg-gray-100 dark:active:bg-gray-800 rounded-2xl transition-colors"
+              className="w-full mt-6 py-3.5 text-gray-500 font-semibold text-base bg-gray-100 dark:bg-gray-800 rounded-full transition-colors"
             >
               Cancel
             </button>
